@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
-import Background from './components/Background';
 import CardGrid from './components/CardGrid';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
@@ -37,7 +36,6 @@ function Home() {
 
   return (
     <>
-      <Background />
       <Sidebar current={group} open={drawer} onClose={() => setDrawer(false)} />
       <div className={s.main}>
         <SearchBar onMenu={() => setDrawer(true)} />

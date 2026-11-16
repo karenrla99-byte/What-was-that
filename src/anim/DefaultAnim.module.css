@@ -16,8 +16,8 @@
 .ring {
   width: 46cqmin;
   height: 46cqmin;
-  background: var(--gray-2);
-  opacity: 0.6;
+  background: var(--blue);
+  opacity: 0.18;
   animation: ring 2.8s ease-in-out infinite;
 }
 
@@ -26,8 +26,8 @@
   height: 46cqmin;
   display: grid;
   place-items: center;
-  background: var(--blue-soft);
-  color: var(--blue);
+  background: var(--blue);
+  color: #fff;
   animation: breathe 2.8s ease-in-out infinite;
 }
 
@@ -47,6 +47,6 @@
 }
 
 @keyframes ring {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.38); opacity: 0.2; }
+  0%, 100% { transform: scale(1); opacity: 0.18; }
+  50% { transform: scale(1.38); opacity: 0.06; }
 }

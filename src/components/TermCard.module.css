@@ -46,8 +46,8 @@
   right: 8px;
   padding: 1px 9px 2px;
   border-radius: var(--r-pill);
-  background: var(--blue-soft);
-  color: var(--blue-deep);
+  background: var(--blue);
+  color: #fff;
   font-size: 13px;
   font-weight: 700;
   font-style: italic;

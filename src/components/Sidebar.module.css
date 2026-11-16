@@ -61,6 +61,11 @@
   transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
+.item svg {
+  flex: none;
+  color: var(--blue);
+}
+
 .item:hover {
   background: rgba(0, 149, 255, 0.08);
 }
