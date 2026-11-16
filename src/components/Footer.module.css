@@ -1,0 +1,20 @@
+.footer {
+  padding: 48px 0 28px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-sub);
+}
+
+.link {
+  color: var(--blue-text);
+  border-radius: 4px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.small {
+  margin-top: 4px;
+  font-size: 12px;
+}

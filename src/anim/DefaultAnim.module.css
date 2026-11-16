@@ -1,0 +1,52 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  container-type: size;
+}
+
+.ring,
+.disc {
+  grid-area: 1 / 1;
+  border-radius: 50%;
+}
+
+.ring {
+  width: 46cqmin;
+  height: 46cqmin;
+  background: var(--gray-2);
+  opacity: 0.6;
+  animation: ring 2.8s ease-in-out infinite;
+}
+
+.disc {
+  width: 46cqmin;
+  height: 46cqmin;
+  display: grid;
+  place-items: center;
+  background: var(--blue-soft);
+  color: var(--blue);
+  animation: breathe 2.8s ease-in-out infinite;
+}
+
+.icon {
+  width: 22cqmin;
+  height: 22cqmin;
+}
+
+.paused .ring,
+.paused .disc {
+  animation-play-state: paused;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(0.94); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes ring {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.38); opacity: 0.2; }
+}

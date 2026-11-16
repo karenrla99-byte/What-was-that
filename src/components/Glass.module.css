@@ -1,0 +1,29 @@
+.card,
+.pill {
+  background-color: rgba(255, 255, 255, 0.94); /* backdrop-filter 안 되는 브라우저용 */
+  background-image: var(--glass-shine);
+  border: var(--glass-border);
+}
+
+.card {
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+}
+
+.pill {
+  border-radius: var(--r-pill);
+  box-shadow: var(--inset-shine), var(--shadow-pill);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card {
+    background-color: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+  }
+  .pill {
+    background-color: rgba(255, 255, 255, 0.78);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+  }
+}

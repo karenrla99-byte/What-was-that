@@ -1,0 +1,18 @@
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+}
+
+.b1 { width: 52vmax; height: 52vmax; left: -16vmax; top: -20vmax; background: var(--glow-1); opacity: 0.30; }
+.b2 { width: 46vmax; height: 46vmax; right: -12vmax; top: 8vmax; background: var(--glow-2); opacity: 0.50; }
+.b3 { width: 50vmax; height: 50vmax; left: 18vmax; bottom: -26vmax; background: var(--glow-3); opacity: 0.75; }
+.b4 { width: 30vmax; height: 30vmax; right: 6vmax; bottom: -10vmax; background: var(--glow-1); opacity: 0.16; }

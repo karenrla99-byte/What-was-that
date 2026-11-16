@@ -9,4 +9,11 @@
 - 용어 목록: [`docs/TERMS.md`](docs/TERMS.md)
 - 개발 지침: [`CLAUDE.md`](CLAUDE.md)
 
+## 실행
+
+```bash
+npm install
+npm run dev   # http://localhost:5173
+```
+
 © 2026 특수교사 은티 · [@special_eun_t](https://www.instagram.com/special_eun_t/)
