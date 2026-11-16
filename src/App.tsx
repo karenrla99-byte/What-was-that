@@ -6,7 +6,7 @@ import SearchBar from './components/SearchBar';
 import Sidebar from './components/Sidebar';
 import TermCard from './components/TermCard';
 import { GROUP_MAP, isGroupKey, subId, type GroupKey } from './data/groups';
-import { SAMPLE_TERMS } from './data/sampleTerms';
+import { TERMS, type Term } from './data/terms';
 import s from './App.module.css';
 
 const byKo = (a: { ko: string }, b: { ko: string }) => a.ko.localeCompare(b.ko, 'ko');
@@ -27,7 +27,7 @@ function Home() {
     return () => window.removeEventListener('keydown', onKey);
   }, [drawer]);
 
-  const all = useMemo(() => [...SAMPLE_TERMS].sort(byKo), []);
+  const all = useMemo(() => [...TERMS].sort(byKo), []);
 
   if (param && !group) return <Navigate to="/" replace />;
 
@@ -47,8 +47,9 @@ function Home() {
                 {info.name}
               </h2>
               {info.subs.map((sub) => {
-                const terms = SAMPLE_TERMS.filter((t) => t.groups.some((x) => x.group === info.key && x.sub === sub));
-                if (info.sortSubs) terms.sort(byKo);
+                const order = (t: Term) => t.groups.find((x) => x.group === info.key && x.sub === sub)!.order;
+                const terms = TERMS.filter((t) => t.groups.some((x) => x.group === info.key && x.sub === sub));
+                terms.sort(info.sortSubs ? byKo : (a, b) => order(a) - order(b));
                 if (!terms.length) return null;
                 return (
                   <section key={sub} id={subId(sub)} className={s.section}>

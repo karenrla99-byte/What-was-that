@@ -115,6 +115,8 @@ type Term = {
 type GroupKey = 'start'|'look'|'parts'|'motion'|'screens'|'gesture'|'learn'|'ux'|'size'|'build'|'ai';
 ```
 - 초성은 `ko`에서 런타임 계산 (저장 안 함)
+- 스크립트가 더 넣는 칸: `groups[].order`(TERMS.md 순서) · `vsNote`(짝 id → 비교 설명) · `sprout`(🌱 초보용) · `draft`. 만들기: `npm run build:terms` (프롬프트 초안은 `scripts/prompt-drafts.md`에서 고치기)
+- `vs` 줄의 짝이 용어로 없으면(예: 벡터 vs 비트맵) **비교 카드 하나**로 만듦 (`anim.type: 'Compare'`)
 - TERMS.md의 `vs 가 vs 나` 줄은 별도 카드가 아니라 **각 용어의 `vs` 칸**으로 넣기 (가↔나 서로 연결). 단 `vs` 줄에 뜻이 적힌 것은 상세의 비교 설명으로 사용
 - 같은 용어가 여러 분류에 나오면 **카드 하나 + groups 여러 개** (PLAN.md 4장 겹침 표 + TERMS.md 참고: 벤토, 스켈레톤, 바텀시트, 순차 등장, 진행 바, 코치마크 등)
 - `short`, `prompt`, `related`가 원본에 없으면 **Claude가 초안을 채우고** `"draft": true` 표시 → 정은이 검토. 프롬프트 문장 규칙: "언제 + 어디서 + 무엇이 + 어떻게" 구조, 핵심 용어를 문장 안에 그대로 넣기, "~해줘"로 끝내기. 예: "설정 버튼을 누르면 화면 아래에서 **바텀시트**가 올라와서 글자 크기를 고를 수 있게 해줘"
