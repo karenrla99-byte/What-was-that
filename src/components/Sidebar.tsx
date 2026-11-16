@@ -6,11 +6,13 @@ import s from './Sidebar.module.css';
 
 type Props = {
   current: GroupKey | null;
+  /** 스크롤로 지금 보고 있는 작은 분류 */
+  activeSub: string | null;
   open: boolean;
   onClose: () => void;
 };
 
-export default function Sidebar({ current, open, onClose }: Props) {
+export default function Sidebar({ current, activeSub, open, onClose }: Props) {
   const goSub = (sub: string) => {
     document.getElementById(subId(sub))?.scrollIntoView({ block: 'start' });
     onClose();
@@ -55,7 +57,12 @@ export default function Sidebar({ current, open, onClose }: Props) {
                     <ul className={s.subs} inert={!on}>
                       {g.subs.map((sub) => (
                         <li key={sub}>
-                          <button type="button" className={s.sub} onClick={() => goSub(sub)}>
+                          <button
+                            type="button"
+                            className={`${s.sub} ${on && activeSub === sub ? s.subActive : ''}`}
+                            aria-current={on && activeSub === sub ? 'true' : undefined}
+                            onClick={() => goSub(sub)}
+                          >
                             {sub}
                           </button>
                         </li>

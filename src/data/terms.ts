@@ -33,3 +33,9 @@ export type Term = {
 
 export const TERMS = data as Term[];
 export const TERM_MAP = new Map(TERMS.map((t) => [t.id, t]));
+
+/** 처음이라면 이것부터 (PLAN.md 3-7 순서) */
+const STARTER_ORDER = ['바이브코딩', '프롬프트', '코드 블록', '컴포넌트', '반응형', '모달', '토스트', '바텀시트', '배포', '에러 메시지', '콘솔', '되돌리기'];
+export const STARTERS = TERMS.filter((t) => t.starter).sort(
+  (a, b) => STARTER_ORDER.indexOf(a.ko) - STARTER_ORDER.indexOf(b.ko),
+);

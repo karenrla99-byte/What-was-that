@@ -94,6 +94,7 @@
 }
 
 .sub {
+  position: relative;
   display: block;
   width: 100%;
   min-height: 36px;
@@ -109,6 +110,25 @@
 .sub:hover {
   color: var(--blue-text);
   background: rgba(0, 149, 255, 0.06);
+}
+
+.subActive,
+.subActive:hover {
+  color: var(--blue-text);
+  font-weight: 600;
+  background: transparent;
+}
+
+.subActive::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--blue);
 }
 
 .sub:focus-visible {

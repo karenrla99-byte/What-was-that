@@ -1,6 +1,10 @@
 .card {
   position: relative;
   aspect-ratio: 1;
+  /* 흰 배경에서는 뒤 흐림이 보이지 않고 카드 수백 장에서 느려지기만 해서 끔 */
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background-color: #fff !important;
   display: flex;
   flex-direction: column;
   padding: 8px;
