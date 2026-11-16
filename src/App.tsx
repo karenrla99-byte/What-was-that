@@ -1,38 +1,21 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Navigate, Route, Routes, useParams } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import CardGrid from './components/CardGrid';
+import Detail from './components/Detail';
 import Footer from './components/Footer';
 import IndexStrip, { indexId } from './components/IndexStrip';
 import SearchBar from './components/SearchBar';
 import Sidebar from './components/Sidebar';
 import StarterRow from './components/StarterRow';
 import TermCard from './components/TermCard';
-import { GROUP_MAP, isGroupKey, subId, type Group, type GroupKey } from './data/groups';
-import { STARTERS, TERMS, type Term } from './data/terms';
+import { GROUP_MAP, isGroupKey, subId, type GroupKey } from './data/groups';
+import { ALL_SECTIONS, sectionsOf } from './data/lists';
+import { STARTERS, TERMS } from './data/terms';
 import { useScrollSpy } from './hooks/useScrollSpy';
-import { INDEX_KEYS, compareKo, indexKeyOf, type IndexKey } from './lib/hangul';
 import s from './App.module.css';
 
-const byKo = (a: Term, b: Term) => compareKo(a.ko, b.ko);
-
-/** 전체: ㄱㄴㄷ순으로 글자별 구역 */
-const ALL_SECTIONS: { key: IndexKey; terms: Term[] }[] = INDEX_KEYS.map((key) => ({
-  key,
-  terms: TERMS.filter((t) => indexKeyOf(t.ko) === key).sort(byKo),
-})).filter((x) => x.terms.length);
 const ALL_IDS = ALL_SECTIONS.map((x) => indexId(x.key));
 const AVAILABLE = new Set(ALL_SECTIONS.map((x) => x.key));
-
-function sectionsOf(info: Group): { sub: string; terms: Term[] }[] {
-  return info.subs
-    .map((sub) => {
-      const order = (t: Term) => t.groups.find((x) => x.group === info.key && x.sub === sub)!.order;
-      const terms = TERMS.filter((t) => t.groups.some((x) => x.group === info.key && x.sub === sub));
-      terms.sort(info.sortSubs ? byKo : (a, b) => order(a) - order(b));
-      return { sub, terms };
-    })
-    .filter((x) => x.terms.length);
-}
 
 function Home() {
   const { group: param } = useParams();
@@ -114,11 +97,25 @@ function Home() {
 }
 
 export default function App() {
+  const location = useLocation();
+  const isDetail = location.pathname.startsWith('/t/');
+  // 상세 화면은 목록 위에 뜨는 창. 뒤에는 들어온 목록(바로 들어왔으면 전체)을 그대로 둠
+  const bg = (location.state as { bg?: { pathname: string } } | null)?.bg ?? { pathname: '/' };
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/c/:group" element={<Home />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <div inert={isDetail}>
+        <Routes location={isDetail ? bg : location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/c/:group" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+      {isDetail && (
+        <Routes>
+          <Route path="/t/:id" element={<Detail />} />
+        </Routes>
+      )}
+    </>
   );
 }

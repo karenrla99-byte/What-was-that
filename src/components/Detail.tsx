@@ -1,0 +1,323 @@
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { ArrowLeft, Check, ChevronLeft, ChevronRight, Copy, KeyRound, MessageCircle, RotateCcw, Scale, X } from 'lucide-react';
+import TermAnim from '../anim/TermAnim';
+import { GROUP_MAP } from '../data/groups';
+import { sequenceFor } from '../data/lists';
+import { TERM_MAP, type Term } from '../data/terms';
+import Footer from './Footer';
+import Toast from './Toast';
+import s from './Detail.module.css';
+
+type Bg = { pathname: string; search?: string };
+type Rect = { x: number; y: number; w: number; h: number };
+type NavState = { bg?: Bg; rect?: Rect } | null;
+
+/** 프롬프트 문장에서 핵심 용어를 찾아 강조 */
+function PromptText({ term }: { term: Term }) {
+  const names = [term.ko, ...term.aliases, ...term.ko.split(/ vs |\s*[/·]\s*/)].filter((n) => n.length > 0);
+  const parts: (string | { hit: string })[] = [term.prompt];
+  for (const name of names) {
+    if (parts.some((p) => typeof p !== 'string')) break;
+    const text = parts[0] as string;
+    const i = text.indexOf(name);
+    if (i >= 0) parts.splice(0, 1, text.slice(0, i), { hit: name }, text.slice(i + name.length));
+  }
+  return (
+    <>
+      {parts.map((p, i) => (typeof p === 'string' ? p : <strong key={i} className={s.key}>{p.hit}</strong>))}
+    </>
+  );
+}
+
+/** 상세 화면: 카드가 커지며 열리는 창. 주소는 /t/:id */
+export default function Detail() {
+  const { id } = useParams();
+  const term = id ? TERM_MAP.get(id) : undefined;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const state = location.state as NavState;
+  const bg: Bg = state?.bg ?? { pathname: '/' };
+
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const [replay, setReplay] = useState(0);
+  const [compare, setCompare] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const seq = useMemo(() => sequenceFor(bg.pathname), [bg.pathname]);
+  const pos = term ? seq.indexOf(term) : -1;
+  const prev = pos > 0 ? seq[pos - 1] : undefined;
+  const next = pos >= 0 && pos < seq.length - 1 ? seq[pos + 1] : undefined;
+
+  const close = () => {
+    // 목록에서 들어왔으면 그 자리로, 주소로 바로 들어왔으면 홈으로
+    if (state?.bg) navigate(-1);
+    else navigate('/', { replace: true });
+  };
+  const goTo = (t: Term) => navigate(`/t/${t.id}`, { replace: true, state: { bg } });
+
+  // 카드 자리에서 커지며 열리기 (스프링 느낌)
+  useLayoutEffect(() => {
+    const el = panelRef.current;
+    const r = state?.rect;
+    if (!el || !r || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const to = el.getBoundingClientRect();
+    el.animate(
+      [
+        {
+          transform: `translate(${r.x - to.left}px, ${r.y - to.top}px) scale(${r.w / to.width}, ${r.h / to.height})`,
+          opacity: 0.4,
+        },
+        { transform: 'none', opacity: 1 },
+      ],
+      { duration: 460, easing: 'cubic-bezier(0.3, 1.32, 0.5, 1)' },
+    );
+    // 처음 열릴 때 한 번만
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // 용어가 바뀌면 처음 상태로
+  useEffect(() => {
+    setCompare(null);
+    setCopied(false);
+    setReplay(0);
+    panelRef.current?.scrollTo(0, 0);
+  }, [id]);
+
+  useEffect(() => {
+    if (!term) return;
+    const before = document.title;
+    document.title = `${term.ko} · 그거 뭐더라?`;
+    return () => {
+      document.title = before;
+    };
+  }, [term]);
+
+  // 뒤 화면 스크롤 막기 + 포커스 옮기기
+  useEffect(() => {
+    const last = document.activeElement as HTMLElement | null;
+    document.documentElement.classList.add('modal-open');
+    closeRef.current?.focus({ preventScroll: true });
+    return () => {
+      document.documentElement.classList.remove('modal-open');
+      last?.focus?.({ preventScroll: true });
+    };
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft' && prev) goTo(prev);
+      else if (e.key === 'ArrowRight' && next) goTo(next);
+      else if (e.key === 'Tab') {
+        // 창 안에서만 Tab 이동
+        const items = panelRef.current?.querySelectorAll<HTMLElement>('a[href], button:not(:disabled)');
+        if (!items?.length) return;
+        const first = items[0];
+        const lastItem = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastItem.focus(); }
+        else if (!e.shiftKey && document.activeElement === lastItem) { e.preventDefault(); first.focus(); }
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  });
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 2000);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  const copy = async () => {
+    if (!term) return;
+    try {
+      await navigator.clipboard.writeText(term.prompt);
+    } catch {
+      // 클립보드 권한이 없는 브라우저용
+      const ta = document.createElement('textarea');
+      ta.value = term.prompt;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    setCopied(true);
+    setToast('복사됐어요');
+  };
+
+  const related = term ? term.related.map((x) => TERM_MAP.get(x)).filter((x): x is Term => !!x) : [];
+  const rivals = term ? (term.vs ?? []).map((x) => TERM_MAP.get(x)).filter((x): x is Term => !!x) : [];
+  const rival = rivals.find((x) => x.id === compare);
+
+  return (
+    <div className={s.overlay} onMouseDown={(e) => e.target === e.currentTarget && close()}>
+      <div ref={panelRef} className={s.panel} role="dialog" aria-modal="true" aria-labelledby="detail-title">
+        <div className={s.bar}>
+          <button ref={closeRef} type="button" className={s.pillBtn} onClick={close}>
+            {state?.bg ? <ArrowLeft size={18} aria-hidden="true" /> : <X size={18} aria-hidden="true" />}
+            닫기
+          </button>
+          {term && (
+            <div className={s.pager}>
+              <button type="button" className={s.pillBtn} disabled={!prev} onClick={() => prev && goTo(prev)}>
+                <ChevronLeft size={18} aria-hidden="true" />
+                이전
+              </button>
+              <button type="button" className={s.pillBtn} disabled={!next} onClick={() => next && goTo(next)}>
+                다음
+                <ChevronRight size={18} aria-hidden="true" />
+              </button>
+            </div>
+          )}
+        </div>
+
+        {!term ? (
+          <div className={s.missing}>
+            <h2 id="detail-title" className={s.ko}>이 용어는 찾을 수 없어요</h2>
+            <p className={s.meaning}>주소가 바뀌었거나 없는 용어예요. 목록에서 다시 찾아보세요.</p>
+          </div>
+        ) : (
+          <>
+            <header className={s.head}>
+              <div>
+                <h2 id="detail-title" className={s.ko}>{term.ko}</h2>
+                <p className={s.en} lang="en">{term.en}</p>
+                {term.aliases.length > 0 && <p className={s.alias}>다른 이름: {term.aliases.join(' · ')}</p>}
+              </div>
+              <ul className={s.tags} aria-label="분류">
+                {term.groups.map((g) => {
+                  const Icon = GROUP_MAP[g.group].icon;
+                  return (
+                    <li key={g.group + g.sub} className={s.tag}>
+                      <Icon size={14} strokeWidth={2.4} aria-hidden="true" />
+                      {GROUP_MAP[g.group].name} · {g.sub}
+                    </li>
+                  );
+                })}
+              </ul>
+            </header>
+
+            {rival ? (
+              <section className={s.compare} aria-label={`${term.ko} vs ${rival.ko} 나란히 비교`}>
+                <div className={s.duo}>
+                  {[term, rival].map((t) => (
+                    <figure key={t.id} className={s.side}>
+                      <div className={s.stage}>
+                        <TermAnim key={replay} term={t} playing size="detail" />
+                      </div>
+                      <figcaption>
+                        <strong className={s.sideName}>{t.ko}</strong>
+                        <span className={s.sideShort}>{t.short}</span>
+                      </figcaption>
+                    </figure>
+                  ))}
+                  <span className={s.vsMark} aria-hidden="true">vs</span>
+                </div>
+                {term.vsNote?.[rival.id] && <p className={s.note}>{term.vsNote[rival.id]}</p>}
+                <div className={s.actions}>
+                  <button type="button" className={s.ghostBtn} onClick={() => setReplay((n) => n + 1)}>
+                    <RotateCcw size={17} aria-hidden="true" />
+                    다시 보기
+                  </button>
+                  <button type="button" className={s.ghostBtn} onClick={() => setCompare(null)}>
+                    <X size={17} aria-hidden="true" />
+                    비교 닫기
+                  </button>
+                  <button type="button" className={s.ghostBtn} onClick={() => goTo(rival)}>
+                    {rival.ko} 보러 가기
+                    <ChevronRight size={17} aria-hidden="true" />
+                  </button>
+                </div>
+              </section>
+            ) : (
+              <section aria-label="움직이는 예시">
+                <div className={`${s.stage} ${s.big}`}>
+                  <TermAnim key={replay} term={term} playing size="detail" />
+                </div>
+                <div className={s.actions}>
+                  <button type="button" className={s.ghostBtn} onClick={() => setReplay((n) => n + 1)}>
+                    <RotateCcw size={17} aria-hidden="true" />
+                    다시 보기
+                  </button>
+                </div>
+              </section>
+            )}
+
+            <section className={s.block}>
+              <h3 className={s.label}>뜻</h3>
+              <p className={s.meaning}>{term.meaning}</p>
+            </section>
+
+            <section className={s.promptBox}>
+              <div className={s.promptHead}>
+                <h3 className={s.promptTitle}>
+                  <MessageCircle size={20} strokeWidth={2.2} aria-hidden="true" />
+                  프롬프트에 이렇게 쓰세요
+                </h3>
+                <button type="button" className={s.copyBtn} onClick={copy}>
+                  {copied ? <Check size={18} strokeWidth={3} aria-hidden="true" /> : <Copy size={18} aria-hidden="true" />}
+                  복사
+                </button>
+              </div>
+              <p className={s.prompt}>
+                <PromptText term={term} />
+              </p>
+            </section>
+
+            {related.length > 0 && (
+              <section className={s.block}>
+                <h3 className={s.label}>
+                  <KeyRound size={17} strokeWidth={2.2} aria-hidden="true" />
+                  같이 쓰면 좋은 말
+                </h3>
+                <ul className={s.chips}>
+                  {related.map((t) => (
+                    <li key={t.id}>
+                      <Link to={`/t/${t.id}`} replace state={{ bg }} className={s.chip}>
+                        {t.ko}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {rivals.length > 0 && (
+              <section className={s.block}>
+                <h3 className={s.label}>
+                  <Scale size={17} strokeWidth={2.2} aria-hidden="true" />
+                  헷갈리는 짝
+                </h3>
+                <ul className={s.chips}>
+                  {rivals.map((t) => (
+                    <li key={t.id}>
+                      <button
+                        type="button"
+                        className={`${s.vsBtn} ${compare === t.id ? s.vsOn : ''}`}
+                        aria-pressed={compare === t.id}
+                        onClick={() => {
+                          setCompare(compare === t.id ? null : t.id);
+                          panelRef.current?.scrollTo({ top: 0 });
+                        }}
+                      >
+                        {term.ko} <em>vs</em> {t.ko}
+                        <span className={s.vsHint}>{compare === t.id ? '비교 닫기' : '나란히 비교 보기'}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          </>
+        )}
+        <Footer linked={false} />
+      </div>
+      <Toast message={toast} />
+    </div>
+  );
+}

@@ -9,7 +9,13 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
+}
+
+/* 상세 화면이 열려 있을 때 뒤 화면은 스크롤 안 됨 */
+html.modal-open {
+  overflow: hidden;
 }
 
 body {
