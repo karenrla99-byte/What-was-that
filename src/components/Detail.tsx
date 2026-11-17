@@ -5,7 +5,6 @@ import TermAnim from '../anim/TermAnim';
 import { GROUP_MAP } from '../data/groups';
 import { sequenceFor } from '../data/lists';
 import { TERM_MAP, type Term } from '../data/terms';
-import Footer from './Footer';
 import Toast from './Toast';
 import s from './Detail.module.css';
 
@@ -315,7 +314,6 @@ export default function Detail() {
             )}
           </>
         )}
-        <Footer linked={false} />
       </div>
       <Toast message={toast} />
     </div>
