@@ -68,3 +68,33 @@
   0%, 18% { clip-path: inset(12% 10% 12% 10% round 2em); }
   48%, 100% { clip-path: inset(0); }
 }
+
+/* 상자 이름 (상세 화면에서만) */
+.name {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  padding: 0.2em 0.55em 0.25em;
+  border-radius: 0.8em;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  font-size: 4em;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  animation: calloutIn 0.5s var(--ease) 1.2s both;
+}
+
+@keyframes calloutIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.name.dark {
+  background: var(--ink);
+  color: #fff;
+}
+
+[data-size='card'] .name {
+  display: none;
+}

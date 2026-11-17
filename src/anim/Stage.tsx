@@ -18,6 +18,19 @@ export function Stage({ playing, children, className = '', style, variant }: Sta
   );
 }
 
+/**
+ * 그림 속 중요한 곳을 가리키는 이름표. 상세 화면(크게)에서만 보이고 카드에서는 숨김.
+ * x, y = 이름표 화살 끝 위치(em). dir = 화살이 가리키는 쪽.
+ */
+export function Callout({ x, y, dir = 'up', children }: { x: number; y: number; dir?: 'up' | 'down'; children: ReactNode }) {
+  return (
+    // 바깥은 그림 단위(em)로 자리만 잡고, 글자 크기는 안쪽에서 정함
+    <span className={`${s.callout} ${dir === 'up' ? s.up : s.down}`} style={{ left: `${x}em`, top: `${y}em` }}>
+      <span className={s.calloutText}>{children}</span>
+    </span>
+  );
+}
+
 /** 작은 폰 화면 (MiniPhone 템플릿). 안에서 부품·화면이 작동 */
 export function Phone({ playing, children, bare = false }: { playing: boolean; children: ReactNode; bare?: boolean }) {
   return (

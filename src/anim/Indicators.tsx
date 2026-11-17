@@ -1,4 +1,4 @@
-import { Phone } from './Stage';
+import { Callout, Phone } from './Stage';
 import s from './Indicators.module.css';
 
 type P = { playing: boolean };
@@ -10,6 +10,7 @@ export function ProgressBar({ playing }: P) {
       <div className={s.track}>
         <span className={s.fill} />
       </div>
+      <Callout x={28.8} y={55} dir="down">차오르는 막대</Callout>
     </Phone>
   );
 }
@@ -24,6 +25,7 @@ export function StepIndicator({ playing }: P) {
         <span className={`${s.bar} ${s.b2}`} />
         <span className={`${s.dot} ${s.d3}`} />
       </div>
+      <Callout x={28.8} y={39}>지금 몇 번째 단계</Callout>
       <div className={s.block} style={{ top: '46em' }} />
     </Phone>
   );
@@ -42,6 +44,7 @@ export function PageIndicator({ playing }: P) {
         <span className={s.p2} />
         <span className={s.p3} />
       </div>
+      <Callout x={28.8} y={73}>몇 번째 장인지</Callout>
     </Phone>
   );
 }
@@ -55,6 +58,7 @@ export function StoryBar({ playing }: P) {
         <span><i className={s.s2} /></span>
         <span><i className={s.s3} /></span>
       </div>
+      <Callout x={28.8} y={9.5}>차례로 차는 막대</Callout>
     </Phone>
   );
 }
@@ -70,6 +74,7 @@ export function ScrollProgressBar({ playing }: P) {
       <div className={s.readTrack}>
         <span className={s.readFill} />
       </div>
+      <Callout x={28.8} y={6.5}>읽은 만큼</Callout>
     </Phone>
   );
 }
@@ -82,6 +87,7 @@ export function CircularProgress({ playing }: P) {
         <circle cx="50" cy="50" r="40" className={s.ringFg} pathLength="100" />
         <path d="M36 51l10 10 19-21" className={s.ringCheck} pathLength="100" />
       </svg>
+      <Callout x={28.8} y={68}>도는 만큼 진행</Callout>
     </Phone>
   );
 }
@@ -99,6 +105,7 @@ export function StrengthIndicator({ playing }: P) {
         <span className={s.g2} />
         <span className={s.g3} />
       </div>
+      <Callout x={28.8} y={49}>약함 → 강함</Callout>
     </Phone>
   );
 }
@@ -112,6 +119,7 @@ export function TabIndicator({ playing }: P) {
         <span className={s.t3} />
         <i className={s.underline} />
       </div>
+      <Callout x={28.8} y={19.5}>따라가는 밑줄</Callout>
       <div className={s.block} style={{ top: '26em', height: '30em' }} />
       <div className={s.block} style={{ top: '60em', height: '14em' }} />
     </Phone>
@@ -125,6 +133,7 @@ export function HomeIndicator({ playing }: P) {
       <div className={s.block} style={{ top: '50em', height: '14em' }} />
       <span className={s.homeGlow} />
       <span className={s.home} />
+      <Callout x={28.8} y={82} dir="down">홈 막대</Callout>
     </Phone>
   );
 }

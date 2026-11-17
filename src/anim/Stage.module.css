@@ -58,3 +58,49 @@
   top: 16.5em;
   width: 34em;
 }
+
+/* ── 이름표 (상세 화면에서만) ── */
+.callout {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  animation: calloutIn 0.5s var(--ease) 0.4s both;
+}
+
+.calloutText {
+  position: relative;
+  display: block;
+  padding: 0.35em 0.75em 0.4em;
+  border-radius: 1em;
+  background: var(--ink);
+  color: #fff;
+  font-size: 4.2em;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.calloutText::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  margin-left: -0.4em;
+  border: 0.4em solid transparent;
+}
+
+/* 화살이 위를 가리킴: 이름표는 (x, y) 아래에 */
+.up { transform: translate(-50%, 1.9em); }
+.up .calloutText::before { bottom: 100%; border-bottom-color: var(--ink); }
+
+/* 화살이 아래를 가리킴: 이름표는 (x, y) 위에 */
+.down { transform: translate(-50%, calc(-100% - 1.9em)); }
+.down .calloutText::before { top: 100%; border-top-color: var(--ink); }
+
+@keyframes calloutIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+[data-size='card'] .callout {
+  display: none;
+}

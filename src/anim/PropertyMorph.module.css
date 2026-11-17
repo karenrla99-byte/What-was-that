@@ -16,12 +16,12 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 2.6em;
-  font-family: ui-monospace, 'Courier New', Consolas, monospace;
-  font-size: 5em;
+  bottom: 1.4em;
+  font-size: 5.4em;
+  font-weight: 600;
   line-height: 1;
   text-align: center;
-  color: var(--gray-4);
+  color: var(--ink-sub);
 }
 
 .t {

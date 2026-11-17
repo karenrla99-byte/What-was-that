@@ -1,5 +1,5 @@
 import { ThumbsDown, ThumbsUp } from 'lucide-react';
-import { Phone } from './Stage';
+import { Callout, Phone } from './Stage';
 import s from './Ratings.module.css';
 
 type P = { playing: boolean };
@@ -22,6 +22,7 @@ export function StarRating({ playing }: P) {
           <Star key={i} className={i < 4 ? s.fillStar : ''} />
         ))}
       </div>
+      <Callout x={28.8} y={39}>눌러서 별 채우기</Callout>
       <div className={s.block} />
     </Phone>
   );
@@ -43,6 +44,7 @@ export function HalfStarRating({ playing }: P) {
         ))}
       </div>
       <div className={s.score}>3.5</div>
+      <Callout x={39.5} y={28} dir="down">반 개</Callout>
     </Phone>
   );
 }
@@ -61,6 +63,7 @@ export function NpsScore({ playing }: P) {
         <i />
         <i />
       </div>
+      <Callout x={28.8} y={29} dir="down">0~10점 중 고르기</Callout>
     </Phone>
   );
 }
@@ -80,6 +83,7 @@ export function EmojiRating({ playing }: P) {
           </svg>
         ))}
       </div>
+      <Callout x={28.8} y={40}>표정으로 고르기</Callout>
       <div className={s.block} />
     </Phone>
   );
@@ -97,6 +101,7 @@ export function Thumbs({ playing }: P) {
           <ThumbsDown />
         </span>
       </div>
+      <Callout x={17.3} y={63}>좋아요</Callout>
     </Phone>
   );
 }
@@ -115,6 +120,7 @@ export function RatingSlider({ playing }: P) {
           <i key={i} />
         ))}
       </div>
+      <Callout x={28.8} y={58}>밀어서 점수</Callout>
     </Phone>
   );
 }
@@ -135,6 +141,7 @@ export function RatingSummary({ playing }: P) {
           </span>
         ))}
       </div>
+      <Callout x={28.8} y={72}>점수별 개수</Callout>
     </Phone>
   );
 }
@@ -147,6 +154,7 @@ export function ReviewTags({ playing }: P) {
           <span key={i} style={{ width: `${w}em` }} className={i === 1 ? s.tagA : i === 2 ? s.tagB : i === 5 ? s.tagC : ''} />
         ))}
       </div>
+      <Callout x={28.8} y={64}>이유를 골라 누르기</Callout>
     </Phone>
   );
 }
@@ -160,6 +168,7 @@ export function RatingBadge({ playing }: P) {
           4.8
         </span>
       </div>
+      <Callout x={42} y={18}>점수 배지</Callout>
       <span className={s.capA} />
       <span className={s.capB} />
     </Phone>

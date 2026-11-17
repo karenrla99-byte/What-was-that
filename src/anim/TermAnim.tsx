@@ -2,6 +2,7 @@ import type { GroupKey } from '../data/groups';
 import type { Term } from '../data/terms';
 import DefaultAnim from './DefaultAnim';
 import { ANIMS } from './registry';
+import { TERM_ICONS } from './termIcons';
 
 type Props = {
   term: Term;
@@ -12,9 +13,17 @@ type Props = {
   size?: 'card' | 'detail';
 };
 
-/** 용어 하나의 애니메이션. 아직 못 만든 용어는 묶음 아이콘이 숨 쉬는 기본 애니메이션 */
+/** 용어 하나의 애니메이션. 아직 못 만든 용어는 용어 아이콘이 숨 쉬는 기본 애니메이션 */
 export default function TermAnim({ term, group, playing, size = 'card' }: Props) {
   const Anim = ANIMS[term.id];
-  if (Anim) return <Anim playing={playing} size={size} />;
-  return <DefaultAnim group={group ?? term.groups[0].group} playing={playing} />;
+  return (
+    // data-size: 카드에서는 이름표(Callout)를 숨기려고
+    <div style={{ display: 'contents' }} data-size={size}>
+      {Anim ? (
+        <Anim playing={playing} size={size} />
+      ) : (
+        <DefaultAnim group={group ?? term.groups[0].group} playing={playing} icon={TERM_ICONS[term.id]} />
+      )}
+    </div>
+  );
 }
