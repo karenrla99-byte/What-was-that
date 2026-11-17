@@ -91,3 +91,8 @@
     padding: 0 16px;
   }
 }
+
+/* 포커스 표시는 알약 전체에 한 번만 */
+.input:focus-visible {
+  outline: none;
+}
