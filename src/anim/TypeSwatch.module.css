@@ -1,0 +1,186 @@
+/* ───────── 기본 ───────── */
+.tw {
+  background: #f3f4f6;
+}
+
+.deco {
+  position: absolute;
+  display: none;
+}
+
+.word {
+  position: relative;
+  display: flex;
+  font-size: 34em;
+  font-weight: 700;
+  line-height: 1;
+  color: #1c1c1e;
+  white-space: nowrap;
+}
+
+.ch {
+  display: inline-block;
+}
+
+.cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 13em;
+  font-size: 4.6em;
+  line-height: 1;
+  text-align: center;
+  color: #6e6e73;
+  white-space: nowrap;
+}
+
+.cap { bottom: 2.8em; }
+
+/* ───────── 애시드 그래픽 ───────── */
+.tw[data-v='acid-graphics'] { background: #0a0a0a; }
+.tw[data-v='acid-graphics'] .deco { display: block; left: -20em; right: -20em; height: 30em; background: repeating-radial-gradient(ellipse at 50% 50%, transparent 0 2em, #c6ff00 2em 2.5em); opacity: 0.35; animation: acidWarp 3s ease-in-out infinite alternate; }
+.tw[data-v='acid-graphics'] .d1 { top: 2em; }
+.tw[data-v='acid-graphics'] .d2 { bottom: 2em; animation-delay: -1.5s; }
+.tw[data-v='acid-graphics'] .word { font-size: 40em; font-style: italic; background: linear-gradient(100deg, #c6ff00, #00ffd0 45%, #ff3df2); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 0.06em #c6ff00); animation: acid 2.6s ease-in-out infinite; }
+.tw[data-v='acid-graphics'] .cap { color: #c6ff00; letter-spacing: 0.6em; }
+@keyframes acid { 0%, 100% { transform: skewX(-14deg) scale(1.2, 0.85); filter: drop-shadow(0 0 0.06em #c6ff00) hue-rotate(0deg); } 50% { transform: skewX(10deg) scale(0.9, 1.25); filter: drop-shadow(0 0 0.12em #ff3df2) hue-rotate(70deg); } }
+@keyframes acidWarp { from { transform: scaleY(0.4); } to { transform: scaleY(1.4); } }
+
+/* ───────── 글리치 ───────── */
+.tw[data-v='glitch'] { background: repeating-linear-gradient(#0c0c12 0 1.6em, #12121c 1.6em 2em); }
+.tw[data-v='glitch'] .word { color: #fff; animation: glitchMain 2.4s steps(1) infinite; }
+.tw[data-v='glitch'] .word::before,
+.tw[data-v='glitch'] .word::after { content: attr(data-t); position: absolute; inset: 0; }
+.tw[data-v='glitch'] .word::before { color: #00f0ff; mix-blend-mode: screen; animation: glitchA 2.4s steps(1) infinite; }
+.tw[data-v='glitch'] .word::after { color: #ff2b6a; mix-blend-mode: screen; animation: glitchB 2.4s steps(1) infinite; }
+.tw[data-v='glitch'] .cap { color: #00f0ff; font-family: ui-monospace, Consolas, monospace; }
+@keyframes glitchMain { 0%, 100% { transform: none; } 42% { transform: translateX(-0.04em) skewX(-8deg); } 46% { transform: translateX(0.05em); } 50% { transform: none; } 82% { transform: translateY(0.03em) skewX(6deg); } 86% { transform: none; } }
+@keyframes glitchA { 0%, 100% { clip-path: inset(0 0 0 0); transform: translate(-0.03em, 0); } 42% { clip-path: inset(10% 0 55% 0); transform: translate(-0.16em, 0); } 46% { clip-path: inset(60% 0 8% 0); transform: translate(0.12em, 0); } 50% { clip-path: inset(0 0 0 0); transform: translate(-0.03em, 0); } 82% { clip-path: inset(35% 0 30% 0); transform: translate(-0.2em, 0); } 86% { clip-path: inset(0 0 0 0); transform: translate(-0.03em, 0); } }
+@keyframes glitchB { 0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0.03em, 0); } 42% { clip-path: inset(50% 0 20% 0); transform: translate(0.16em, 0); } 46% { clip-path: inset(5% 0 70% 0); transform: translate(-0.1em, 0); } 50% { clip-path: inset(0 0 0 0); transform: translate(0.03em, 0); } 82% { clip-path: inset(70% 0 5% 0); transform: translate(0.18em, 0); } 86% { clip-path: inset(0 0 0 0); transform: translate(0.03em, 0); } }
+
+/* ───────── 인플레이트 3D ───────── */
+.tw[data-v='inflated-3d'] { background: radial-gradient(circle at 50% 35%, #fff2f8, #ffc9e2); }
+.tw[data-v='inflated-3d'] .word { font-size: 40em; color: #ff6fae; -webkit-text-stroke: 0.09em #ff6fae; paint-order: stroke fill; text-shadow: -0.04em -0.05em 0.03em rgba(255, 255, 255, 0.85), 0.04em 0.06em 0.05em #d93d86, 0.07em 0.14em 0.14em rgba(190, 40, 110, 0.45); }
+.tw[data-v='inflated-3d'] .ch { animation: inflate 2.6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.25s); }
+.tw[data-v='inflated-3d'] .cap { color: #d93d86; }
+@keyframes inflate { 0%, 100% { transform: scale(0.82, 0.9); } 50% { transform: scale(1.12, 1.1) translateY(-0.04em); } }
+
+/* ───────── 바우하우스 ───────── */
+.tw[data-v='bauhaus-type'] { background: #f2e9d8; }
+.tw[data-v='bauhaus-type'] .deco { display: block; }
+.tw[data-v='bauhaus-type'] .d1 { left: 4em; top: 10em; width: 34em; height: 34em; border-radius: 50%; background: #e23d28; animation: bhSlide 3.4s ease-in-out infinite alternate; }
+.tw[data-v='bauhaus-type'] .d2 { left: -10em; right: -10em; bottom: 24em; height: 5em; background: #1d4e9e; }
+.tw[data-v='bauhaus-type'] .word { font-size: 38em; letter-spacing: 0.06em; color: #111; }
+.tw[data-v='bauhaus-type'] .cap { color: #111; letter-spacing: 0.4em; font-weight: 700; }
+@keyframes bhSlide { from { transform: translateX(0); } to { transform: translateX(58em); } }
+
+/* ───────── 아르데코 ───────── */
+.tw[data-v='art-deco-type'] { background: repeating-conic-gradient(from -24deg at 50% 110%, #14263a 0 6deg, #0d1a29 6deg 12deg); }
+.tw[data-v='art-deco-type'] .deco { display: block; left: 50%; width: 70em; height: 0.5em; margin-left: -35em; background: #d4af37; box-shadow: 0 1.6em 0 #d4af37; animation: decoLine 3s ease-in-out infinite; }
+.tw[data-v='art-deco-type'] .d1 { top: 22em; }
+.tw[data-v='art-deco-type'] .d2 { bottom: 26em; }
+.tw[data-v='art-deco-type'] .word { font-family: 'Nanum Myeongjo', 'Batang', Georgia, serif; font-size: 30em; font-weight: 400; letter-spacing: 0.35em; margin-right: -0.35em; color: #e8c766; text-shadow: 0 0 0.25em rgba(232, 199, 102, 0.5); }
+.tw[data-v='art-deco-type'] .cap { color: #b9974a; letter-spacing: 0.6em; }
+@keyframes decoLine { 0%, 100% { transform: scaleX(0.3); } 50% { transform: scaleX(1); } }
+
+/* ───────── 아웃라인 ───────── */
+.tw[data-v='outline'] { background: #fff; }
+.tw[data-v='outline'] .word { font-size: 42em; -webkit-text-stroke: 0.035em #0095ff; background: linear-gradient(90deg, #0095ff 50%, transparent 50%) 100% 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: outlineFill 3.4s ease-in-out infinite; }
+.tw[data-v='outline'] .cap { color: #0095ff; letter-spacing: 0.5em; }
+@keyframes outlineFill { 0%, 25% { background-position: 100% 0; } 60%, 80% { background-position: 0 0; } 100% { background-position: 100% 0; } }
+
+/* ───────── 모노스페이스 ───────── */
+.tw[data-v='monospace'] { background: #0d1117; }
+.tw[data-v='monospace'] .word { font-family: ui-monospace, 'D2Coding', 'Courier New', Consolas, monospace; font-size: 26em; font-weight: 400; color: #7ee787; overflow: hidden; border-right: 0.08em solid #7ee787; padding-right: 0.06em; width: 2.2em; animation: monoType 3s steps(2) infinite, caret 0.7s steps(1) infinite; }
+.tw[data-v='monospace'] .ch { width: 1.06em; text-align: center; outline: 0.012em dashed rgba(126, 231, 135, 0.35); }
+.tw[data-v='monospace'] .cap { font-family: ui-monospace, 'Courier New', Consolas, monospace; color: #8b949e; }
+@keyframes monoType { 0% { width: 0; } 40%, 100% { width: 2.2em; } }
+@keyframes caret { 50% { border-right-color: transparent; } }
+
+/* ───────── 핸드레터링 ───────── */
+.tw[data-v='hand-lettering'] { background: #fff8ea; }
+.tw[data-v='hand-lettering'] .deco { display: block; }
+.tw[data-v='hand-lettering'] .d1 { left: 20em; right: 20em; bottom: 27em; height: 2.4em; border-radius: 50%; border-bottom: 1.2em solid #e85d4a; transform-origin: left; rotate: -4deg; animation: swoosh 3s ease-out infinite; }
+.tw[data-v='hand-lettering'] .word { font-family: 'Nanum Pen Script', 'Gaegu', 'Comic Sans MS', cursive; font-size: 44em; font-weight: 400; color: #2b2b2b; rotate: -7deg; }
+.tw[data-v='hand-lettering'] .ch { animation: handWiggle 0.9s steps(2) infinite; animation-delay: calc(var(--i) * 0.2s); }
+.tw[data-v='hand-lettering'] .cap { font-family: 'Comic Sans MS', cursive; font-style: italic; color: #e85d4a; }
+@keyframes swoosh { 0%, 15% { transform: scaleX(0); } 55%, 100% { transform: scaleX(1); } }
+@keyframes handWiggle { 0% { rotate: -2deg; } 50% { rotate: 2deg; } }
+
+/* ───────── 미니멀 ───────── */
+.tw[data-v='minimal'] { background: #fff; }
+.tw[data-v='minimal'] .deco { display: block; }
+.tw[data-v='minimal'] .d1 { left: 50%; bottom: 30em; width: 16em; height: 0.3em; margin-left: -8em; background: #1c1c1e; animation: decoLine 3.6s ease-in-out infinite; }
+.tw[data-v='minimal'] .word { font-size: 18em; font-weight: 400; letter-spacing: 0.5em; margin-right: -0.5em; color: #1c1c1e; animation: minimalFade 3.6s ease-in-out infinite; }
+.tw[data-v='minimal'] .cap { color: #a0a0a5; letter-spacing: 0.5em; font-size: 3.4em; }
+@keyframes minimalFade { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+
+/* ───────── 브루탈리즘 (글자) ───────── */
+.tw[data-v='brutalism-type'] { background: #f1ebdd; }
+.tw[data-v='brutalism-type'] .deco { display: block; }
+.tw[data-v='brutalism-type'] .d1 { left: -10em; right: -10em; top: 0; height: 50em; background: #e03a1e; }
+.tw[data-v='brutalism-type'] .word { font-size: 66em; letter-spacing: -0.08em; color: #111; margin-top: 0.06em; animation: brutShift 2.4s steps(1) infinite; }
+.tw[data-v='brutalism-type'] .cap { text-align: left; left: 1em; color: #111; font-family: ui-monospace, 'Courier New', Consolas, monospace; font-weight: 700; font-size: 3.6em; }
+@keyframes brutShift { 0%, 100% { transform: translateX(-0.04em); } 50% { transform: translateX(0.04em); } }
+
+/* ───────── 네오 브루탈리즘 (글자) ───────── */
+.tw[data-v='neo-brutalism-type'] { background: #a8e6e2; }
+.tw[data-v='neo-brutalism-type'] .word { font-size: 30em; padding: 0.16em 0.34em; background: #ffe14d; border: 0.07em solid #111; border-radius: 0.1em; color: #111; rotate: -3deg; animation: neoPress 2.4s steps(1) infinite; }
+.tw[data-v='neo-brutalism-type'] .cap { text-align: left; left: 2em; color: #111; font-family: ui-monospace, 'Courier New', Consolas, monospace; font-weight: 700; }
+@keyframes neoPress { 0%, 100% { box-shadow: 0.14em 0.14em 0 #111; translate: 0 0; } 55% { box-shadow: 0.03em 0.03em 0 #111; translate: 0.11em 0.11em; } 75% { box-shadow: 0.14em 0.14em 0 #111; translate: 0 0; } }
+
+/* ───────── 스위스 스타일 (글자) ───────── */
+.tw[data-v='swiss-style-type'] { background: linear-gradient(90deg, transparent 33%, #e3e3e3 33% 33.4%, transparent 33.4% 66%, #e3e3e3 66% 66.4%, transparent 66.4%), #f6f4ef; }
+.tw[data-v='swiss-style-type'] .deco { display: block; }
+.tw[data-v='swiss-style-type'] .d1 { left: 0; top: 0; width: 12em; height: 26em; background: #e30613; transform-origin: top; animation: swissBar 3s var(--ease) infinite; }
+.tw[data-v='swiss-style-type'] .word { position: absolute; left: 0.5em; top: 0.9em; font-family: Helvetica, Arial, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 34em; letter-spacing: -0.05em; color: #111; }
+.tw[data-v='swiss-style-type'] .cap { text-align: left; left: 3.8em; font-family: Helvetica, Arial, sans-serif; color: #111; }
+@keyframes swissBar { 0%, 10% { transform: scaleY(0); } 40%, 100% { transform: scaleY(1); } }
+
+/* ───────── 에디토리얼 (글자) ───────── */
+.tw[data-v='editorial-type'] { background: #efe7da; }
+.tw[data-v='editorial-type'] .deco { display: block; }
+.tw[data-v='editorial-type'] .d1 { left: 50%; top: 20em; width: 14em; height: 0.3em; margin-left: -7em; background: #1a1a1a; }
+.tw[data-v='editorial-type'] .word { font-family: 'Nanum Myeongjo', 'Batang', 'Times New Roman', Georgia, serif; font-size: 40em; font-weight: 400; letter-spacing: -0.05em; color: #1a1a1a; animation: editIn 3.4s var(--ease) infinite; }
+.tw[data-v='editorial-type'] .ch:last-child { color: #b0432e; font-style: italic; }
+.tw[data-v='editorial-type'] .cap { font-family: Georgia, 'Times New Roman', serif; font-style: italic; letter-spacing: 0.3em; color: #8a7f70; font-size: 3.4em; }
+@keyframes editIn { 0% { opacity: 0; transform: translateY(0.12em); letter-spacing: 0.1em; } 30%, 100% { opacity: 1; transform: none; letter-spacing: -0.05em; } }
+
+/* ───────── 청키 ───────── */
+.tw[data-v='chunky'] { background: #ffe3c2; }
+.tw[data-v='chunky'] .word { font-size: 38em; color: #f2622e; -webkit-text-stroke: 0.14em #f2622e; paint-order: stroke fill; gap: 0.12em; text-shadow: 0.05em 0.08em 0 #b83c12; }
+.tw[data-v='chunky'] .ch { animation: chunkyHop 1.6s cubic-bezier(0.3, 1.6, 0.5, 1) infinite; animation-delay: calc(var(--i) * 0.2s); }
+.tw[data-v='chunky'] .cap { color: #b83c12; font-weight: 700; }
+@keyframes chunkyHop { 0%, 55%, 100% { transform: scale(1, 1); } 20% { transform: scale(1.14, 0.8) translateY(0.08em); } 38% { transform: scale(0.92, 1.12) translateY(-0.18em); } }
+
+/* ───────── 레트로 그루비 ───────── */
+.tw[data-v='retro-groovy'] { background: #f3d9a4; }
+.tw[data-v='retro-groovy'] .deco { display: block; }
+.tw[data-v='retro-groovy'] .d1 { left: 50%; top: 100%; width: 260em; height: 260em; margin: -130em 0 0 -130em; border-radius: 50%; background: repeating-radial-gradient(circle, #c9722f 0 6em, #e9a23b 6em 12em, #f3d9a4 12em 18em, #8a4b24 18em 24em); animation: groovyPulse 4s linear infinite; }
+.tw[data-v='retro-groovy'] .word { font-family: 'Cooper Black', Georgia, 'Batang', serif; font-size: 38em; font-style: italic; color: #5a2c12; text-shadow: 0.04em 0.04em 0 #f6e7c6, 0.08em 0.08em 0 #c9722f; }
+.tw[data-v='retro-groovy'] .ch { animation: groovyWave 2s ease-in-out infinite; animation-delay: calc(var(--i) * -1s); }
+.tw[data-v='retro-groovy'] .cap { color: #5a2c12; font-style: italic; font-family: Georgia, serif; font-weight: 700; }
+@keyframes groovyPulse { from { transform: scale(1); } to { transform: scale(1.092); } }
+@keyframes groovyWave { 0%, 100% { transform: translateY(-0.08em) rotate(-6deg); } 50% { transform: translateY(0.08em) rotate(6deg); } }
+
+/* ───────── Y2K 크롬 (글자) ───────── */
+.tw[data-v='y2k-chrome-type'] { background: radial-gradient(circle at 50% 40%, #2b3a8c, #070a24 70%); }
+.tw[data-v='y2k-chrome-type'] .word { font-size: 36em; font-style: italic; letter-spacing: 0.04em; background: linear-gradient(#ffffff 0%, #9fb4ff 28%, #1b2466 50%, #e9eeff 54%, #7f8fd9 80%, #ffffff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: 0.015em #cfd8ff; filter: drop-shadow(0 0.06em 0.12em rgba(120, 150, 255, 0.8)); transform: scaleX(1.25); }
+.tw[data-v='y2k-chrome-type'] .word::after { content: attr(data-t); position: absolute; inset: 0; background: linear-gradient(100deg, transparent 40%, #fff 50%, transparent 60%) 120% 0 / 300% 100% no-repeat; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: 0; animation: chromeShine 2.8s ease-in-out infinite; }
+.tw[data-v='y2k-chrome-type'] .cap { color: #9fb4ff; letter-spacing: 0.8em; }
+@keyframes chromeShine { 0%, 20% { background-position: 120% 0; } 70%, 100% { background-position: -20% 0; } }
+
+/* ───────── 픽셀 (글자) ───────── */
+.tw[data-v='pixel-type'] { background: repeating-linear-gradient(#16123a 0 1.6em, #1c1748 1.6em 2em); }
+.tw[data-v='pixel-type'] .word { font-family: 'DungGeunMo', 'Galmuri11', 'Press Start 2P', ui-monospace, 'Courier New', monospace; font-size: 34em; color: #7cff6b; text-shadow: 0.06em 0 0 #7cff6b, 0 0.06em 0 #7cff6b, 0.06em 0.06em 0 #7cff6b, 0.14em 0.14em 0 #ff2b8a; animation: pixelHop 0.9s steps(2) infinite; }
+.tw[data-v='pixel-type'] .cap { font-family: ui-monospace, 'Courier New', monospace; color: #ffe14d; font-weight: 700; animation: pixelBlink 1s steps(1) infinite; }
+@keyframes pixelHop { 0% { transform: translateY(0); } 50% { transform: translateY(-0.06em); } }
+@keyframes pixelBlink { 50% { opacity: 0; } }
+
+/* ───────── 키네틱 ───────── */
+.tw[data-v='kinetic'] { background: #2f6bff; overflow: hidden; }
+.tw[data-v='kinetic'] .word { font-size: 44em; color: #fff; }
+.tw[data-v='kinetic'] .ch { animation: kinLetter 2.2s cubic-bezier(0.2, 0.9, 0.3, 1) infinite; animation-delay: calc(var(--i) * 0.18s); }
+.tw[data-v='kinetic'] .cap { color: #cfe0ff; animation: kinSlide 2.2s ease-in-out infinite; }
+@keyframes kinLetter { 0% { transform: translateY(0.9em) scaleY(1.6); opacity: 0; filter: blur(0.06em); } 22% { transform: translateY(-0.06em) scaleY(0.92); opacity: 1; filter: none; } 32%, 70% { transform: none; opacity: 1; } 100% { transform: translateY(-0.9em) scaleY(1.5); opacity: 0; filter: blur(0.06em); } }
+@keyframes kinSlide { 0%, 100% { transform: translateX(-3em); } 50% { transform: translateX(3em); } }

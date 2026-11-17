@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import * as I from './Indicators';
 import * as R from './Ratings';
 import { DESIGN_STYLES, styleSwatch } from './StyleSwatch';
+import { TYPE_STYLES, typeSwatch } from './TypeSwatch';
 
 export type AnimProps = { playing: boolean; size: 'card' | 'detail' };
 
@@ -29,4 +30,6 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'rating-badge': R.RatingBadge,
   // 🎨 디자인 스타일 (StyleSwatch 템플릿)
   ...Object.fromEntries(DESIGN_STYLES.map((id) => [id, styleSwatch(id)])),
+  // 🎨 글자 스타일 (TypeSwatch 템플릿)
+  ...Object.fromEntries(Object.entries(TYPE_STYLES).map(([id, cap]) => [id, typeSwatch(id, cap)])),
 };
