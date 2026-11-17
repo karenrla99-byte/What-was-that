@@ -153,6 +153,13 @@ export default function Detail() {
   const rivals = term ? (term.vs ?? []).map((x) => TERM_MAP.get(x)).filter((x): x is Term => !!x) : [];
   const rival = rivals.find((x) => x.id === compare);
 
+  const replayBtn = (
+    <button type="button" className={s.replay} onClick={() => setReplay((n) => n + 1)}>
+      <RotateCcw size={16} strokeWidth={2.4} aria-hidden="true" />
+      다시 보기
+    </button>
+  );
+
   return (
     <div className={s.overlay} onMouseDown={(e) => e.target === e.currentTarget && close()}>
       <div ref={panelRef} className={s.panel} role="dialog" aria-modal="true" aria-labelledby="detail-title">
@@ -181,138 +188,124 @@ export default function Detail() {
             <p className={s.meaning}>주소가 바뀌었거나 없는 용어예요. 목록에서 다시 찾아보세요.</p>
           </div>
         ) : (
-          <>
-            <header className={s.head}>
-              <div>
-                <h2 id="detail-title" className={s.ko}>{term.ko}</h2>
-                <p className={s.en} lang="en">{term.en}</p>
-                {term.aliases.length > 0 && <p className={s.alias}>다른 이름: {term.aliases.join(' · ')}</p>}
-              </div>
-              <ul className={s.tags} aria-label="분류">
-                {term.groups.map((g) => {
-                  const Icon = GROUP_MAP[g.group].icon;
-                  return (
-                    <li key={g.group + g.sub} className={s.tag}>
-                      <Icon size={14} strokeWidth={2.4} aria-hidden="true" />
-                      {GROUP_MAP[g.group].name} · {g.sub}
-                    </li>
-                  );
-                })}
-              </ul>
-            </header>
-
-            {rival ? (
-              <section className={s.compare} aria-label={`${term.ko} vs ${rival.ko} 나란히 비교`}>
-                <div className={s.duo}>
-                  {[term, rival].map((t) => (
-                    <figure key={t.id} className={s.side}>
-                      <div className={s.stage}>
-                        <TermAnim key={replay} term={t} playing size="detail" />
-                      </div>
-                      <figcaption>
-                        <strong className={s.sideName}>{t.ko}</strong>
-                        <span className={s.sideShort}>{t.short}</span>
-                      </figcaption>
-                    </figure>
-                  ))}
-                  <span className={s.vsMark} aria-hidden="true">vs</span>
-                </div>
-                {term.vsNote?.[rival.id] && <p className={s.note}>{term.vsNote[rival.id]}</p>}
-                <div className={s.actions}>
-                  <button type="button" className={s.ghostBtn} onClick={() => setReplay((n) => n + 1)}>
-                    <RotateCcw size={17} aria-hidden="true" />
-                    다시 보기
-                  </button>
-                  <button type="button" className={s.ghostBtn} onClick={() => setCompare(null)}>
-                    <X size={17} aria-hidden="true" />
-                    비교 닫기
-                  </button>
-                  <button type="button" className={s.ghostBtn} onClick={() => goTo(rival)}>
-                    {rival.ko} 보러 가기
-                    <ChevronRight size={17} aria-hidden="true" />
-                  </button>
-                </div>
-              </section>
-            ) : (
-              <section aria-label="움직이는 예시">
-                <div className={`${s.stage} ${s.big}`}>
+          <div className={s.body}>
+            {/* 왼쪽: 움직이는 예시 (비교 중이면 두 개 나란히) */}
+            <div className={s.visual}>
+              {rival ? (
+                <section aria-label={`${term.ko} vs ${rival.ko} 나란히 비교`}>
+                  <div className={s.duo}>
+                    {[term, rival].map((t) => (
+                      <figure key={t.id} className={s.side}>
+                        <div className={s.stage}>
+                          <TermAnim key={replay} term={t} playing size="detail" />
+                        </div>
+                        <figcaption className={s.sideName}>{t.ko}</figcaption>
+                      </figure>
+                    ))}
+                    <span className={s.vsMark} aria-hidden="true">vs</span>
+                  </div>
+                  {term.vsNote?.[rival.id] && <p className={s.note}>{term.vsNote[rival.id]}</p>}
+                  <div className={s.actions}>
+                    {replayBtn}
+                    <button type="button" className={s.ghostBtn} onClick={() => setCompare(null)}>
+                      <X size={16} aria-hidden="true" />
+                      비교 닫기
+                    </button>
+                    <button type="button" className={s.ghostBtn} onClick={() => goTo(rival)}>
+                      {rival.ko} 보기
+                      <ChevronRight size={16} aria-hidden="true" />
+                    </button>
+                  </div>
+                </section>
+              ) : (
+                <section className={`${s.stage} ${s.big}`} aria-label="움직이는 예시">
                   <TermAnim key={replay} term={term} playing size="detail" />
-                </div>
-                <div className={s.actions}>
-                  <button type="button" className={s.ghostBtn} onClick={() => setReplay((n) => n + 1)}>
-                    <RotateCcw size={17} aria-hidden="true" />
-                    다시 보기
+                  <div className={s.replayWrap}>{replayBtn}</div>
+                </section>
+              )}
+            </div>
+
+            {/* 오른쪽: 이름 · 뜻 · 프롬프트 · 같이 쓰면 좋은 말 · 헷갈리는 짝 */}
+            <div className={s.info}>
+              <header className={s.head}>
+                <h2 id="detail-title" className={s.ko}>
+                  {term.ko} <span className={s.en} lang="en">{term.en}</span>
+                </h2>
+                <ul className={s.tags} aria-label="분류">
+                  {term.groups.map((g) => {
+                    const Icon = GROUP_MAP[g.group].icon;
+                    return (
+                      <li key={g.group + g.sub} className={s.tag}>
+                        <Icon size={13} strokeWidth={2.4} aria-hidden="true" />
+                        {GROUP_MAP[g.group].name} · {g.sub}
+                      </li>
+                    );
+                  })}
+                  {term.aliases.length > 0 && <li className={s.alias}>다른 이름: {term.aliases.join(' · ')}</li>}
+                </ul>
+              </header>
+
+              <p className={s.meaning}>{term.meaning}</p>
+
+              <section className={s.promptBox}>
+                <div className={s.promptHead}>
+                  <h3 className={s.promptTitle}>
+                    <MessageCircle size={18} strokeWidth={2.2} aria-hidden="true" />
+                    프롬프트에 이렇게 쓰세요
+                  </h3>
+                  <button type="button" className={s.copyBtn} onClick={copy}>
+                    {copied ? <Check size={17} strokeWidth={3} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
+                    복사
                   </button>
                 </div>
+                <p className={s.prompt}>
+                  <PromptText term={term} />
+                </p>
               </section>
-            )}
 
-            <section className={s.block}>
-              <h3 className={s.label}>뜻</h3>
-              <p className={s.meaning}>{term.meaning}</p>
-            </section>
+              {related.length > 0 && (
+                <section className={s.row}>
+                  <h3 className={s.label}>
+                    <KeyRound size={16} strokeWidth={2.2} aria-hidden="true" />
+                    같이 쓰면 좋은 말
+                  </h3>
+                  <ul className={s.chips}>
+                    {related.map((t) => (
+                      <li key={t.id}>
+                        <Link to={`/t/${t.id}`} replace state={{ bg }} className={s.chip}>
+                          {t.ko}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
 
-            <section className={s.promptBox}>
-              <div className={s.promptHead}>
-                <h3 className={s.promptTitle}>
-                  <MessageCircle size={20} strokeWidth={2.2} aria-hidden="true" />
-                  프롬프트에 이렇게 쓰세요
-                </h3>
-                <button type="button" className={s.copyBtn} onClick={copy}>
-                  {copied ? <Check size={18} strokeWidth={3} aria-hidden="true" /> : <Copy size={18} aria-hidden="true" />}
-                  복사
-                </button>
-              </div>
-              <p className={s.prompt}>
-                <PromptText term={term} />
-              </p>
-            </section>
-
-            {related.length > 0 && (
-              <section className={s.block}>
-                <h3 className={s.label}>
-                  <KeyRound size={17} strokeWidth={2.2} aria-hidden="true" />
-                  같이 쓰면 좋은 말
-                </h3>
-                <ul className={s.chips}>
-                  {related.map((t) => (
-                    <li key={t.id}>
-                      <Link to={`/t/${t.id}`} replace state={{ bg }} className={s.chip}>
-                        {t.ko}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-
-            {rivals.length > 0 && (
-              <section className={s.block}>
-                <h3 className={s.label}>
-                  <Scale size={17} strokeWidth={2.2} aria-hidden="true" />
-                  헷갈리는 짝
-                </h3>
-                <ul className={s.chips}>
-                  {rivals.map((t) => (
-                    <li key={t.id}>
-                      <button
-                        type="button"
-                        className={`${s.vsBtn} ${compare === t.id ? s.vsOn : ''}`}
-                        aria-pressed={compare === t.id}
-                        onClick={() => {
-                          setCompare(compare === t.id ? null : t.id);
-                          panelRef.current?.scrollTo({ top: 0 });
-                        }}
-                      >
-                        {term.ko} <em>vs</em> {t.ko}
-                        <span className={s.vsHint}>{compare === t.id ? '비교 닫기' : '나란히 비교 보기'}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-          </>
+              {rivals.length > 0 && (
+                <section className={s.row}>
+                  <h3 className={s.label}>
+                    <Scale size={16} strokeWidth={2.2} aria-hidden="true" />
+                    헷갈리는 짝
+                  </h3>
+                  <ul className={s.chips}>
+                    {rivals.map((t) => (
+                      <li key={t.id}>
+                        <button
+                          type="button"
+                          className={`${s.chip} ${s.vsBtn} ${compare === t.id ? s.vsOn : ''}`}
+                          aria-pressed={compare === t.id}
+                          onClick={() => setCompare(compare === t.id ? null : t.id)}
+                        >
+                          <em>vs</em> {t.ko}
+                          <span className={s.vsHint}>{compare === t.id ? '비교 중' : '나란히 비교'}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+            </div>
+          </div>
         )}
       </div>
       <Toast message={toast} />
