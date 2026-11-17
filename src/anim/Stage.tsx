@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import { Children, isValidElement, type CSSProperties, type ReactNode } from 'react';
 import s from './Stage.module.css';
 
 type StageProps = { playing: boolean; children: ReactNode; className?: string; style?: CSSProperties; variant?: string };
@@ -33,6 +33,10 @@ export function Callout({ x, y, dir = 'up', children }: { x: number; y: number; 
 
 /** 작은 폰 화면 (MiniPhone 템플릿). 안에서 부품·화면이 작동 */
 export function Phone({ playing, children, bare = false }: { playing: boolean; children: ReactNode; bare?: boolean }) {
+  // 이름표(Callout)는 폰 테두리에 잘리지 않게 폰과 같은 자리의 겹친 층에 그림
+  const all = Children.toArray(children);
+  const callouts = all.filter((c) => isValidElement(c) && c.type === Callout);
+  const rest = all.filter((c) => !(isValidElement(c) && c.type === Callout));
   return (
     <Stage playing={playing}>
       <div className={s.phone}>
@@ -42,8 +46,9 @@ export function Phone({ playing, children, bare = false }: { playing: boolean; c
             <span className={s.line} />
           </>
         )}
-        {children}
+        {rest}
       </div>
+      <div className={s.phoneOver}>{callouts}</div>
     </Stage>
   );
 }

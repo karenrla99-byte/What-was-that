@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import { FILE_IDS, fileAnim } from './Files';
+import * as F from './Forms';
 import * as I from './Indicators';
 import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
 import * as R from './Ratings';
@@ -41,4 +42,25 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   ...Object.fromEntries(PROPERTY_IDS.map((id) => [id, propertyMorph(id)])),
   // 🎨 그림과 파일 형식
   ...Object.fromEntries(FILE_IDS.map((id) => [id, fileAnim(id)])),
+  // 🧩 입력 폼
+  'text-field-states': F.TextFieldStates,
+  select: F.Select,
+  'segmented-control': F.Segmented,
+  switch: F.Switch,
+  checkbox: F.Checkbox,
+  'radio-button': F.Radio,
+  slider: F.Slider,
+  'quantity-stepper': F.Stepper,
+  'date-picker': F.DatePicker,
+  picker: F.Picker,
+  placeholder: F.Placeholder,
+  textarea: F.Textarea,
+  label: F.Label,
+  'helper-text': F.HelperText,
+  'form-validation': F.FormValidation,
+  'required-field': F.RequiredField,
+  'file-upload': F.FileUpload,
+  'color-picker': F.ColorPicker,
+  'tag-input': F.TagInput,
+  'password-visibility-toggle': F.PasswordToggle,
 };

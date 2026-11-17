@@ -1,0 +1,128 @@
+/* 텍스트 필드 상태 */
+.tf { border-color: var(--gray-3); animation: tf 4.8s steps(1) infinite, tfShake 4.8s linear infinite; }
+@keyframes tf {
+  0% { border-color: var(--gray-3); background: #fff; opacity: 1; }
+  25% { border-color: var(--blue); }
+  50% { border-color: var(--ink); }
+  75% { border-color: var(--gray-2); background: var(--gray-1); opacity: 0.6; }
+}
+@keyframes tfShake { 0%, 50%, 57%, 100% { transform: none; } 52% { transform: translateX(-1.5em); } 54% { transform: translateX(1.5em); } 56% { transform: translateX(-0.8em); } }
+.tfCaret { position: absolute; left: 20.5em; top: 2.4em; width: 0.7em; height: 5.6em; background: var(--blue); opacity: 0; animation: tfCaret 4.8s steps(1) infinite; }
+@keyframes tfCaret { 0% { opacity: 0; } 25% { opacity: 1; } 31% { opacity: 0; } 37% { opacity: 1; } 43% { opacity: 0; } }
+.tfText { animation: tfText 4.8s steps(1) infinite; }
+@keyframes tfText { 0% { opacity: 0; } 25% { opacity: 1; } }
+
+/* 셀렉트·날짜 선택 칸 */
+.chev { position: absolute; right: 2.6em; top: 50%; width: 5em; height: 5em; margin-top: -2.5em; color: var(--gray-4); }
+.selPlace { animation: selPlace 4s steps(1) infinite; }
+.selChosen { opacity: 0; animation: selChosen 4s steps(1) infinite; }
+@keyframes selPlace { 0% { opacity: 1; } 60% { opacity: 0; } 95% { opacity: 1; } }
+@keyframes selChosen { 0% { opacity: 0; } 60% { opacity: 1; } 95% { opacity: 0; } }
+.selList { position: absolute; left: 6em; top: 40em; width: 45.6em; padding: 1.6em; display: grid; gap: 1.2em; border-radius: 3em; background: #fff; box-shadow: 0 1.6em 4em rgba(0, 0, 0, 0.16); border: 0.4em solid var(--gray-2); transform-origin: top; animation: selOpen 4s var(--ease) infinite; }
+.selList i { height: 7em; border-radius: 1.6em; background: var(--gray-1); }
+.selList .selHit { animation: selHit 4s steps(1) infinite; }
+@keyframes selOpen { 0%, 16% { opacity: 0; transform: scaleY(0.4); } 22%, 58% { opacity: 1; transform: none; } 64%, 100% { opacity: 0; transform: scaleY(0.4); } }
+@keyframes selHit { 0% { background: var(--gray-1); } 48% { background: var(--blue); } }
+
+/* 세그먼트 */
+.segPill { position: absolute; left: 1.2em; top: 1.2em; width: 13.6em; height: 8.4em; border-radius: 4.2em; background: #fff; box-shadow: 0 0.6em 1.6em rgba(0, 0, 0, 0.14); animation: seg 4.5s var(--ease) infinite; }
+@keyframes seg { 0%, 25% { transform: translateX(0); } 33%, 58% { transform: translateX(14.6em); } 66%, 92% { transform: translateX(29.2em); } 100% { transform: translateX(0); } }
+
+/* 스위치 */
+.swTrack { animation: swTrack 4s steps(1) infinite; }
+@keyframes swTrack { 0% { background: var(--gray-2); } 36% { background: var(--blue); } 88% { background: var(--gray-2); } }
+.swKnob { position: absolute; left: 1.2em; top: 1.2em; width: 7.6em; height: 7.6em; border-radius: 50%; background: #fff; box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2); }
+.swKnobMove { animation: swKnob 4s var(--ease) infinite; }
+@keyframes swKnob { 0%, 34% { transform: none; } 42%, 86% { transform: translateX(9.6em); } 94%, 100% { transform: none; } }
+
+/* 체크박스 */
+.cb1, .cb3 { display: grid; place-items: center; animation: 4s steps(1) infinite; }
+.cb1 { animation-name: cb1; }
+.cb3 { animation-name: cb3; }
+@keyframes cb1 { 0% { background: #fff; border-color: var(--gray-2); } 24% { background: var(--blue); border-color: var(--blue); } 92% { background: #fff; border-color: var(--gray-2); } }
+@keyframes cb3 { 0% { background: #fff; border-color: var(--gray-2); } 52% { background: var(--blue); border-color: var(--blue); } 92% { background: #fff; border-color: var(--gray-2); } }
+.cbCheck { width: 6.4em; height: 6.4em; color: #fff; animation: 4s steps(1) infinite; }
+.cbc1 { animation-name: cbc1; }
+.cbc3 { animation-name: cbc3; }
+@keyframes cbc1 { 0% { opacity: 0; } 24% { opacity: 1; } 92% { opacity: 0; } }
+@keyframes cbc3 { 0% { opacity: 0; } 52% { opacity: 1; } 92% { opacity: 0; } }
+
+/* 라디오 */
+.radioDot { position: absolute; inset: 1.2em; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 0.6em #fff inset; }
+
+/* 슬라이더 */
+.slFill { position: absolute; inset: 0; border-radius: 2em; background: var(--blue); transform-origin: left; animation: slFill 3.6s var(--ease) infinite; }
+.slThumb { position: absolute; left: -4.5em; top: -2.7em; width: 9em; height: 9em; border-radius: 50%; background: #fff; border: 1.4em solid var(--blue); box-shadow: 0 0.6em 1.6em rgba(0, 0, 0, 0.2); animation: slThumb 3.6s var(--ease) infinite; }
+@keyframes slFill { 0%, 8% { transform: scaleX(0.15); } 48%, 70% { transform: scaleX(0.8); } 92%, 100% { transform: scaleX(0.15); } }
+@keyframes slThumb { 0%, 8% { transform: translateX(6.84em); } 48%, 70% { transform: translateX(36.5em); } 92%, 100% { transform: translateX(6.84em); } }
+
+/* 수량 스테퍼 */
+.stepBtn { display: grid; place-items: center; }
+.stepBtn svg { width: 6em; height: 6em; color: var(--gray-4); }
+
+/* 날짜 선택 */
+.calPop { position: absolute; left: 6em; top: 38em; width: 45.6em; height: 35em; border-radius: 3em; background: #fff; border: 0.4em solid var(--gray-2); box-shadow: 0 1.6em 4em rgba(0, 0, 0, 0.16); transform-origin: top; animation: selOpen 4.2s var(--ease) infinite; }
+.calHit { animation: calHit 4.2s steps(1) infinite; }
+@keyframes calHit { 0% { background: var(--gray-1); } 47% { background: var(--blue); } }
+
+/* 피커(바퀴) */
+.wheel { position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; align-items: center; animation: wheel 4.2s cubic-bezier(0.3, 1.4, 0.5, 1) infinite; }
+.wheel b { height: 10em; display: grid; place-items: center; font-size: 5.4em; line-height: 1; font-weight: 600; color: var(--gray-4); }
+.wheel b { height: 1.85em; }
+@keyframes wheel { 0%, 20% { transform: translateY(6em); } 40%, 60% { transform: translateY(-14em); } 80%, 100% { transform: translateY(6em); } }
+
+/* 플레이스홀더 */
+.phText { animation: phOut 4s steps(1) infinite; }
+@keyframes phOut { 0% { opacity: 1; } 45% { opacity: 0; } 92% { opacity: 1; } }
+.phTyped { overflow: hidden; width: 0; animation: phType 4s steps(3) infinite; }
+@keyframes phType { 0%, 45% { width: 0; } 70%, 92% { width: 3.2em; } 100% { width: 0; } }
+
+/* 텍스트 영역 */
+.taLine { transform-origin: left; animation: taLine 4s var(--ease) infinite both; }
+@keyframes taLine { 0% { transform: scaleX(0); } 14%, 88% { transform: scaleX(1); } 96%, 100% { transform: scaleX(0); } }
+.taGrip { border-right: 0.6em solid var(--gray-3); border-bottom: 0.6em solid var(--gray-3); }
+
+/* 라벨 */
+.labelGlow { padding: 0 0.3em; margin-left: -0.3em; border-radius: 0.3em; animation: labelGlow 2.8s ease-in-out infinite; }
+@keyframes labelGlow { 0%, 100% { background: transparent; } 25%, 45% { background: var(--blue-soft); color: var(--blue-deep); } }
+
+/* 도움말 문구 */
+.helper { padding: 0.2em 0.4em; margin-left: -0.4em; border-radius: 0.4em; animation: labelGlow 2.8s ease-in-out infinite; }
+
+/* 입력 검사 */
+.okMark { position: absolute; right: 2.6em; top: 50%; width: 5em; height: 5em; margin-top: -2.5em; color: var(--blue); opacity: 0; animation: okMark 4s steps(1) infinite; }
+@keyframes okMark { 0% { opacity: 0; } 32% { opacity: 1; } 94% { opacity: 0; } }
+.badField { animation: badField 4s steps(1) infinite, tfShake 4s linear infinite; }
+@keyframes badField { 0% { border-color: var(--gray-2); } 32% { border-color: var(--ink); } 94% { border-color: var(--gray-2); } }
+.badMsg { opacity: 0; animation: okMark 4s steps(1) infinite; }
+
+/* 필수 표시 */
+.star { animation: starPulse 1.6s ease-in-out infinite; transform-origin: center; }
+@keyframes starPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.5); } }
+
+/* 파일 업로드 */
+.drop { display: grid; place-items: center; border: 0.7em dashed var(--gray-3); animation: drop 4s steps(1) infinite; }
+@keyframes drop { 0% { border-color: var(--gray-3); background: none; } 30% { border-color: var(--blue); background: var(--blue-soft); } 52% { border-color: var(--gray-3); background: none; } }
+.upIcon { width: 12em; height: 12em; color: var(--gray-4); }
+.file { position: absolute; left: 22em; top: 62em; width: 14em; height: 16em; display: grid; place-items: center; border-radius: 2em; background: #fff; border: 0.6em solid var(--gray-3); box-shadow: 0 1em 2em rgba(0, 0, 0, 0.15); animation: file 4s var(--ease) infinite; }
+.file svg { width: 8em; height: 8em; color: var(--blue); }
+@keyframes file { 0%, 8% { transform: translate(14em, 6em); opacity: 0; } 14% { opacity: 1; transform: translate(14em, 6em); } 40% { transform: translate(0, -36em); opacity: 1; } 50%, 100% { transform: translate(0, -36em) scale(0.4); opacity: 0; } }
+.upFill { position: absolute; inset: 0; border-radius: 2em; background: var(--blue); transform-origin: left; animation: upFill 4s linear infinite; }
+@keyframes upFill { 0%, 50% { transform: scaleX(0); } 85%, 100% { transform: scaleX(1); } }
+
+/* 컬러 피커 */
+.colorSq { background: linear-gradient(to top, #1c1c1e, transparent), linear-gradient(to right, #fff, #0095ff); }
+.colorDot { position: absolute; width: 7em; height: 7em; margin: -3.5em 0 0 -3.5em; border-radius: 50%; border: 1em solid #fff; box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.35); animation: colorDot 4.5s var(--ease) infinite; }
+@keyframes colorDot { 0%, 15% { left: 92%; top: 10%; } 40%, 55% { left: 40%; top: 20%; } 80%, 92% { left: 75%; top: 60%; } 100% { left: 92%; top: 10%; } }
+.swatch { animation: swatch 4.5s var(--ease) infinite; }
+@keyframes swatch { 0%, 15% { background: #0095ff; } 40%, 55% { background: #7cc8ff; } 80%, 92% { background: #005fa3; } 100% { background: #0095ff; } }
+
+/* 태그 입력 */
+.chip { opacity: 0; animation: chip 4s var(--ease) infinite both; }
+@keyframes chip { 0% { opacity: 0; transform: scale(0.6); } 6%, 80% { opacity: 1; transform: none; } 88%, 100% { opacity: 0; transform: none; } }
+
+/* 비밀번호 보기 */
+.dots { position: absolute; left: 3em; top: 0; bottom: 0; display: flex; align-items: center; gap: 1.6em; }
+.dots i { width: 2.8em; height: 2.8em; border-radius: 50%; background: var(--ink); }
+.eye { position: absolute; right: 2.4em; top: 50%; width: 6em; height: 6em; margin-top: -3em; color: var(--gray-4); }
+.eye svg { width: 100%; height: 100%; }

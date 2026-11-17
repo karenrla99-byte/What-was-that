@@ -104,3 +104,13 @@
 [data-size='card'] .callout {
   display: none;
 }
+
+/* 폰 위 겹친 층 (이름표용): 폰 안쪽과 같은 자리, 잘리지 않음 */
+.phoneOver {
+  position: absolute;
+  left: 21.2em;
+  top: 6.2em;
+  width: 57.6em;
+  height: 87.6em;
+  pointer-events: none;
+}
