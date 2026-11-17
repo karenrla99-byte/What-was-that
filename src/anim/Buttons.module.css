@@ -1,0 +1,77 @@
+.btn { box-shadow: 0 1.2em 3em rgba(0, 120, 210, 0.18); transition: none; }
+.label { line-height: 1.1; }
+
+/* 호버 */
+.hoverBtn { animation: hoverBtn 3.6s steps(1) infinite; }
+@keyframes hoverBtn { 0% { background: var(--blue); } 38% { background: var(--blue-deep); } 80% { background: var(--blue); } }
+.hoverCursor { animation: hoverCursor 3.6s var(--ease) infinite; }
+@keyframes hoverCursor { 0%, 10% { left: 80em; top: 80em; opacity: 0; } 15% { opacity: 1; left: 80em; top: 80em; } 36%, 78% { left: 56em; top: 47em; opacity: 1; } 95%, 100% { left: 80em; top: 80em; opacity: 0; } }
+
+/* 눌림 */
+.pressBtn { animation: pressBtn 3s ease-out infinite; }
+@keyframes pressBtn { 0%, 42% { transform: none; background: var(--blue); } 48%, 56% { transform: scale(0.93); background: var(--blue-deep); box-shadow: none; } 64%, 100% { transform: none; background: var(--blue); } }
+
+/* 포커스 */
+.key { animation: key 3.6s steps(1) infinite; }
+@keyframes key { 0% { opacity: 0; } 20% { opacity: 1; transform: translateY(0.6em); } 26% { transform: none; } 90% { opacity: 0; } }
+.focusBtn { animation: focusBtn 3.6s steps(1) infinite; }
+@keyframes focusBtn { 0% { outline: 0 solid transparent; } 26% { outline: 1.4em solid var(--blue-text); outline-offset: 1.2em; } 90% { outline: 0 solid transparent; } }
+
+/* 비활성 */
+.ban { position: absolute; left: 62em; top: 41em; width: 7em; height: 7em; color: var(--ink); opacity: 0; animation: ban 3.6s steps(1) infinite; }
+.ban svg { width: 100%; height: 100%; }
+@keyframes ban { 0% { opacity: 0; } 40% { opacity: 1; } 78% { opacity: 0; } }
+
+/* 로딩·성공·오류 */
+.loadBtn .label { animation: loadLabel 3.6s steps(1) infinite; }
+@keyframes loadLabel { 0% { opacity: 1; } 16% { opacity: 0; } 92% { opacity: 1; } }
+.spin, .spinShort { position: absolute; left: 50%; top: 50%; width: 9em; height: 9em; margin: -4.5em 0 0 -4.5em; border-radius: 50%; border: 1.4em solid rgba(255, 255, 255, 0.35); border-top-color: #fff; opacity: 0; }
+.spin { animation: spin 0.8s linear infinite, spinShow 3.6s steps(1) infinite; }
+.spinShort { animation: spin 0.8s linear infinite, spinShort 3.6s steps(1) infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spinShow { 0% { opacity: 0; } 16% { opacity: 1; } 92% { opacity: 0; } }
+@keyframes spinShort { 0% { opacity: 0; } 16% { opacity: 1; } 48% { opacity: 0; } }
+.result { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 0.3em; color: #fff; font-size: 6.4em; font-weight: 700; opacity: 0; animation: result 3.6s steps(1) infinite; }
+.result svg { width: 1.1em; height: 1.1em; }
+@keyframes result { 0% { opacity: 0; } 48% { opacity: 1; } 92% { opacity: 0; } }
+.errBtn { animation: errBtn 3.6s steps(1) infinite, errShake 3.6s linear infinite; }
+@keyframes errBtn { 0% { background: var(--blue); } 48% { background: var(--ink); } 92% { background: var(--blue); } }
+@keyframes errShake { 0%, 48%, 56%, 100% { transform: none; } 50% { transform: translateX(-2em); } 52% { transform: translateX(2em); } 54% { transform: translateX(-1em); } }
+
+/* 선택됨 */
+.selOn { animation: selOn 4s steps(1) infinite; }
+@keyframes selOn { 0% { background: #fff; border-color: var(--gray-2); } 28% { background: var(--blue); border-color: var(--blue); } 94% { background: #fff; border-color: var(--gray-2); } }
+.selInk { animation: selInk 4s steps(1) infinite; }
+@keyframes selInk { 0% { color: var(--ink); } 28% { color: #fff; } 94% { color: var(--ink); } }
+
+/* 주·보조 버튼 강조 */
+.glow { animation: glow 2.4s ease-in-out infinite; }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 149, 255, 0.5); } 50% { box-shadow: 0 0 0 3em rgba(0, 149, 255, 0); } }
+.glowSoft { animation: glowSoft 2.4s ease-in-out infinite; }
+@keyframes glowSoft { 0%, 100% { border-color: var(--gray-2); } 50% { border-color: var(--gray-4); } }
+
+/* 고스트 */
+.ghostBtn { box-shadow: none; animation: ghost 3.6s steps(1) infinite; }
+@keyframes ghost { 0% { background: transparent; } 38% { background: var(--blue-soft); } 80% { background: transparent; } }
+
+/* 아이콘 버튼 */
+.iconBtn { display: grid; place-items: center; }
+.iconBtn svg { width: 11em; height: 11em; color: var(--ink); }
+
+/* 플로팅 버튼 */
+.feed { position: absolute; inset: 0; animation: feed 4s linear infinite; }
+@keyframes feed { from { transform: translateY(0); } to { transform: translateY(-60em); } }
+.fab { display: grid; place-items: center; z-index: 2; box-shadow: 0 1em 2.4em rgba(0, 120, 210, 0.4); }
+.fab svg { width: 7em; height: 7em; }
+
+/* CTA */
+.cta { animation: glow 2s ease-in-out infinite; }
+
+/* 버튼 그룹 */
+.groupCell { position: relative; flex: 1; display: grid; place-items: center; border-right: 0.6em solid var(--gray-2); }
+.groupCell:last-child { border-right: 0; }
+.groupCell svg { position: relative; width: 8em; height: 8em; color: var(--ink); }
+.groupOn { position: absolute; inset: 0; background: var(--blue-soft); }
+
+/* 디폴트 vs 레스팅 */
+.dot { position: absolute; inset: 1.2em; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 0.6em #fff inset; }

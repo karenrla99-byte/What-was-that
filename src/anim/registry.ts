@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import { FILE_IDS, fileAnim } from './Files';
+import * as Bt from './Buttons';
 import * as F from './Forms';
 import * as I from './Indicators';
 import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
@@ -63,4 +64,23 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'color-picker': F.ColorPicker,
   'tag-input': F.TagInput,
   'password-visibility-toggle': F.PasswordToggle,
+  // 🧩 버튼
+  default: Bt.Default,
+  hover: Bt.Hover,
+  pressed: Bt.Pressed,
+  focus: Bt.Focus,
+  disabled: Bt.Disabled,
+  loading: Bt.Loading,
+  success: Bt.Success,
+  error: Bt.ErrorBtn,
+  selected: Bt.Selected,
+  'primary-button': Bt.PrimaryButton,
+  'secondary-button': Bt.SecondaryButton,
+  'ghost-button': Bt.GhostButton,
+  'icon-button': Bt.IconButton,
+  'floating-action-button-fab': Bt.Fab,
+  'call-to-action': Bt.Cta,
+  'toggle-button': Bt.ToggleButton,
+  'button-group': Bt.ButtonGroup,
+  'default-vs-resting': Bt.DefaultVsResting,
 };
