@@ -1,6 +1,7 @@
 import type { GroupKey } from '../data/groups';
 import type { Term } from '../data/terms';
 import DefaultAnim from './DefaultAnim';
+import { ANIMS } from './registry';
 
 type Props = {
   term: Term;
@@ -11,10 +12,9 @@ type Props = {
   size?: 'card' | 'detail';
 };
 
-/**
- * 용어 하나의 애니메이션. term.anim.type에 맞는 템플릿을 고르는 곳.
- * 아직 템플릿이 없는 용어는 묶음 아이콘이 숨 쉬는 기본 애니메이션. (템플릿은 Phase 6~7)
- */
-export default function TermAnim({ term, group, playing }: Props) {
+/** 용어 하나의 애니메이션. 아직 못 만든 용어는 묶음 아이콘이 숨 쉬는 기본 애니메이션 */
+export default function TermAnim({ term, group, playing, size = 'card' }: Props) {
+  const Anim = ANIMS[term.id];
+  if (Anim) return <Anim playing={playing} size={size} />;
   return <DefaultAnim group={group ?? term.groups[0].group} playing={playing} />;
 }

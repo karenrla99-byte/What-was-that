@@ -1,0 +1,417 @@
+/* 공통: 회색 내용 상자 */
+.block {
+  position: absolute;
+  left: 6em;
+  right: 6em;
+  top: 26em;
+  height: 20em;
+  border-radius: 3em;
+  background: var(--gray-1);
+}
+
+/* ── 프로그레스 바 ── */
+.track {
+  position: absolute;
+  left: 6em;
+  right: 6em;
+  top: 56em;
+  height: 6em;
+  border-radius: 3em;
+  background: var(--gray-2);
+  overflow: hidden;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: 3em;
+  background: var(--blue);
+  transform-origin: left;
+  animation: fill 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes fill {
+  0%, 8% { transform: scaleX(0); }
+  30% { transform: scaleX(0.35); }
+  55% { transform: scaleX(0.7); }
+  78%, 100% { transform: scaleX(1); }
+}
+
+/* ── 스텝 인디케이터 ── */
+.steps {
+  position: absolute;
+  left: 5em;
+  right: 5em;
+  top: 28em;
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  flex: none;
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  background: var(--gray-2);
+  animation: 3.6s infinite both;
+}
+
+.bar {
+  flex: 1;
+  height: 2em;
+  background: var(--gray-2);
+  position: relative;
+}
+
+.bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  transform-origin: left;
+  animation: 3.6s infinite both;
+}
+
+.d1 { animation-name: on1; }
+.b1::after { animation-name: line1; }
+.d2 { animation-name: on2; }
+.b2::after { animation-name: line2; }
+.d3 { animation-name: on3; }
+
+@keyframes on1 { 0%, 6% { background: var(--gray-2); transform: scale(1); } 12% { background: var(--blue); transform: scale(1.2); } 18%, 100% { background: var(--blue); transform: scale(1); } }
+@keyframes line1 { 0%, 18% { transform: scaleX(0); } 36%, 100% { transform: scaleX(1); } }
+@keyframes on2 { 0%, 36% { background: var(--gray-2); transform: scale(1); } 42% { background: var(--blue); transform: scale(1.2); } 48%, 100% { background: var(--blue); transform: scale(1); } }
+@keyframes line2 { 0%, 48% { transform: scaleX(0); } 66%, 100% { transform: scaleX(1); } }
+@keyframes on3 { 0%, 66% { background: var(--gray-2); transform: scale(1); } 72% { background: var(--blue); transform: scale(1.2); } 78%, 100% { background: var(--blue); transform: scale(1); } }
+
+/* ── 페이지 인디케이터 ── */
+.pages {
+  position: absolute;
+  top: 12em;
+  left: 6em;
+  display: flex;
+  gap: 6em;
+  animation: swipe 4s var(--ease) infinite;
+}
+
+.pages span {
+  flex: none;
+  width: 45.6em;
+  height: 48em;
+  border-radius: 4em;
+  background: var(--gray-1);
+}
+
+.pages span:nth-child(2) { background: var(--gray-2); }
+
+@keyframes swipe {
+  0%, 22% { transform: translateX(0); }
+  33%, 55% { transform: translateX(-51.6em); }
+  66%, 90% { transform: translateX(-103.2em); }
+  100% { transform: translateX(0); }
+}
+
+.pageDots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 68em;
+  display: flex;
+  justify-content: center;
+  gap: 2.4em;
+}
+
+.pageDots span {
+  width: 4em;
+  height: 4em;
+  border-radius: 2em;
+  background: var(--gray-3);
+  animation: 4s var(--ease) infinite both;
+}
+
+.pageDots .p1 { animation-name: pd1; }
+.pageDots .p2 { animation-name: pd2; }
+.pageDots .p3 { animation-name: pd3; }
+
+@keyframes pd1 { 0%, 22% { width: 11em; background: var(--blue); } 33%, 90% { width: 4em; background: var(--gray-3); } 100% { width: 11em; background: var(--blue); } }
+@keyframes pd2 { 0%, 22% { width: 4em; background: var(--gray-3); } 33%, 55% { width: 11em; background: var(--blue); } 66%, 100% { width: 4em; background: var(--gray-3); } }
+@keyframes pd3 { 0%, 55% { width: 4em; background: var(--gray-3); } 66%, 90% { width: 11em; background: var(--blue); } 100% { width: 4em; background: var(--gray-3); } }
+
+/* ── 스토리 바 ── */
+.story {
+  position: absolute;
+  inset: 0;
+  animation: storyBg 4.5s steps(1) infinite;
+}
+
+@keyframes storyBg {
+  0% { background: var(--gray-2); }
+  33.3% { background: var(--gray-3); }
+  66.6% { background: var(--gray-4); }
+}
+
+.storyBars {
+  position: absolute;
+  left: 4em;
+  right: 4em;
+  top: 6em;
+  display: flex;
+  gap: 1.6em;
+}
+
+.storyBars span {
+  flex: 1;
+  height: 2.4em;
+  border-radius: 2em;
+  background: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+}
+
+.storyBars i {
+  display: block;
+  height: 100%;
+  background: var(--blue);
+  transform-origin: left;
+  animation: 4.5s linear infinite both;
+}
+
+.storyBars .s1 { animation-name: st1; }
+.storyBars .s2 { animation-name: st2; }
+.storyBars .s3 { animation-name: st3; }
+
+@keyframes st1 { 0% { transform: scaleX(0); } 33.3%, 99.9% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+@keyframes st2 { 0%, 33.3% { transform: scaleX(0); } 66.6%, 99.9% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+@keyframes st3 { 0%, 66.6% { transform: scaleX(0); } 99.9% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+
+/* ── 스크롤 진행 바 ── */
+.article {
+  position: absolute;
+  left: 6em;
+  top: 12em;
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+  animation: scroll 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.article span {
+  height: 3.6em;
+  border-radius: 2em;
+  background: var(--gray-2);
+}
+
+.article span:nth-child(5n + 1) {
+  background: var(--gray-3);
+  height: 4.4em;
+}
+
+@keyframes scroll {
+  0%, 10% { transform: translateY(0); }
+  80%, 92% { transform: translateY(-34em); }
+  100% { transform: translateY(0); }
+}
+
+.readTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 6em;
+  background: #fff;
+  border-bottom: 0.4em solid var(--gray-1);
+}
+
+.readFill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2.4em;
+  background: var(--blue);
+  transform-origin: left;
+  animation: read 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes read {
+  0%, 10% { transform: scaleX(0.04); }
+  80%, 92% { transform: scaleX(1); }
+  100% { transform: scaleX(0.04); }
+}
+
+/* ── 원형 진행률 ── */
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 30em;
+  width: 36em;
+  height: 36em;
+  margin-left: -18em;
+  transform: rotate(-90deg);
+}
+
+.ringBg,
+.ringFg,
+.ringCheck {
+  fill: none;
+  stroke-width: 11;
+  stroke-linecap: round;
+}
+
+.ringBg { stroke: var(--gray-2); }
+
+.ringFg {
+  stroke: var(--blue);
+  stroke-dasharray: 100;
+  animation: ring 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes ring {
+  0%, 6% { stroke-dashoffset: 100; }
+  70%, 100% { stroke-dashoffset: 0; }
+}
+
+.ringCheck {
+  stroke: var(--blue);
+  stroke-width: 8;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  transform: rotate(90deg);
+  transform-origin: 50px 50px;
+  animation: check 3.2s ease-out infinite;
+}
+
+@keyframes check {
+  0%, 70% { stroke-dashoffset: 100; }
+  84%, 100% { stroke-dashoffset: 0; }
+}
+
+/* ── 강도 표시기 ── */
+.field {
+  position: absolute;
+  left: 6em;
+  right: 6em;
+  top: 28em;
+  height: 12em;
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  padding: 0 3em;
+  border: 0.8em solid var(--gray-3);
+  border-radius: 3em;
+}
+
+.field span {
+  width: 2.8em;
+  height: 2.8em;
+  border-radius: 50%;
+  background: var(--ink);
+  animation: typeDot 3.6s steps(1) infinite both;
+}
+
+@keyframes typeDot {
+  0% { opacity: 0; }
+  1%, 100% { opacity: 1; }
+}
+
+.strength {
+  position: absolute;
+  left: 6em;
+  right: 6em;
+  top: 44em;
+  display: flex;
+  gap: 1.6em;
+}
+
+.strength span {
+  flex: 1;
+  height: 3.6em;
+  border-radius: 2em;
+  background: var(--gray-2);
+  animation: 3.6s infinite both;
+}
+
+.strength .g1 { animation-name: sg1; }
+.strength .g2 { animation-name: sg2; }
+.strength .g3 { animation-name: sg3; }
+
+@keyframes sg1 { 0%, 10% { background: var(--gray-2); } 16%, 100% { background: var(--blue); } }
+@keyframes sg2 { 0%, 34% { background: var(--gray-2); } 40%, 100% { background: var(--blue); } }
+@keyframes sg3 { 0%, 58% { background: var(--gray-2); } 64%, 100% { background: var(--blue); } }
+
+/* ── 탭 인디케이터 ── */
+.tabs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 18em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 4em;
+  border-bottom: 0.6em solid var(--gray-2);
+}
+
+.tabs span {
+  width: 11em;
+  height: 4em;
+  border-radius: 2em;
+  background: var(--gray-3);
+  animation: 4s steps(1) infinite both;
+}
+
+.tabs .t1 { animation-name: tb1; }
+.tabs .t2 { animation-name: tb2; }
+.tabs .t3 { animation-name: tb3; }
+
+@keyframes tb1 { 0%, 96% { background: var(--blue); } 30% { background: var(--gray-3); } }
+@keyframes tb2 { 0% { background: var(--gray-3); } 30% { background: var(--blue); } 63% { background: var(--gray-3); } }
+@keyframes tb3 { 0% { background: var(--gray-3); } 63% { background: var(--blue); } 96% { background: var(--gray-3); } }
+
+.underline {
+  position: absolute;
+  left: 2.5em;
+  bottom: -0.6em;
+  width: 14.2em;
+  height: 1.8em;
+  border-radius: 1em 1em 0 0;
+  background: var(--blue);
+  animation: slideTab 4s var(--ease) infinite;
+}
+
+@keyframes slideTab {
+  0%, 24% { transform: translateX(0); }
+  33%, 57% { transform: translateX(19.2em); }
+  66%, 90% { transform: translateX(38.4em); }
+  100% { transform: translateX(0); }
+}
+
+/* ── 홈 인디케이터 ── */
+.home {
+  position: absolute;
+  left: 50%;
+  bottom: 3.4em;
+  width: 22em;
+  height: 2.4em;
+  margin-left: -11em;
+  border-radius: 2em;
+  background: var(--blue);
+}
+
+.homeGlow {
+  position: absolute;
+  left: 50%;
+  bottom: 0.6em;
+  width: 30em;
+  height: 8em;
+  margin-left: -15em;
+  border-radius: 4em;
+  background: var(--blue);
+  opacity: 0.16;
+  animation: homePulse 2.4s ease-in-out infinite;
+}
+
+@keyframes homePulse {
+  0%, 100% { transform: scale(0.8); opacity: 0.08; }
+  50% { transform: scale(1.1); opacity: 0.22; }
+}

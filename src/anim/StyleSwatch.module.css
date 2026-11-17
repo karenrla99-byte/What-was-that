@@ -1,0 +1,446 @@
+/* ───────── 기본 카드 ───────── */
+.sw {
+  --ink: #1c1c1e;
+  --sub: #6e6e73;
+  background: #f3f4f6;
+}
+
+.deco {
+  position: absolute;
+  display: none;
+}
+
+.card {
+  position: relative;
+  width: 70em;
+  display: flex;
+  align-items: center;
+  gap: 5em;
+  padding: 7em;
+  border-radius: 6em;
+  background: #fff;
+  box-shadow: 0 1.5em 5em rgba(0, 0, 0, 0.1);
+  animation: bob 3s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { translate: 0 1.4em; }
+  50% { translate: 0 -1.4em; }
+}
+
+.icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20em;
+  height: 20em;
+  border-radius: 5em;
+  background: #e5f4ff;
+  color: #0095ff;
+}
+
+.icon svg {
+  width: 11em;
+  height: 11em;
+  stroke-width: 2;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6em;
+  min-width: 0;
+}
+
+.title {
+  font-size: 10em;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.sub {
+  font-size: 4.8em;
+  line-height: 1.1;
+  white-space: nowrap;
+  color: var(--sub);
+}
+
+/* ───────── 스큐어모피즘 ───────── */
+.sw[data-v='skeuomorphism'] { background: repeating-linear-gradient(90deg, #b98a5e 0 3em, #b08257 3em 3.4em, #c0926a 3.4em 7em); }
+.sw[data-v='skeuomorphism'] .card {
+  border-radius: 3em;
+  background: linear-gradient(#fffbe0, #f4e7a8);
+  border: 0.4em solid #cdb968;
+  box-shadow: inset 0 0.6em 0 rgba(255, 255, 255, 0.8), inset 0 -0.8em 1.6em rgba(160, 130, 40, 0.25), 0 2em 3em rgba(60, 30, 0, 0.45);
+}
+.sw[data-v='skeuomorphism'] .icon {
+  background: linear-gradient(#a8683a, #6f3f1e);
+  color: #f6dfb0;
+  border: 0.5em solid #5a3115;
+  box-shadow: inset 0 0.6em 0.6em rgba(255, 255, 255, 0.35), inset 0 -1em 1.4em rgba(0, 0, 0, 0.4), 0 0.8em 1.2em rgba(0, 0, 0, 0.35);
+}
+.sw[data-v='skeuomorphism'] .title { font-family: Georgia, 'Times New Roman', serif; color: #4a2c12; text-shadow: 0 0.06em 0 #fff; }
+.sw[data-v='skeuomorphism'] .sub { color: #7a5a2c; }
+
+/* ───────── 플랫 ───────── */
+.sw[data-v='flat-design'] { background: #ffd23f; }
+.sw[data-v='flat-design'] .card { background: #3a86ff; border-radius: 3em; box-shadow: none; --ink: #fff; --sub: #dbe9ff; }
+.sw[data-v='flat-design'] .icon { background: #ff5d73; color: #fff; border-radius: 3em; }
+
+/* ───────── 머티리얼 ───────── */
+.sw[data-v='material-design'] { background: #f1f3f4; }
+.sw[data-v='material-design'] .card { border-radius: 3em; animation: elevate 3s ease-in-out infinite; }
+.sw[data-v='material-design'] .icon { border-radius: 50%; background: #6750a4; color: #fff; }
+@keyframes elevate {
+  0%, 100% { box-shadow: 0 0.4em 0.8em rgba(0, 0, 0, 0.24), 0 0.2em 0.4em rgba(0, 0, 0, 0.18); translate: 0 0.6em; }
+  50% { box-shadow: 0 3.2em 5em rgba(0, 0, 0, 0.26), 0 1.2em 2em rgba(0, 0, 0, 0.16); translate: 0 -1.6em; }
+}
+
+/* ───────── 뉴모피즘 ───────── */
+.sw[data-v='neumorphism'] { background: #e3e8ee; }
+.sw[data-v='neumorphism'] .card { background: #e3e8ee; border-radius: 8em; animation: neu 3.4s ease-in-out infinite; }
+.sw[data-v='neumorphism'] .icon { background: #e3e8ee; color: #8a98ad; box-shadow: inset 1em 1em 2em #c2c8d1, inset -1em -1em 2em #fff; }
+@keyframes neu {
+  0%, 40%, 100% { box-shadow: 2.4em 2.4em 5em #c0c6cf, -2.4em -2.4em 5em #fff; }
+  55%, 85% { box-shadow: inset 1.6em 1.6em 3.4em #c0c6cf, inset -1.6em -1.6em 3.4em #fff; }
+}
+
+/* ───────── 글래스모피즘 ───────── */
+.sw[data-v='glassmorphism'] { background: linear-gradient(135deg, #6a5cff, #ff6ac1); }
+.sw[data-v='glassmorphism'] .deco { display: block; border-radius: 50%; animation: drift 5s ease-in-out infinite alternate; }
+.sw[data-v='glassmorphism'] .d1 { left: 4em; top: 14em; width: 40em; height: 40em; background: #ffd166; }
+.sw[data-v='glassmorphism'] .d2 { right: 2em; bottom: 12em; width: 34em; height: 34em; background: #3ddcff; animation-delay: -2s; }
+.sw[data-v='glassmorphism'] .card {
+  background: rgba(255, 255, 255, 0.22);
+  border: 0.5em solid rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(4em);
+  backdrop-filter: blur(4em);
+  box-shadow: 0 2em 5em rgba(40, 20, 90, 0.25);
+  --ink: #fff;
+  --sub: rgba(255, 255, 255, 0.85);
+}
+.sw[data-v='glassmorphism'] .icon { background: rgba(255, 255, 255, 0.3); color: #fff; }
+@keyframes drift { from { translate: -5em -3em; } to { translate: 6em 4em; } }
+
+/* ───────── 리퀴드 글래스 ───────── */
+.sw[data-v='liquid-glass'] { background: radial-gradient(circle at 25% 30%, #7cc8ff, transparent 55%), radial-gradient(circle at 80% 75%, #ffb3d1, transparent 55%), #dfe9f6; }
+.sw[data-v='liquid-glass'] .deco { display: block; }
+.sw[data-v='liquid-glass'] .d1 { left: 10em; top: 22em; width: 26em; height: 26em; border-radius: 50%; background: #0095ff; animation: drift 5s ease-in-out infinite alternate; }
+.sw[data-v='liquid-glass'] .d2 { right: 8em; bottom: 20em; width: 22em; height: 22em; border-radius: 50%; background: #ff7aa8; animation: drift 5s ease-in-out -2.5s infinite alternate; }
+.sw[data-v='liquid-glass'] .card {
+  border-radius: 17em;
+  background: rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(1.6em) saturate(180%);
+  backdrop-filter: blur(1.6em) saturate(180%);
+  box-shadow: inset 0 0.5em 0.6em rgba(255, 255, 255, 0.95), inset 0 -0.6em 1em rgba(255, 255, 255, 0.45), inset 0 0 0 0.3em rgba(255, 255, 255, 0.5), 0 1.6em 4em rgba(0, 40, 90, 0.18);
+  overflow: hidden;
+}
+.sw[data-v='liquid-glass'] .card::after {
+  content: '';
+  position: absolute;
+  inset: -20% auto -20% -40%;
+  width: 30%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  animation: sweep 3.4s ease-in-out infinite;
+}
+.sw[data-v='liquid-glass'] .icon { border-radius: 50%; background: rgba(255, 255, 255, 0.45); box-shadow: inset 0 0.4em 0.5em #fff; }
+@keyframes sweep { 0%, 25% { translate: 0 0; } 70%, 100% { translate: 560% 0; } }
+
+/* ───────── 클레이모피즘 ───────── */
+.sw[data-v='claymorphism'] { background: #ffe9dc; }
+.sw[data-v='claymorphism'] .card {
+  border-radius: 12em;
+  background: #ffb7a5;
+  box-shadow: inset -1.6em -1.8em 3em rgba(190, 80, 60, 0.35), inset 1.6em 1.6em 3em rgba(255, 255, 255, 0.65), 0 3em 4em rgba(230, 130, 110, 0.45);
+  --ink: #6b2a1c;
+  --sub: #8f4a3a;
+  animation: squish 2.8s ease-in-out infinite;
+}
+.sw[data-v='claymorphism'] .icon {
+  border-radius: 8em;
+  background: #a6dcff;
+  color: #1f6fa8;
+  box-shadow: inset -1em -1em 2em rgba(40, 110, 170, 0.35), inset 1em 1em 2em rgba(255, 255, 255, 0.7);
+}
+@keyframes squish { 0%, 100% { scale: 1 1; } 45% { scale: 1.05 0.92; } 60% { scale: 0.97 1.04; } }
+
+/* ───────── 네오 브루탈리즘 ───────── */
+.sw[data-v='neobrutalism'] { background: #ffe14d; }
+.sw[data-v='neobrutalism'] .card { border-radius: 3em; border: 1.3em solid #111; animation: press 2.6s steps(1) infinite; }
+.sw[data-v='neobrutalism'] .icon { border-radius: 2.4em; border: 1em solid #111; background: #ff6b6b; color: #111; }
+.sw[data-v='neobrutalism'] .title { font-weight: 700; }
+.sw[data-v='neobrutalism'] .sub { color: #111; }
+@keyframes press {
+  0%, 100% { box-shadow: 2.6em 2.6em 0 #111; translate: 0 0; }
+  55% { box-shadow: 0.6em 0.6em 0 #111; translate: 2em 2em; }
+  75% { box-shadow: 2.6em 2.6em 0 #111; translate: 0 0; }
+}
+
+/* ───────── 브루탈리즘 ───────── */
+.sw[data-v='brutalism'] { background: #fff; }
+.sw[data-v='brutalism'] .card { width: 100em; border-radius: 0; border-top: 1em solid #000; border-bottom: 1em solid #000; box-shadow: none; padding: 5em 6em; animation: none; }
+.sw[data-v='brutalism'] .icon { border-radius: 0; background: #000; color: #fff; }
+.sw[data-v='brutalism'] .title { font-size: 17em; letter-spacing: -0.06em; text-decoration: underline; text-decoration-thickness: 0.07em; }
+.sw[data-v='brutalism'] .sub { font-family: ui-monospace, Menlo, Consolas, monospace; color: #000; text-transform: uppercase; }
+
+/* ───────── 미니멀리즘 ───────── */
+.sw[data-v='minimalism'] { background: #fff; }
+.sw[data-v='minimalism'] .card { background: none; box-shadow: none; gap: 4em; animation: none; }
+.sw[data-v='minimalism'] .icon { width: 12em; height: 12em; background: none; color: #111; }
+.sw[data-v='minimalism'] .icon svg { stroke-width: 1.2; }
+.sw[data-v='minimalism'] .title { font-size: 7em; font-weight: 400; }
+.sw[data-v='minimalism'] .sub { font-size: 3.8em; color: #a0a0a5; }
+
+/* ───────── 맥시멀리즘 ───────── */
+.sw[data-v='maximalism'] {
+  background:
+    radial-gradient(circle, #ffe14d 22%, transparent 24%) 0 0 / 12em 12em,
+    repeating-linear-gradient(45deg, #ff3d81 0 5em, #7b2ff7 5em 10em);
+}
+.sw[data-v='maximalism'] .deco { display: block; }
+.sw[data-v='maximalism'] .d1 { left: 2em; top: 6em; width: 24em; height: 24em; border-radius: 50%; background: #00e0b8; border: 1.2em solid #111; }
+.sw[data-v='maximalism'] .d2 { right: 3em; bottom: 5em; width: 22em; height: 22em; background: #ff9f1c; border: 1.2em solid #111; rotate: 20deg; animation: spin 6s linear infinite; }
+.sw[data-v='maximalism'] .d3 { right: 8em; top: 8em; width: 14em; height: 14em; border-radius: 50%; background: #fff; border: 1.2em dotted #111; }
+.sw[data-v='maximalism'] .card { background: #c8ff3d; border: 1.2em dashed #111; border-radius: 9em 2em; box-shadow: -2em 2em 0 #00b3ff; rotate: -4deg; }
+.sw[data-v='maximalism'] .icon { background: #ff3d81; color: #fff; border: 1em solid #111; border-radius: 50%; }
+.sw[data-v='maximalism'] .sub { color: #111; font-weight: 700; }
+@keyframes spin { to { rotate: 380deg; } }
+
+/* ───────── 에디토리얼 ───────── */
+.sw[data-v='editorial'] { background: #f3ede2; }
+.sw[data-v='editorial'] .card { width: 80em; background: none; box-shadow: none; border-radius: 0; border-top: 0.5em solid #1a1a1a; border-bottom: 0.2em solid #1a1a1a; padding: 6em 2em; animation: none; }
+.sw[data-v='editorial'] .icon { width: 13em; height: 13em; background: none; color: #1a1a1a; order: 2; margin-left: auto; align-self: flex-start; }
+.sw[data-v='editorial'] .icon svg { stroke-width: 1.2; }
+.sw[data-v='editorial'] .title { font-family: 'Nanum Myeongjo', 'Batang', Georgia, serif; font-size: 20em; font-weight: 400; letter-spacing: -0.04em; }
+.sw[data-v='editorial'] .sub { font-size: 3.6em; letter-spacing: 0.2em; color: #b0432e; }
+
+/* ───────── 스위스 스타일 ───────── */
+.sw[data-v='swiss-style'] { background: linear-gradient(90deg, transparent 24.6%, #ddd 24.6% 25%, transparent 25% 49.6%, #ddd 49.6% 50%, transparent 50% 74.6%, #ddd 74.6% 75%, transparent 75%), #fff; }
+.sw[data-v='swiss-style'] .deco { display: block; }
+.sw[data-v='swiss-style'] .d1 { left: 0; top: 0; width: 25em; height: 100em; background: #e30613; }
+.sw[data-v='swiss-style'] .card { width: 75em; margin-left: 25em; background: none; box-shadow: none; border-radius: 0; flex-direction: column; align-items: flex-start; gap: 4em; padding: 5em; animation: none; }
+.sw[data-v='swiss-style'] .icon { width: 14em; height: 14em; border-radius: 0; background: #111; color: #fff; }
+.sw[data-v='swiss-style'] .icon svg { width: 8em; height: 8em; }
+.sw[data-v='swiss-style'] .title { font-family: Helvetica, Arial, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-size: 16em; letter-spacing: -0.04em; }
+.sw[data-v='swiss-style'] .sub { font-family: Helvetica, Arial, 'Malgun Gothic', sans-serif; color: #111; }
+
+/* ───────── 벤토 그리드 ───────── */
+.sw[data-v='bento-grid'] { background: #eef0f4; }
+.sw[data-v='bento-grid'] .deco { display: block; border-radius: 5em; animation: tile 3.2s var(--ease) infinite both; }
+.sw[data-v='bento-grid'] .d1 { right: 8em; top: 12em; width: 26em; height: 26em; background: #0095ff; animation-delay: 0.15s; }
+.sw[data-v='bento-grid'] .d2 { right: 8em; top: 42em; width: 26em; height: 46em; background: #1c1c1e; animation-delay: 0.3s; }
+.sw[data-v='bento-grid'] .d3 { left: 8em; top: 62em; width: 54em; height: 26em; background: #c9ccd3; animation-delay: 0.45s; }
+.sw[data-v='bento-grid'] .card { position: absolute; left: 8em; top: 12em; width: 54em; height: 46em; flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 5em; border-radius: 5em; box-shadow: none; animation: tile 3.2s var(--ease) infinite both; }
+.sw[data-v='bento-grid'] .icon { width: 15em; height: 15em; border-radius: 4em; }
+.sw[data-v='bento-grid'] .icon svg { width: 8.5em; height: 8.5em; }
+.sw[data-v='bento-grid'] .title { font-size: 8em; }
+.sw[data-v='bento-grid'] .sub { font-size: 4em; }
+@keyframes tile { 0% { scale: 0.6; opacity: 0; } 14%, 100% { scale: 1; opacity: 1; } }
+
+/* ───────── 바우하우스 ───────── */
+.sw[data-v='bauhaus'] { background: #f2e9d8; }
+.sw[data-v='bauhaus'] .deco { display: block; }
+.sw[data-v='bauhaus'] .d1 { left: 4em; top: 6em; width: 36em; height: 36em; border-radius: 50%; background: #e23d28; }
+.sw[data-v='bauhaus'] .d2 { right: 4em; bottom: 6em; width: 32em; height: 32em; background: #1d4e9e; animation: spin 10s linear infinite; }
+.sw[data-v='bauhaus'] .d3 { right: 8em; top: 8em; width: 0; height: 0; border-left: 14em solid transparent; border-right: 14em solid transparent; border-bottom: 24em solid #f3b61f; }
+.sw[data-v='bauhaus'] .card { border-radius: 0; border: 1em solid #111; box-shadow: none; animation: none; }
+.sw[data-v='bauhaus'] .icon { border-radius: 50%; background: #111; color: #f3b61f; }
+.sw[data-v='bauhaus'] .sub { color: #111; }
+
+/* ───────── 아트 데코 ───────── */
+.sw[data-v='art-deco'] { background: repeating-conic-gradient(from -30deg at 50% 100%, #14263a 0 6deg, #0d1a29 6deg 12deg); }
+.sw[data-v='art-deco'] .card { border-radius: 0; background: #0b1622; border: 0.5em solid #d4af37; outline: 0.3em solid #d4af37; outline-offset: 1.2em; box-shadow: none; --ink: #e8c766; --sub: #b9974a; animation: none; }
+.sw[data-v='art-deco'] .icon { border-radius: 0; background: none; color: #e8c766; border: 0.4em solid #d4af37; rotate: 45deg; width: 16em; height: 16em; margin: 0 2em; }
+.sw[data-v='art-deco'] .icon svg { rotate: -45deg; width: 8em; height: 8em; stroke-width: 1.4; }
+.sw[data-v='art-deco'] .title { font-family: Georgia, 'Batang', serif; font-weight: 400; letter-spacing: 0.3em; }
+.sw[data-v='art-deco'] .sub { letter-spacing: 0.12em; font-size: 4em; }
+
+/* ───────── 멤피스 ───────── */
+.sw[data-v='memphis'] { background: radial-gradient(circle, #111 14%, transparent 16%) 0 0 / 7em 7em, #fff4e0; }
+.sw[data-v='memphis'] .deco { display: block; }
+.sw[data-v='memphis'] .d1 { left: 3em; top: 8em; width: 30em; height: 10em; background: repeating-linear-gradient(135deg, #ff5fa2 0 3em, transparent 3em 6em); rotate: -18deg; animation: wig 2.6s ease-in-out infinite alternate; }
+.sw[data-v='memphis'] .d2 { right: 5em; top: 6em; width: 20em; height: 20em; border-radius: 50%; background: #ffd23f; border: 1em solid #111; }
+.sw[data-v='memphis'] .d3 { right: 10em; bottom: 6em; width: 0; height: 0; border-left: 11em solid transparent; border-right: 11em solid transparent; border-bottom: 19em solid #2ec4b6; rotate: 24deg; animation: wig 2.6s ease-in-out -1s infinite alternate; }
+.sw[data-v='memphis'] .card { border: 1em solid #111; border-radius: 3em; box-shadow: 2.4em 2.4em 0 #2ec4b6; }
+.sw[data-v='memphis'] .icon { background: #ff5fa2; color: #111; border: 0.8em solid #111; border-radius: 50%; }
+@keyframes wig { from { translate: -2em 0; } to { translate: 3em 2em; } }
+
+/* ───────── 팝 아트 ───────── */
+.sw[data-v='pop-art'] { background: radial-gradient(circle, #e63946 28%, transparent 30%) 0 0 / 6em 6em, #ffd60a; }
+.sw[data-v='pop-art'] .deco { display: block; }
+.sw[data-v='pop-art'] .d1 { right: 2em; top: 3em; width: 34em; height: 34em; background: #fff; border: 1em solid #111; clip-path: polygon(50% 0, 61% 30%, 93% 18%, 76% 46%, 100% 62%, 68% 66%, 72% 100%, 48% 76%, 22% 96%, 28% 64%, 0 56%, 26% 40%, 10% 12%, 40% 28%); background: #00a8e8; animation: boom 1.6s steps(2) infinite; }
+.sw[data-v='pop-art'] .card { border: 1.4em solid #111; border-radius: 2em; box-shadow: 2em 2em 0 #111; rotate: -3deg; }
+.sw[data-v='pop-art'] .icon { background: #e63946; color: #fff; border: 1em solid #111; border-radius: 50%; }
+.sw[data-v='pop-art'] .title { font-size: 13em; font-style: italic; -webkit-text-stroke: 0.06em #111; color: #ffd60a; text-shadow: 0.08em 0.08em 0 #111; }
+.sw[data-v='pop-art'] .sub { color: #111; font-weight: 700; }
+@keyframes boom { 0% { scale: 1; rotate: 0deg; } 50% { scale: 1.15; rotate: 8deg; } }
+
+/* ───────── 콜라주 ───────── */
+.sw[data-v='collage'] { background: #d8c6a4; }
+.sw[data-v='collage'] .deco { display: block; }
+.sw[data-v='collage'] .d1 { left: 4em; top: 8em; width: 44em; height: 30em; background: repeating-linear-gradient(#fff 0 2em, #ddd 2em 2.4em); rotate: 8deg; box-shadow: 0 0.6em 1.4em rgba(0, 0, 0, 0.25); }
+.sw[data-v='collage'] .d2 { right: 2em; bottom: 8em; width: 34em; height: 34em; background: linear-gradient(135deg, #2a6f97, #89c2d9); rotate: -10deg; clip-path: polygon(4% 0, 96% 3%, 100% 94%, 60% 100%, 2% 92%); }
+.sw[data-v='collage'] .d3 { left: 38em; top: 24em; z-index: 2; width: 24em; height: 7em; background: rgba(255, 224, 102, 0.75); rotate: -14deg; animation: tape 3s ease-in-out infinite; }
+.sw[data-v='collage'] .card { border-radius: 0; rotate: -4deg; clip-path: polygon(0 4%, 12% 0, 30% 3%, 52% 0, 74% 4%, 100% 1%, 98% 96%, 80% 100%, 55% 96%, 30% 100%, 8% 97%, 1% 100%); box-shadow: none; filter: drop-shadow(0 1em 1.4em rgba(0, 0, 0, 0.3)); }
+.sw[data-v='collage'] .icon { background: #e85d4a; color: #fff; border-radius: 0; rotate: 7deg; }
+.sw[data-v='collage'] .title { font-family: Georgia, 'Batang', serif; }
+@keyframes tape { 0%, 100% { rotate: -14deg; } 50% { rotate: -9deg; } }
+
+/* ───────── 컷페이퍼 ───────── */
+.sw[data-v='cut-paper'] { background: #2b4162; }
+.sw[data-v='cut-paper'] .deco { display: block; border-radius: 50% 50% 0 0; left: -10em; right: -10em; filter: drop-shadow(0 -1em 1em rgba(0, 0, 0, 0.3)); animation: paper 4s ease-in-out infinite alternate; }
+.sw[data-v='cut-paper'] .d1 { bottom: -10em; height: 78em; background: #385f71; }
+.sw[data-v='cut-paper'] .d2 { bottom: -22em; height: 70em; background: #f5a65b; left: 10em; right: -30em; animation-delay: -1.3s; }
+.sw[data-v='cut-paper'] .d3 { bottom: -30em; height: 60em; background: #f7dba7; left: -30em; right: 14em; animation-delay: -2.6s; }
+.sw[data-v='cut-paper'] .card { background: #fffaf0; border-radius: 3em; box-shadow: 0 0.6em 0 #e9dcc3, 0 2em 2.4em rgba(0, 0, 0, 0.35); }
+.sw[data-v='cut-paper'] .icon { background: #e4572e; color: #fffaf0; border-radius: 50%; box-shadow: 0 0.6em 0.8em rgba(0, 0, 0, 0.25); }
+@keyframes paper { from { translate: 0 0; } to { translate: 0 -3em; } }
+
+/* ───────── 잉크 ───────── */
+.sw[data-v='ink'] { background: #f4efe4; }
+.sw[data-v='ink'] .deco { display: block; background: #111; filter: blur(1.6em); }
+.sw[data-v='ink'] .d1 { left: 2em; top: 10em; width: 46em; height: 40em; border-radius: 62% 38% 55% 45% / 48% 60% 40% 52%; opacity: 0.85; animation: bleed 4s ease-in-out infinite alternate; }
+.sw[data-v='ink'] .d2 { right: 6em; bottom: 8em; width: 26em; height: 22em; border-radius: 40% 60% 46% 54% / 60% 42% 58% 40%; opacity: 0.35; animation: bleed 4s ease-in-out -2s infinite alternate; }
+.sw[data-v='ink'] .d3 { right: 20em; top: 8em; width: 8em; height: 8em; border-radius: 50%; opacity: 0.6; }
+.sw[data-v='ink'] .card { background: none; box-shadow: none; animation: none; }
+.sw[data-v='ink'] .icon { background: none; color: #f4efe4; }
+.sw[data-v='ink'] .title { font-family: 'Nanum Myeongjo', 'Batang', Georgia, serif; font-size: 15em; }
+.sw[data-v='ink'] .sub { color: #333; }
+@keyframes bleed { from { scale: 0.86; } to { scale: 1.1; } }
+
+/* ───────── 리소그래프 ───────── */
+.sw[data-v='risograph'] { background: radial-gradient(circle, rgba(0, 0, 0, 0.12) 12%, transparent 14%) 0 0 / 1.6em 1.6em, #f6efe2; }
+.sw[data-v='risograph'] .deco { display: block; mix-blend-mode: multiply; }
+.sw[data-v='risograph'] .d1 { left: 6em; top: 8em; width: 46em; height: 46em; border-radius: 50%; background: #ff48b0; }
+.sw[data-v='risograph'] .d2 { right: 6em; bottom: 8em; width: 46em; height: 46em; border-radius: 50%; background: #0078bf; animation: misprint 2.4s steps(3) infinite; }
+.sw[data-v='risograph'] .card { background: none; box-shadow: none; animation: none; }
+.sw[data-v='risograph'] .icon { background: #ffe800; color: #0078bf; mix-blend-mode: multiply; border-radius: 0; }
+.sw[data-v='risograph'] .title { color: #0078bf; text-shadow: 0.07em 0.05em 0 rgba(255, 72, 176, 0.85); }
+.sw[data-v='risograph'] .sub { color: #1c1c1e; font-weight: 700; }
+@keyframes misprint { 0% { translate: 0 0; } 33% { translate: 1.4em -1em; } 66% { translate: -1em 1.2em; } }
+
+/* ───────── 스케치북 ───────── */
+.sw[data-v='sketchbook'] { background: repeating-linear-gradient(#fffdf4 0 9.4em, #bcd3ee 9.4em 10em); }
+.sw[data-v='sketchbook'] .card { background: none; box-shadow: none; border: 0.7em solid #333; border-radius: 60em 4em 52em 4em / 4em 52em 4em 60em; animation: wobble 0.9s steps(2) infinite; }
+.sw[data-v='sketchbook'] .icon { background: repeating-linear-gradient(135deg, transparent 0 1.2em, #f2c94c 1.2em 2em); color: #333; border: 0.6em solid #333; border-radius: 48% 52% 46% 54% / 52% 46% 54% 48%; }
+.sw[data-v='sketchbook'] .icon svg { stroke-width: 1.6; }
+.sw[data-v='sketchbook'] .title { font-family: 'Comic Sans MS', 'Nanum Pen Script', cursive; font-weight: 400; font-size: 12em; }
+.sw[data-v='sketchbook'] .sub { color: #333; text-decoration: underline wavy #e85d4a; }
+@keyframes wobble { 0% { rotate: -1.2deg; } 50% { rotate: 1deg; } }
+
+/* ───────── 픽셀 ───────── */
+.sw[data-v='pixel-art'] { background: linear-gradient(#1d2b53 62%, #008751 62% 66%, #00e436 66%); image-rendering: pixelated; }
+.sw[data-v='pixel-art'] .card { border-radius: 0; background: #fff1e8; box-shadow: 0 -2em 0 #000, 0 2em 0 #000, -2em 0 0 #000, 2em 0 0 #000, 2em 4em 0 rgba(0, 0, 0, 0.4); animation: hop 0.8s steps(2) infinite; }
+.sw[data-v='pixel-art'] .icon { border-radius: 0; background: #ff004d; color: #fff1e8; box-shadow: inset -2em -2em 0 #7e2553; }
+.sw[data-v='pixel-art'] .icon svg { stroke-linecap: square; stroke-linejoin: miter; stroke-width: 2.6; }
+.sw[data-v='pixel-art'] .title,
+.sw[data-v='pixel-art'] .sub { font-family: ui-monospace, 'Courier New', Consolas, monospace; color: #1d2b53; }
+@keyframes hop { 0% { translate: 0 0; } 50% { translate: 0 -2em; } }
+
+/* ───────── 아이소메트릭 ───────── */
+.sw[data-v='isometric'] { background: #eaf0ff; }
+.sw[data-v='isometric'] .card {
+  width: 60em;
+  border-radius: 2em;
+  transform: rotateX(55deg) rotateZ(-45deg);
+  box-shadow: -1em 1em 0 #b9c6f5, -2em 2em 0 #b9c6f5, -3em 3em 0 #b9c6f5, -4em 4em 0 #b9c6f5, -5em 5em 0 #9fb0ee, -14em 14em 6em rgba(40, 60, 140, 0.25);
+  animation: iso 3s ease-in-out infinite;
+}
+.sw[data-v='isometric'] .icon { background: #4c6fff; color: #fff; box-shadow: -0.8em 0.8em 0 #2f49c2, -1.6em 1.6em 0 #2f49c2; }
+@keyframes iso { 0%, 100% { translate: 0 2em; } 50% { translate: 0 -3em; } }
+
+/* ───────── 수학 ───────── */
+.sw[data-v='mathematical-design'] { background: linear-gradient(#cfe0f5 0.3em, transparent 0.3em) 0 0 / 8em 8em, linear-gradient(90deg, #cfe0f5 0.3em, transparent 0.3em) 0 0 / 8em 8em, #fbfdff; }
+.sw[data-v='mathematical-design'] .deco { display: block; }
+.sw[data-v='mathematical-design'] .d1 { left: 8em; top: 8em; width: 40em; height: 40em; border-radius: 50%; border: 0.5em solid #0b5fa5; animation: spin 8s linear infinite; border-top-color: #e4572e; }
+.sw[data-v='mathematical-design'] .d2 { left: 0; right: 0; bottom: 20em; height: 0.5em; background: #1c1c1e; }
+.sw[data-v='mathematical-design'] .d3 { right: 6em; top: 8em; }
+.sw[data-v='mathematical-design'] .d3::before { content: 'y = x²'; font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 8em; color: #0b5fa5; }
+.sw[data-v='mathematical-design'] .card { background: rgba(255, 255, 255, 0.9); border: 0.4em solid #0b5fa5; border-radius: 1em; box-shadow: none; animation: none; }
+.sw[data-v='mathematical-design'] .icon { background: none; border: 0.4em dashed #0b5fa5; color: #0b5fa5; border-radius: 0; }
+.sw[data-v='mathematical-design'] .title { font-family: Georgia, serif; }
+
+/* ───────── 키네틱 타이포그래피 ───────── */
+.sw[data-v='kinetic-typography'] { background: #111; }
+.sw[data-v='kinetic-typography'] .card { width: 96em; background: none; box-shadow: none; flex-direction: column; gap: 3em; padding: 0; animation: none; }
+.sw[data-v='kinetic-typography'] .icon { display: none; }
+.sw[data-v='kinetic-typography'] .text { align-items: center; gap: 4em; }
+.sw[data-v='kinetic-typography'] .title { font-size: 34em; color: #e9ff3d; animation: kinetic 1.8s cubic-bezier(0.3, 1.5, 0.5, 1) infinite; }
+.sw[data-v='kinetic-typography'] .sub { color: #fff; font-size: 6em; animation: kineticSub 1.8s ease-in-out infinite; }
+@keyframes kinetic {
+  0% { scale: 1 0.2; letter-spacing: -0.2em; }
+  30% { scale: 1 1.25; letter-spacing: 0.1em; }
+  55%, 100% { scale: 1 1; letter-spacing: 0; }
+}
+@keyframes kineticSub { 0%, 100% { translate: -6em 0; } 50% { translate: 6em 0; } }
+
+/* ───────── 그레이니 그라데이션 ───────── */
+.sw[data-v='grainy-gradient'] {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 20% 20%, #ff8fab, transparent 60%),
+    radial-gradient(circle at 85% 30%, #ffb703, transparent 55%),
+    radial-gradient(circle at 60% 90%, #7b2ff7, transparent 60%),
+    #ff5d8f;
+  animation: hue 6s linear infinite alternate;
+}
+.sw[data-v='grainy-gradient'] .card { background: rgba(255, 255, 255, 0.2); border: 0.4em solid rgba(255, 255, 255, 0.5); box-shadow: none; --ink: #fff; --sub: rgba(255, 255, 255, 0.9); }
+.sw[data-v='grainy-gradient'] .icon { background: rgba(255, 255, 255, 0.28); color: #fff; }
+@keyframes hue { from { filter: hue-rotate(0deg); } to { filter: hue-rotate(60deg); } }
+
+/* ───────── Y2K ───────── */
+.sw[data-v='y2k'] { background: linear-gradient(160deg, #ff9ce3, #b69cff 55%, #8fe3ff); }
+.sw[data-v='y2k'] .deco { display: block; background: #fff; clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); animation: twinkle 1.6s ease-in-out infinite; }
+.sw[data-v='y2k'] .d1 { left: 6em; top: 8em; width: 20em; height: 20em; }
+.sw[data-v='y2k'] .d2 { right: 8em; top: 14em; width: 12em; height: 12em; animation-delay: -0.5s; }
+.sw[data-v='y2k'] .d3 { right: 16em; bottom: 8em; width: 16em; height: 16em; animation-delay: -1s; }
+.sw[data-v='y2k'] .card { border-radius: 14em; background: linear-gradient(#fff, #ffd9f5 55%, #ffb3ea); border: 0.8em solid #fff; box-shadow: inset 0 -2em 3em rgba(255, 90, 200, 0.35), 0 2em 4em rgba(140, 60, 200, 0.35); --ink: #c2189b; --sub: #8a3fc9; }
+.sw[data-v='y2k'] .icon { border-radius: 50%; background: radial-gradient(circle at 35% 28%, #fff, #7cd8ff 40%, #2f8bff); color: #fff; box-shadow: 0 0.8em 1.6em rgba(47, 139, 255, 0.5); }
+@keyframes twinkle { 0%, 100% { scale: 0.5; opacity: 0.5; } 50% { scale: 1.1; opacity: 1; } }
+
+/* ───────── Y2K 크롬 ───────── */
+.sw[data-v='y2k-chrome'] { background: linear-gradient(#0d0d18, #23233a); }
+.sw[data-v='y2k-chrome'] .card { border-radius: 12em; background: linear-gradient(#fdfdff, #b9bfd0 30%, #5e6680 50%, #dfe3ee 54%, #9aa2b8 78%, #f4f6fb); border: 0.6em solid #f2f4fa; box-shadow: 0 0 0 0.5em #5e6680, 0 2em 5em rgba(120, 140, 255, 0.45); overflow: hidden; }
+.sw[data-v='y2k-chrome'] .card::after { content: ''; position: absolute; inset: -30% auto -30% -45%; width: 28%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.95), transparent); animation: sweep 2.6s ease-in-out infinite; }
+.sw[data-v='y2k-chrome'] .icon { border-radius: 50%; background: radial-gradient(circle at 35% 25%, #fff, #aab2c8 45%, #3d445c); color: #1a1d2b; box-shadow: inset 0 -1em 1.4em rgba(0, 0, 0, 0.4); }
+.sw[data-v='y2k-chrome'] .title { font-style: italic; background: linear-gradient(#fff, #3d445c 55%, #cfd5e4); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: 0.03em #1a1d2b; }
+.sw[data-v='y2k-chrome'] .sub { color: #1a1d2b; font-weight: 700; }
+
+/* ───────── 사이버펑크 ───────── */
+.sw[data-v='cyberpunk'] { background: repeating-linear-gradient(transparent 0 2.6em, rgba(0, 240, 255, 0.07) 2.6em 3em), linear-gradient(#0a0014, #1a0530); }
+.sw[data-v='cyberpunk'] .deco { display: block; }
+.sw[data-v='cyberpunk'] .d1 { left: 0; right: 0; bottom: 12em; height: 0.6em; background: #ff2bd6; box-shadow: 0 0 3em 1em rgba(255, 43, 214, 0.6); }
+.sw[data-v='cyberpunk'] .card { border-radius: 0; background: #110326; clip-path: polygon(0 0, 88% 0, 100% 24%, 100% 100%, 12% 100%, 0 76%); box-shadow: inset 0 0 0 0.6em #00f0ff, inset 0 0 4em rgba(0, 240, 255, 0.45); --ink: #00f0ff; --sub: #ff2bd6; animation: flicker 2.4s steps(1) infinite; }
+.sw[data-v='cyberpunk'] .icon { border-radius: 0; background: #ff2bd6; color: #110326; box-shadow: 0 0 3em rgba(255, 43, 214, 0.8); }
+.sw[data-v='cyberpunk'] .title { text-shadow: 0 0 0.3em #00f0ff, 0.06em 0 0 #ff2bd6; }
+.sw[data-v='cyberpunk'] .sub { font-family: ui-monospace, Consolas, monospace; }
+@keyframes flicker { 0%, 100% { opacity: 1; translate: 0 0; } 46% { opacity: 0.55; translate: 1em 0; } 48% { opacity: 1; translate: -0.8em 0; } 50% { translate: 0 0; } 78% { opacity: 0.7; } 80% { opacity: 1; } }
+
+/* ───────── 다크 모드 ───────── */
+.sw[data-v='dark-mode'] { animation: dmBg 4s steps(1) infinite; }
+.sw[data-v='dark-mode'] .card { animation: dmCard 4s steps(1) infinite; }
+.sw[data-v='dark-mode'] .title { animation: dmInk 4s steps(1) infinite; }
+.sw[data-v='dark-mode'] .sub { animation: dmSub 4s steps(1) infinite; }
+.sw[data-v='dark-mode'] .icon { animation: dmIcon 4s steps(1) infinite; }
+@keyframes dmBg { 0% { background: #f3f4f6; } 50% { background: #000; } }
+@keyframes dmCard { 0% { background: #fff; box-shadow: 0 1.5em 5em rgba(0, 0, 0, 0.1); } 50% { background: #1c1c1e; box-shadow: 0 0 0 0.3em #2c2c2e; } }
+@keyframes dmInk { 0% { color: #1c1c1e; } 50% { color: #f5f5f7; } }
+@keyframes dmSub { 0% { color: #6e6e73; } 50% { color: #98989d; } }
+@keyframes dmIcon { 0% { background: #e5f4ff; color: #0095ff; } 50% { background: #0a3a5c; color: #4db8ff; } }
+
+/* ───────── 3D 아이콘 ───────── */
+.sw[data-v='3d-icon'] { background: radial-gradient(circle at 50% 30%, #fff, #dbe9ff); }
+.sw[data-v='3d-icon'] .card { background: none; box-shadow: none; flex-direction: column; gap: 6em; padding: 0; animation: none; }
+.sw[data-v='3d-icon'] .icon {
+  width: 46em;
+  height: 46em;
+  border-radius: 12em;
+  background: linear-gradient(150deg, #6cc4ff, #0095ff 45%, #0061c9);
+  color: #fff;
+  box-shadow: inset 0 1.6em 1.6em rgba(255, 255, 255, 0.55), inset 0 -3em 3em rgba(0, 40, 120, 0.45), 0 3em 0 #004a9c, 0 7em 6em rgba(0, 70, 160, 0.4);
+  animation: tilt 3s ease-in-out infinite;
+}
+.sw[data-v='3d-icon'] .icon svg { width: 24em; height: 24em; filter: drop-shadow(0 1em 0.6em rgba(0, 40, 120, 0.5)); }
+.sw[data-v='3d-icon'] .text { display: none; }
+@keyframes tilt { 0%, 100% { transform: perspective(160em) rotateY(-22deg) rotateX(8deg); } 50% { transform: perspective(160em) rotateY(22deg) rotateX(-4deg) translateY(-3em); } }
