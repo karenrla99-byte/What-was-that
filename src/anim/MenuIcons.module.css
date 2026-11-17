@@ -1,0 +1,72 @@
+.icon {
+  position: absolute;
+  top: 3em;
+  z-index: 2;
+  width: 12em;
+  height: 12em;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.fillDot { fill: var(--ink); stroke: none; }
+.knob { fill: #fff; stroke: var(--ink); stroke-width: 2; }
+
+/* 메뉴가 열리고 닫힘 (4초, 18%에 누름) */
+.drawer {
+  position: absolute;
+  left: 0;
+  top: 18em;
+  bottom: 0;
+  width: 36em;
+  z-index: 3;
+  background: #fff;
+  box-shadow: 1em 0 4em rgba(0, 0, 0, 0.2);
+  animation: drawer 4s var(--ease) infinite;
+}
+
+@keyframes drawer {
+  0%, 20% { transform: translateX(-105%); }
+  32%, 78% { transform: none; }
+  92%, 100% { transform: translateX(-105%); }
+}
+
+.pop {
+  position: absolute;
+  top: 17em;
+  z-index: 3;
+  border-radius: 3em;
+  background: #fff;
+  border: 0.4em solid var(--gray-2);
+  box-shadow: 0 1.6em 4em rgba(0, 0, 0, 0.18);
+  animation: pop 4s var(--ease) infinite;
+}
+
+.popRight { right: 3em; transform-origin: top right; }
+.popLeft { left: 3em; transform-origin: top left; }
+
+@keyframes pop {
+  0%, 20% { opacity: 0; transform: scale(0.6); }
+  28%, 80% { opacity: 1; transform: none; }
+  88%, 100% { opacity: 0; transform: scale(0.6); }
+}
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30em;
+  z-index: 3;
+  border-radius: 4em 4em 0 0;
+  background: #fff;
+  box-shadow: 0 -1em 4em rgba(0, 0, 0, 0.18);
+  animation: sheet 4s var(--ease) infinite;
+}
+
+@keyframes sheet {
+  0%, 20% { transform: translateY(105%); }
+  32%, 78% { transform: none; }
+  92%, 100% { transform: translateY(105%); }
+}

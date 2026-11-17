@@ -3,6 +3,7 @@ import { FILE_IDS, fileAnim } from './Files';
 import * as Bt from './Buttons';
 import * as F from './Forms';
 import * as I from './Indicators';
+import { MENU_ICONS, menuIcon } from './MenuIcons';
 import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
 import * as R from './Ratings';
 import { LAYOUT_IDS, layoutSketch } from './LayoutSketch';
@@ -83,4 +84,6 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'toggle-button': Bt.ToggleButton,
   'button-group': Bt.ButtonGroup,
   'default-vs-resting': Bt.DefaultVsResting,
+  // 🧩 메뉴 버튼 모양
+  ...Object.fromEntries(MENU_ICONS.map(([id, kind, name]) => [id, menuIcon(kind, name)])),
 };
