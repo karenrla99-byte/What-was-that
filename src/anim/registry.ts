@@ -1,6 +1,9 @@
 import type { ComponentType } from 'react';
+import { FILE_IDS, fileAnim } from './Files';
 import * as I from './Indicators';
+import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
 import * as R from './Ratings';
+import { LAYOUT_IDS, layoutSketch } from './LayoutSketch';
 import { DESIGN_STYLES, styleSwatch } from './StyleSwatch';
 import { TYPE_STYLES, typeSwatch } from './TypeSwatch';
 
@@ -32,4 +35,10 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   ...Object.fromEntries(DESIGN_STYLES.map((id) => [id, styleSwatch(id)])),
   // 🎨 글자 스타일 (TypeSwatch 템플릿)
   ...Object.fromEntries(Object.entries(TYPE_STYLES).map(([id, cap]) => [id, typeSwatch(id, cap)])),
+  // 🎨 화면 배치 (LayoutSketch 템플릿)
+  ...Object.fromEntries(LAYOUT_IDS.map((id) => [id, layoutSketch(id)])),
+  // 🎨 꾸밈 속성 · 색과 글자 (PropertyMorph 템플릿)
+  ...Object.fromEntries(PROPERTY_IDS.map((id) => [id, propertyMorph(id)])),
+  // 🎨 그림과 파일 형식
+  ...Object.fromEntries(FILE_IDS.map((id) => [id, fileAnim(id)])),
 };

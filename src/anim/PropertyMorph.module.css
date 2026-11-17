@@ -1,0 +1,196 @@
+.pm {
+  --d: 3.2s;
+}
+
+.area {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 8em;
+  height: 68em;
+  display: grid;
+  place-items: center;
+}
+
+.label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2.6em;
+  font-family: ui-monospace, 'Courier New', Consolas, monospace;
+  font-size: 5em;
+  line-height: 1;
+  text-align: center;
+  color: var(--gray-4);
+}
+
+.t {
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.solid,
+.soft,
+.white {
+  display: block;
+  width: 46em;
+  height: 46em;
+  border-radius: 4em;
+  background: var(--blue);
+}
+
+.soft { background: var(--blue-soft); }
+.white { background: #fff; }
+
+/* 빗금 = 여백 자리 */
+.hatch {
+  position: relative;
+  width: 56em;
+  height: 56em;
+  display: grid;
+  place-items: center;
+  border-radius: 4em;
+  border: 0.6em dashed var(--gray-4);
+  background: repeating-linear-gradient(135deg, var(--blue-soft) 0 1.6em, #fff 1.6em 3.2em);
+}
+
+.fillBox {
+  border-radius: 2.4em;
+  background: var(--blue);
+}
+
+/* ── 안쪽 여백: 상자는 그대로, 안의 내용이 테두리에서 멀어짐 ── */
+.pm[data-v='padding'] .fillBox { position: absolute; animation: pad var(--d) ease-in-out infinite; }
+@keyframes pad { 0%, 12%, 100% { inset: 1.5em; } 50%, 70% { inset: 14em; } }
+
+/* ── 바깥 여백: 내용은 그대로, 바깥 빈자리가 넓어짐 ── */
+.pm[data-v='margin'] .hatch { animation: mar var(--d) ease-in-out infinite; }
+.pm[data-v='margin'] .fillBox { width: 26em; height: 26em; }
+@keyframes mar { 0%, 12%, 100% { width: 29em; height: 29em; } 50%, 70% { width: 58em; height: 58em; } }
+
+/* ── 간격 ── */
+.row { display: flex; animation: gap var(--d) ease-in-out infinite; }
+.row i { width: 16em; height: 30em; border-radius: 3em; background: var(--blue); }
+@keyframes gap { 0%, 12%, 100% { gap: 0.8em; } 50%, 70% { gap: 9em; } }
+
+/* ── 모서리 둥글기: 네모 → 알약 ── */
+.pm[data-v='border-radius'] .solid { width: 62em; height: 34em; animation: radius var(--d) ease-in-out infinite; }
+@keyframes radius { 0%, 12%, 100% { border-radius: 0; } 50%, 70% { border-radius: 17em; } }
+
+/* ── 테두리 ── */
+.pm[data-v='border'] .soft { box-sizing: border-box; animation: border 4s ease-in-out infinite; }
+@keyframes border {
+  0%, 8% { border: 0 solid var(--blue); }
+  35%, 48% { border: 4em solid var(--blue); }
+  50%, 92% { border: 2em dashed var(--blue); }
+  100% { border: 0 solid var(--blue); }
+}
+
+/* ── 그림자 ── */
+.pm[data-v='drop-shadow'] .white { animation: shadow var(--d) ease-in-out infinite; }
+@keyframes shadow {
+  0%, 12%, 100% { box-shadow: 0 0 0 rgba(0, 60, 120, 0); transform: translateY(0); }
+  50%, 70% { box-shadow: 0 6em 9em rgba(0, 60, 120, 0.35); transform: translateY(-3em); }
+}
+
+/* ── 투명도 ── */
+.checker {
+  padding: 5em;
+  border-radius: 4em;
+  background: repeating-conic-gradient(var(--gray-2) 0 25%, #fff 0 50%) 0 0 / 8em 8em;
+}
+.pm[data-v='opacity'] .solid { animation: opacity var(--d) ease-in-out infinite; }
+@keyframes opacity { 0%, 12%, 100% { opacity: 1; } 50%, 70% { opacity: 0.12; } }
+
+/* ── 블러 ── */
+.shapes { position: relative; width: 56em; height: 46em; animation: blur var(--d) ease-in-out infinite; }
+.shapes i { position: absolute; }
+.shapes i:nth-child(1) { left: 2em; top: 2em; width: 26em; height: 26em; border-radius: 50%; background: var(--blue); }
+.shapes i:nth-child(2) { right: 2em; top: 10em; width: 22em; height: 22em; border-radius: 3em; background: var(--gray-4); }
+.shapes i:nth-child(3) { left: 12em; bottom: 0; width: 34em; height: 7em; border-radius: 4em; background: var(--gray-3); }
+@keyframes blur { 0%, 12%, 100% { filter: blur(0); } 50%, 70% { filter: blur(3em); } }
+
+/* ── 그라데이션 ── */
+.pm[data-v='gradient'] .solid { width: 60em; height: 40em; background: linear-gradient(90deg, #0095ff, #b9e3ff, #fff, #b9e3ff, #0095ff) 0 0 / 300% 100%; animation: gradient 4s linear infinite; }
+@keyframes gradient { to { background-position: -150% 0; } }
+
+/* ── 구분선 ── */
+.list { width: 58em; display: grid; gap: 3.6em; }
+.list i { height: 8em; border-radius: 2em; background: var(--gray-2); }
+.list b { height: 0.7em; border-radius: 1em; background: var(--blue); transform-origin: left; animation: divider var(--d) var(--ease) infinite both; }
+.list b:nth-of-type(2) { animation-delay: 0.3s; }
+@keyframes divider { 0%, 10% { transform: scaleX(0); } 40%, 100% { transform: scaleX(1); } }
+
+/* ── 주요색: 버튼·스위치·링크가 같은 색 ── */
+.ui { display: grid; justify-items: center; gap: 5em; }
+.uiBtn { width: 44em; height: 13em; border-radius: 7em; animation: tint var(--d) steps(1) infinite both; }
+.uiSwitch { width: 22em; height: 12em; border-radius: 6em; position: relative; animation: tint var(--d) steps(1) 0.35s infinite both; }
+.uiSwitch::after { content: ''; position: absolute; right: 1.4em; top: 1.4em; width: 9.2em; height: 9.2em; border-radius: 50%; background: #fff; }
+.uiLink { width: 30em; height: 2em; border-radius: 1em; animation: tint var(--d) steps(1) 0.7s infinite both; }
+@keyframes tint { 0% { background: var(--gray-3); } 14%, 100% { background: var(--blue); } }
+
+/* ── 강조색: 회색 사이에 딱 한 곳만 ── */
+.pm[data-v='accent-color'] .ui { gap: 3em; }
+.uiCard { position: relative; width: 56em; height: 13em; border-radius: 3em; background: var(--gray-2); }
+.uiCard b { position: absolute; right: -2.4em; top: -2.4em; width: 8em; height: 8em; border-radius: 50%; background: var(--blue); animation: accent 2.4s var(--ease) infinite; }
+@keyframes accent { 0%, 100% { transform: scale(0.7); box-shadow: 0 0 0 0 rgba(0, 149, 255, 0.5); } 50% { transform: scale(1.15); box-shadow: 0 0 0 4em rgba(0, 149, 255, 0); } }
+
+/* ── 색 팔레트 ── */
+.palette { display: flex; border-radius: 4em; overflow: hidden; box-shadow: 0 2em 4em rgba(0, 0, 0, 0.12); }
+.palette i { width: 13em; height: 46em; animation: swatch var(--d) var(--ease) infinite both; transform-origin: bottom; }
+.palette i:nth-child(1) { background: #0095ff; }
+.palette i:nth-child(2) { background: #005fa3; animation-delay: 0.15s; }
+.palette i:nth-child(3) { background: #e5f4ff; animation-delay: 0.3s; }
+.palette i:nth-child(4) { background: #1c1c1e; animation-delay: 0.45s; }
+.palette i:nth-child(5) { background: #c9ccd3; animation-delay: 0.6s; }
+@keyframes swatch { 0% { transform: scaleY(0); } 14%, 100% { transform: scaleY(1); } }
+
+/* ── 색 코드 ── */
+.hex { display: grid; justify-items: center; gap: 5em; }
+.hex i { width: 34em; height: 34em; border-radius: 5em; background: #0095ff; }
+.hex .t { font-family: ui-monospace, 'Courier New', Consolas, monospace; font-size: 11em; overflow: hidden; border-right: 0.08em solid var(--ink); width: 4.3em; animation: hexType 3.4s steps(7) infinite, hexCaret 0.7s steps(1) infinite; }
+@keyframes hexType { 0%, 8% { width: 0; } 50%, 100% { width: 4.3em; } }
+@keyframes hexCaret { 50% { border-right-color: transparent; } }
+
+/* ── 대비: 흐릿한 글자 → 또렷한 글자 ── */
+.contrast { display: grid; place-items: center; width: 64em; height: 40em; border-radius: 4em; animation: contrastBg var(--d) ease-in-out infinite; }
+.contrast .t { font-size: 20em; animation: contrastInk var(--d) ease-in-out infinite; }
+@keyframes contrastBg { 0%, 15%, 100% { background: #e3e5ea; } 50%, 75% { background: #fff; } }
+@keyframes contrastInk { 0%, 15%, 100% { color: #c9ccd3; } 50%, 75% { color: #1c1c1e; } }
+
+/* ── 글자 굵기 ── */
+.weights { display: flex; align-items: baseline; gap: 6em; }
+.weights .t { font-size: 22em; color: var(--gray-3); animation: weight 3.6s steps(1) infinite both; }
+.weights .t:nth-child(1) { font-weight: 400; }
+.weights .t:nth-child(2) { font-weight: 600; animation-delay: 1.2s; }
+.weights .t:nth-child(3) { font-weight: 700; animation-delay: 2.4s; }
+@keyframes weight { 0% { color: var(--blue); } 33.3%, 100% { color: var(--gray-3); } }
+
+/* ── 글자 크기 ── */
+.center { display: grid; place-items: center; width: 100%; height: 100%; }
+.pm[data-v='font-size'] .t { font-size: 10em; animation: fontSize var(--d) ease-in-out infinite; }
+@keyframes fontSize { 0%, 12%, 100% { font-size: 10em; } 50%, 70% { font-size: 46em; } }
+
+/* ── 줄 간격 ── */
+.lines { display: grid; width: 58em; animation: leading var(--d) ease-in-out infinite; }
+.lines i { height: 5em; border-radius: 3em; background: var(--gray-4); }
+.lines i:last-child { width: 60%; }
+@keyframes leading { 0%, 12%, 100% { gap: 1.2em; } 50%, 70% { gap: 9em; } }
+
+/* ── 자간 ── */
+.pm[data-v='letter-spacing'] .t { font-size: 13em; animation: tracking var(--d) ease-in-out infinite; }
+@keyframes tracking { 0%, 12%, 100% { letter-spacing: -0.1em; margin-right: -0.1em; } 50%, 70% { letter-spacing: 0.55em; margin-right: -0.55em; } }
+
+/* ── 말줄임 ── */
+.trunc { padding: 5em 6em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); animation: trunc 3.6s ease-in-out infinite; }
+.trunc .t { display: block; font-size: 7em; overflow: hidden; text-overflow: ellipsis; }
+@keyframes trunc { 0%, 12%, 100% { width: 84em; } 50%, 72% { width: 40em; } }
+
+/* ── 웹폰트: 기본 글꼴 → 불러온 글꼴 ── */
+.pm[data-v='web-font'] .t { font-size: 15em; animation: webfont 3s steps(1) infinite; }
+@keyframes webfont {
+  0% { font-family: 'Batang', 'Times New Roman', serif; font-weight: 400; color: var(--gray-4); }
+  50% { font-family: 'LevelUp', system-ui, sans-serif; font-weight: 700; color: var(--blue); }
+}

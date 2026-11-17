@@ -1,0 +1,136 @@
+.fa { --d: 3.2s; }
+
+.pic { display: block; width: 100%; height: 100%; }
+.sky { fill: var(--blue-soft); }
+.sun { fill: #fff; }
+.hill { fill: var(--blue); }
+
+.sticker { width: 34em; height: 34em; fill: var(--blue); stroke: #fff; stroke-width: 1.2; stroke-linejoin: round; filter: drop-shadow(0 1em 1.2em rgba(0, 60, 120, 0.25)); }
+
+.frame {
+  width: 66em;
+  height: 50em;
+  display: grid;
+  place-items: center;
+  border-radius: 4em;
+  border: 0.8em solid var(--gray-3);
+  background: #fff;
+  overflow: hidden;
+  margin-bottom: 12em;
+}
+
+.plain { background: var(--gray-1); }
+.checker { background: repeating-conic-gradient(var(--gray-2) 0 25%, #fff 0 50%) 0 0 / 8em 8em; }
+
+.tag {
+  position: absolute;
+  left: 50%;
+  bottom: 1.1em;
+  transform: translateX(-50%);
+  padding: 0.3em 0.9em;
+  border-radius: 2em;
+  background: var(--ink);
+  color: #fff;
+  font-family: ui-monospace, 'Courier New', Consolas, monospace;
+  font-size: 5.6em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* PNG: 투명 배경 위에서 그림만 움직임 */
+.float { animation: float var(--d) ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translate(-9em, 2em) rotate(-10deg); } 50% { transform: translate(9em, -2em) rotate(10deg); } }
+
+/* JPG: 칸을 꽉 채운 사진 */
+.zoomPic { animation: ken 4s ease-in-out infinite alternate; }
+@keyframes ken { from { transform: scale(1); } to { transform: scale(1.3) translate(-4%, 3%); } }
+
+/* SVG: 키워도 또렷 */
+.scale { animation: scaleUp var(--d) ease-in-out infinite; }
+@keyframes scaleUp { 0%, 10%, 100% { transform: scale(0.35); } 50%, 75% { transform: scale(1.5); } }
+
+/* WebP: 같은 그림, 더 가벼움 */
+.weigh { display: flex; gap: 6em; margin-bottom: 12em; }
+.weigh span { width: 31em; display: grid; gap: 3em; }
+.weigh .pic { height: 26em; border-radius: 3em; }
+.weigh i { height: 4em; border-radius: 2em; background: var(--gray-3); transform-origin: left; }
+.barSmall { background: var(--blue) !important; animation: lighter var(--d) var(--ease) infinite; }
+@keyframes lighter { 0%, 15%, 100% { transform: scaleX(1); } 50%, 80% { transform: scaleX(0.4); } }
+
+/* 투명 배경: 뒤 색이 바뀌어도 그림은 그대로 */
+.bgCycle { margin-bottom: 0; animation: bgCycle 4s steps(1) infinite; }
+@keyframes bgCycle { 0% { background: #fff; } 25% { background: var(--gray-3); } 50% { background: var(--ink); } 75% { background: var(--blue-soft); } }
+
+/* 해상도: 점이 점점 촘촘해짐 */
+.frame:has(.pixels) { margin-bottom: 0; }
+.pixels {
+  width: 48em;
+  height: 48em;
+  border-radius: 50%;
+  background: repeating-conic-gradient(var(--blue) 0 25%, #7cc8ff 0 50%) 50% 50% / 24em 24em;
+  animation: res 4s steps(1) infinite;
+}
+@keyframes res { 0% { background-size: 24em 24em; } 25% { background-size: 12em 12em; } 50% { background-size: 6em 6em; } 75% { background-size: 2em 2em; } }
+
+/* 비율 */
+.ratioWrap { display: grid; justify-items: center; gap: 5em; }
+.ratio { display: block; height: 36em; border-radius: 3em; overflow: hidden; border: 0.8em solid var(--gray-3); animation: ratio 4.5s var(--ease) infinite; }
+@keyframes ratio { 0%, 26% { width: 64em; } 33%, 60% { width: 48em; } 66%, 93% { width: 36em; } 100% { width: 64em; } }
+.ratioText { position: relative; width: 30em; height: 10em; }
+.ratioText b { position: absolute; inset: 0; text-align: center; font-size: 9em; line-height: 1.1; color: var(--ink); opacity: 0; animation: ratioT 4.5s steps(1) infinite; }
+.ratioText b:nth-child(2) { animation-delay: 1.5s; }
+.ratioText b:nth-child(3) { animation-delay: 3s; }
+@keyframes ratioT { 0% { opacity: 1; } 33.3%, 100% { opacity: 0; } }
+
+/* 에셋: 폴더에 재료가 모임 */
+.folder { position: relative; width: 70em; height: 56em; }
+.folder > span { position: absolute; left: 0; right: 0; bottom: 0; height: 30em; border-radius: 2em 4em 4em 4em; background: var(--blue); box-shadow: 0 -0.8em 0 rgba(255, 255, 255, 0.6) inset; }
+.folder > span::before { content: ''; position: absolute; left: 0; top: -6em; width: 26em; height: 8em; border-radius: 3em 3em 0 0; background: var(--blue); }
+.folder i { position: absolute; top: 4em; width: 19em; height: 19em; display: grid; place-items: center; border-radius: 3em; background: #fff; border: 0.7em solid var(--gray-3); overflow: hidden; color: var(--gray-4); font-style: normal; animation: drop var(--d) var(--ease) infinite both; }
+.folder i:nth-child(1) { left: 4em; }
+.folder i:nth-child(2) { left: 25.5em; animation-delay: 0.3s; }
+.folder i:nth-child(3) { left: 47em; animation-delay: 0.6s; }
+.folder i svg:not(.pic) { width: 10em; height: 10em; }
+.folder i b { font-size: 8em; color: var(--ink); }
+@keyframes drop { 0% { transform: translateY(-16em); opacity: 0; } 14%, 70% { transform: translateY(0); opacity: 1; } 86%, 100% { transform: translateY(14em); opacity: 1; } }
+
+/* 스프라이트: 한 장에 모은 조각을 차례로 보여 줌 */
+.sprite { display: grid; justify-items: center; gap: 7em; }
+.strip { position: relative; display: flex; gap: 1.6em; padding: 2em; border-radius: 3em; background: var(--gray-2); }
+.strip i { width: 16em; height: 16em; border-radius: 2em; background: #fff; position: relative; }
+.strip i::after { content: ''; position: absolute; left: 50%; bottom: 3em; width: 5em; height: 8em; margin-left: -2.5em; border-radius: 2.5em; background: var(--gray-4); }
+.strip i:nth-child(2)::after { transform: rotate(14deg) translateY(-1em); }
+.strip i:nth-child(3)::after { transform: translateY(-3em); }
+.strip i:nth-child(4)::after { transform: rotate(-14deg) translateY(-1em); }
+.strip b { position: absolute; left: 1.2em; top: 1.2em; width: 17.6em; height: 17.6em; border-radius: 2.6em; border: 1em solid var(--blue); animation: frame 1.6s steps(4) infinite; }
+@keyframes frame { to { transform: translateX(70.4em); } }
+.runner { width: 9em; height: 14em; border-radius: 4.5em; background: var(--blue); animation: run 1.6s steps(1) infinite; }
+@keyframes run { 0% { transform: none; } 25% { transform: rotate(14deg) translateY(-2em); } 50% { transform: translateY(-5em); } 75% { transform: rotate(-14deg) translateY(-2em); } }
+
+/* 이모지: 기기마다 모양이 다름 */
+.emoji { position: relative; width: 50em; height: 50em; }
+.emoji svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: swap 3s steps(1) infinite; }
+.emoji svg circle:first-child { fill: var(--blue); }
+.emoji svg circle { fill: #fff; }
+.emoji svg path { fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; }
+.faceB { animation-delay: -1.5s !important; }
+.faceB circle:first-child { fill: var(--gray-2); stroke: var(--gray-4); stroke-width: 1.2; }
+.emoji .faceB circle:not(:first-child) { fill: var(--gray-4); }
+.emoji .faceB path { stroke: var(--gray-4); fill: var(--gray-4); }
+@keyframes swap { 0% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+/* 벡터 vs 비트맵: 키우면 한쪽만 깨짐 */
+.vs { display: flex; gap: 6em; }
+.vs > span { width: 40em; height: 40em; display: grid; place-items: center; border-radius: 4em; border: 0.8em solid var(--gray-3); background: #fff; overflow: hidden; }
+.vector,
+.bitmap { width: 16em; height: 16em; animation: zoom var(--d) ease-in-out infinite; }
+.vector { border-radius: 50%; background: var(--blue); }
+.bitmap { background: var(--blue); clip-path: polygon(25% 0, 75% 0, 75% 12.5%, 87.5% 12.5%, 87.5% 25%, 100% 25%, 100% 75%, 87.5% 75%, 87.5% 87.5%, 75% 87.5%, 75% 100%, 25% 100%, 25% 87.5%, 12.5% 87.5%, 12.5% 75%, 0 75%, 0 25%, 12.5% 25%, 12.5% 12.5%, 25% 12.5%); }
+@keyframes zoom { 0%, 10%, 100% { transform: scale(0.5); } 50%, 78% { transform: scale(2.1); } }
+
+/* 잘라 맞추기 vs 전체 보이기 */
+.vs > .fit { height: 54em; width: 38em; background: var(--gray-1); }
+.cover { width: 100%; height: 100%; animation: none; }
+.contain { width: 100%; height: 53%; }
+.fit .pic { animation: fitPulse var(--d) ease-in-out infinite; }
+@keyframes fitPulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
