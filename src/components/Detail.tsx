@@ -248,19 +248,19 @@ export default function Detail() {
               <p className={s.meaning}>{term.meaning}</p>
 
               <section className={s.promptBox}>
-                <div className={s.promptHead}>
-                  <h3 className={s.promptTitle}>
-                    <MessageCircle size={18} strokeWidth={2.2} aria-hidden="true" />
-                    프롬프트에 이렇게 쓰세요
-                  </h3>
-                  <button type="button" className={s.copyBtn} onClick={copy}>
-                    {copied ? <Check size={17} strokeWidth={3} aria-hidden="true" /> : <Copy size={17} aria-hidden="true" />}
+                <h3 className={s.promptTitle}>
+                  <MessageCircle size={17} strokeWidth={2.2} aria-hidden="true" />
+                  프롬프트에 이렇게 쓰세요
+                </h3>
+                <div className={s.promptWrap}>
+                  <p className={s.prompt}>
+                    <PromptText term={term} />
+                  </p>
+                  <button type="button" className={s.copyBtn} onClick={copy} aria-label="프롬프트 복사">
+                    {copied ? <Check size={15} strokeWidth={3} aria-hidden="true" /> : <Copy size={15} aria-hidden="true" />}
                     복사
                   </button>
                 </div>
-                <p className={s.prompt}>
-                  <PromptText term={term} />
-                </p>
               </section>
 
               {related.length > 0 && (

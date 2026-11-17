@@ -240,60 +240,59 @@
   line-height: 1.6;
 }
 
-/* 프롬프트: 이 사이트의 핵심 */
+/* 프롬프트: 회색 상자, 복사 버튼은 문장 칸 오른쪽 위 */
 .promptBox {
-  padding: 14px 16px 16px;
+  padding: 12px 14px 14px;
   border-radius: 20px;
-  background: var(--blue-soft);
-}
-
-.promptHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
+  background: var(--gray-1);
 }
 
 .promptTitle {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--blue-deep);
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-sub);
 }
 
-.copyBtn {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: var(--r-pill);
-  background: var(--blue);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  transition: background-color var(--dur) var(--ease), transform 0.15s var(--ease);
-}
-
-.copyBtn:hover {
-  background: var(--blue-text);
-}
-
-.copyBtn:active {
-  background: var(--blue-deep);
-  transform: scale(0.96);
+.promptWrap {
+  position: relative;
 }
 
 .prompt {
-  padding: 12px 14px;
+  padding: 12px 86px 12px 14px;
   border-radius: 14px;
   background: #fff;
   font-size: 18px;
   line-height: 1.6;
+}
+
+.copyBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 0 11px;
+  border-radius: var(--r-pill);
+  border: 1.4px solid var(--gray-2);
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), transform 0.15s var(--ease);
+}
+
+.copyBtn:hover {
+  border-color: var(--gray-4);
+}
+
+.copyBtn:active {
+  transform: scale(0.96);
 }
 
 .key {
@@ -418,7 +417,7 @@
   }
   .prompt {
     font-size: 16px;
-    padding: 10px 12px;
+    padding: 10px 80px 10px 12px;
   }
   .promptBox {
     padding: 12px;
@@ -456,16 +455,7 @@
     font-size: 12px;
   }
   .promptTitle {
-    font-size: 15px;
-    white-space: nowrap;
-  }
-  .promptHead {
-    margin-bottom: 8px;
-  }
-  .copyBtn {
-    height: 36px;
-    padding: 0 14px;
-    font-size: 15px;
+    font-size: 14px;
   }
   .chip {
     min-height: 36px;
