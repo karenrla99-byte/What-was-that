@@ -11,6 +11,7 @@ import { MENU_ICONS, menuIcon } from './MenuIcons';
 import * as N from './Nav';
 import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
 import * as R from './Ratings';
+import * as Sr from './Search';
 import { LAYOUT_IDS, layoutSketch } from './LayoutSketch';
 import { DESIGN_STYLES, styleSwatch } from './StyleSwatch';
 import { TYPE_STYLES, typeSwatch } from './TypeSwatch';
@@ -149,4 +150,17 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'recurrence-settings': Dt.Recurrence,
   'quick-select': Dt.QuickSelect,
   'quick-select-chips': Dt.QuickSelectChips,
+  // 🧩 검색 화면 · 카드 · 바텀시트
+  'search-bar': Sr.SearchBar,
+  autocomplete: Sr.Autocomplete,
+  'recent-searches': Sr.RecentSearches,
+  'trending-searches': Sr.TrendingSearches,
+  filter: Sr.Filter,
+  sort: Sr.Sort,
+  'search-term-highlighting': Sr.SearchHighlight,
+  'no-results': Sr.NoResults,
+  'search-scope-tabs': Sr.SearchScopeTabs,
+  'initial-consonant-search': Sr.ChoseongSearch,
+  card: Sr.Card,
+  'bottom-sheet': Sr.BottomSheet,
 };

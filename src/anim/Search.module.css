@@ -1,0 +1,60 @@
+.mag { position: absolute; left: 3.4em; top: 50%; width: 5em; height: 5em; margin-top: -2.5em; color: var(--gray-4); }
+.focus { animation: focus 4s steps(1) infinite; }
+@keyframes focus { 0% { border-color: var(--gray-2); } 6% { border-color: var(--blue); } 94% { border-color: var(--gray-2); } }
+.typing { overflow: hidden; width: 0; padding-right: 0.2em; animation: typing 4s steps(4) infinite; }
+@keyframes typing { 0%, 8% { width: 0; } 38%, 92% { width: 4.4em; } 100% { width: 0; } }
+.result { animation: result 4s var(--ease) infinite both; }
+@keyframes result { 0%, 38% { opacity: 0; transform: translateY(1.6em); } 46%, 90% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+
+/* 자동완성 */
+.suggest { position: absolute; left: 4em; top: 18em; width: 49.6em; height: 28em; border-radius: 3em; background: #fff; border: 0.4em solid var(--gray-2); box-shadow: 0 1.6em 4em rgba(0, 0, 0, 0.14); transform-origin: top; animation: open 4s var(--ease) infinite; }
+@keyframes open { 0%, 20% { opacity: 0; transform: scaleY(0.6); } 28%, 90% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+.sugIcon { position: absolute; left: 3em; width: 4.4em; height: 4.4em; color: var(--gray-3); }
+.hl { color: var(--blue); font-weight: 700; }
+
+/* 최근·인기 */
+.rowIcon { position: absolute; left: 5em; width: 5em; height: 5em; color: var(--gray-4); }
+.rowX { position: absolute; right: 5em; width: 4.4em; height: 4.4em; color: var(--gray-3); }
+
+/* 필터 */
+.chipIcon { position: absolute; left: 50%; top: 50%; width: 4.6em; height: 4.6em; margin: -2.3em 0 0 -2.3em; color: var(--ink); }
+.chipOn { animation: chipOn 4s steps(1) infinite; }
+@keyframes chipOn { 0% { background: var(--gray-1); } 16% { background: var(--blue-soft); } 94% { background: var(--gray-1); } }
+.chipPop { opacity: 0; animation: chipPop 4s var(--ease) infinite both; }
+@keyframes chipPop { 0%, 20% { opacity: 0; transform: scale(0.6); } 28%, 90% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+.fade { animation: fade 4s var(--ease) infinite; }
+@keyframes fade { 0%, 24% { opacity: 1; } 34%, 90% { opacity: 0.12; } 98%, 100% { opacity: 1; } }
+
+/* 정렬: 줄 순서가 바뀜 */
+.sortList { position: absolute; left: 4em; top: 34em; }
+.o0, .o1, .o2, .o3 { animation: 4s var(--ease) infinite; }
+.o0 { animation-name: o0; }
+.o1 { animation-name: o1; }
+.o2 { animation-name: o2; }
+.o3 { animation-name: o3; }
+@keyframes o0 { 0%, 45% { transform: none; } 55%, 95% { transform: translateY(20em); } 100% { transform: none; } }
+@keyframes o1 { 0%, 45% { transform: none; } 55%, 95% { transform: translateY(-10em); } 100% { transform: none; } }
+@keyframes o2 { 0%, 45% { transform: none; } 55%, 95% { transform: translateY(-20em); } 100% { transform: none; } }
+@keyframes o3 { 0%, 45% { transform: none; } 55%, 95% { transform: translateY(10em); } 100% { transform: none; } }
+
+/* 검색어 강조 */
+.mark { color: var(--ink); background: linear-gradient(var(--blue-soft), var(--blue-soft)) 0 0 / 0% 100% no-repeat; animation: mark 3.6s var(--ease) infinite; border-radius: 0.2em; }
+@keyframes mark { 0%, 15% { background-size: 0% 100%; color: var(--ink); } 40%, 90% { background-size: 100% 100%; color: var(--blue-deep); } 100% { background-size: 0% 100%; } }
+
+/* 결과 없음 */
+.empty { position: absolute; left: 50%; top: 24em; width: 18em; height: 18em; margin-left: -9em; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--blue); }
+.empty svg { width: 9em; height: 9em; }
+
+/* 검색 범위 탭 */
+.scopeLine { position: absolute; left: 2.6em; bottom: -0.6em; width: 14em; height: 1.4em; border-radius: 1em; background: var(--blue); animation: scope 4.5s var(--ease) infinite; }
+@keyframes scope { 0%, 28% { transform: none; } 33.3%, 61% { transform: translateX(19.2em); } 66.6%, 95% { transform: translateX(38.4em); } 100% { transform: none; } }
+
+/* 카드 */
+.card { box-shadow: 0 2em 5em rgba(0, 0, 0, 0.1); animation: lift 3s ease-in-out infinite; }
+@keyframes lift { 0%, 100% { transform: none; } 50% { transform: translateY(-2em); box-shadow: 0 4em 6em rgba(0, 0, 0, 0.14); } }
+
+/* 바텀시트 */
+.dim { position: absolute; inset: 0; z-index: 2; background: rgba(28, 28, 30, 0.4); opacity: 0; animation: dim 4.2s var(--ease) infinite; }
+@keyframes dim { 0%, 16% { opacity: 0; } 28%, 76% { opacity: 1; } 88%, 100% { opacity: 0; } }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 40em; z-index: 3; border-radius: 4em 4em 0 0; background: #fff; box-shadow: 0 -1em 4em rgba(0, 0, 0, 0.2); animation: sheet 4.2s var(--ease) infinite; }
+@keyframes sheet { 0%, 16% { transform: translateY(105%); } 28%, 76% { transform: none; } 88%, 100% { transform: translateY(105%); } }
