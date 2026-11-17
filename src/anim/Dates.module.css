@@ -1,0 +1,87 @@
+.arrowL, .arrowR { position: absolute; top: 0.4em; width: 5em; height: 5em; color: var(--gray-4); }
+.arrowL { left: 0; }
+.arrowR { right: 0; }
+.fieldIcon { position: absolute; right: 2.4em; top: 50%; width: 5em; height: 5em; margin-top: -2.5em; color: var(--gray-4); }
+
+/* 인라인 달력: 고른 날이 옮겨 감 */
+.pickA, .pickB, .pickC { animation: 4.5s steps(1) infinite; }
+.pickA { animation-name: pickA; }
+.pickB { animation-name: pickB; }
+.pickC { animation-name: pickC; }
+@keyframes pickA { 0% { background: var(--blue); } 33.3% { background: var(--gray-1); } }
+@keyframes pickB { 0% { background: var(--gray-1); } 33.3% { background: var(--blue); } 66.6% { background: var(--gray-1); } }
+@keyframes pickC { 0% { background: var(--gray-1); } 66.6% { background: var(--blue); } }
+
+/* 팝오버 달력 */
+.pop { position: absolute; left: 5em; top: 37em; width: 38em; height: 29.6em; z-index: 3; border-radius: 3em; background: #fff; border: 0.4em solid var(--gray-2); box-shadow: 0 1.6em 4em rgba(0, 0, 0, 0.18); transform-origin: top; animation: pop 4s var(--ease) infinite; }
+@keyframes pop { 0%, 18% { opacity: 0; transform: scaleY(0.5); } 26%, 80% { opacity: 1; transform: none; } 88%, 100% { opacity: 0; transform: scaleY(0.5); } }
+
+/* 월 고르기 */
+.monthOn { animation: on 4s steps(1) infinite; }
+@keyframes on { 0% { background: var(--gray-1); } 34% { background: var(--blue); } 94% { background: var(--gray-1); } }
+.monthInk { animation: ink 4s steps(1) infinite; }
+@keyframes ink { 0% { color: var(--ink); } 34% { color: #fff; } 94% { color: var(--ink); } }
+
+/* 휠 피커 */
+.wheel { position: absolute; top: 0; width: 14em; display: flex; flex-direction: column; align-items: center; animation: wheel 4s cubic-bezier(0.3, 1.4, 0.5, 1) infinite; }
+.wheel b { height: 1.85em; display: grid; place-items: center; font-size: 5.4em; font-weight: 600; color: var(--gray-4); }
+@keyframes wheel { 0%, 20% { transform: translateY(8em); } 45%, 70% { transform: translateY(-12em); } 95%, 100% { transform: translateY(8em); } }
+
+/* 직접 입력 */
+.typed { overflow: hidden; width: 0; font-family: ui-monospace, Consolas, monospace; animation: typed 4s steps(10) infinite; }
+@keyframes typed { 0%, 8% { width: 0; } 60%, 92% { width: 6.1em; } 100% { width: 0; } }
+.manual { animation: focus 4s steps(1) infinite; }
+@keyframes focus { 0% { border-color: var(--gray-2); } 8% { border-color: var(--blue); } 92% { border-color: var(--gray-2); } }
+
+/* 캘린더 */
+.event { transform-origin: left; animation: event 4s var(--ease) infinite both; }
+@keyframes event { 0% { transform: scaleX(0); } 14%, 88% { transform: none; } 96%, 100% { transform: scaleX(0); } }
+
+/* 범위 */
+.rStart, .rEnd, .rMid { animation: 4.4s steps(1) infinite; }
+.rStart { animation-name: rStart; }
+.rEnd { animation-name: rEnd; }
+.rMid { animation-name: rMid; }
+@keyframes rStart { 0% { background: var(--gray-1); } 17% { background: var(--blue); } 92% { background: var(--gray-1); } }
+@keyframes rEnd { 0% { background: var(--gray-1); } 42% { background: var(--blue); } 92% { background: var(--gray-1); } }
+@keyframes rMid { 0% { background: var(--gray-1); } 46% { background: var(--blue-soft); } 92% { background: var(--gray-1); } }
+.startVal, .endVal { opacity: 0; animation: 4.4s steps(1) infinite; }
+.startVal { animation-name: startVal; }
+.endVal { animation-name: endVal; }
+@keyframes startVal { 0% { opacity: 0; } 17% { opacity: 1; } 92% { opacity: 0; } }
+@keyframes endVal { 0% { opacity: 0; } 42% { opacity: 1; } 92% { opacity: 0; } }
+.startBox { animation: startBox 4.4s steps(1) infinite; }
+.endBox { animation: endBox 4.4s steps(1) infinite; }
+@keyframes startBox { 0% { border-color: var(--blue); } 17% { border-color: var(--gray-2); } 92% { border-color: var(--blue); } }
+@keyframes endBox { 0% { border-color: var(--gray-2); } 17% { border-color: var(--blue); } 42% { border-color: var(--gray-2); } }
+
+/* 체크인·체크아웃 */
+.badgeIn, .badgeOut { position: absolute; display: flex; align-items: center; gap: 0.3em; padding: 0.3em 0.6em; border-radius: 0.8em; background: var(--ink); color: #fff; font-size: 3.4em; font-weight: 600; white-space: nowrap; }
+.badgeIn svg, .badgeOut svg { width: 1.2em; height: 1.2em; }
+.badgeIn { left: 0.6em; top: 8.6em; animation: badge 4.4s steps(1) infinite; }
+.badgeOut { right: 0.6em; top: 8.6em; animation: badge2 4.4s steps(1) infinite; }
+@keyframes badge { 0% { opacity: 0; } 17% { opacity: 1; } 92% { opacity: 0; } }
+@keyframes badge2 { 0% { opacity: 0; } 42% { opacity: 1; } 92% { opacity: 0; } }
+
+/* 시간 슬롯 */
+.slotOn { animation: slotOn 4s steps(1) infinite; }
+@keyframes slotOn { 0% { background: #fff; border-color: var(--gray-2); } 32% { background: var(--blue); border-color: var(--blue); } 94% { background: #fff; border-color: var(--gray-2); } }
+.slotInk { animation: ink 4s steps(1) infinite; }
+
+/* 반복 설정 */
+.repeat { position: absolute; left: 50%; top: 21em; width: 8em; height: 8em; margin-left: -4em; color: var(--blue); animation: spin 3s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.radio { position: absolute; right: 3em; top: 2.2em; width: 4.6em; height: 4.6em; border-radius: 50%; border: 0.6em solid var(--gray-3); background: #fff; }
+.radio i { position: absolute; inset: 0.3em; border-radius: 50%; background: var(--blue); }
+
+/* 빠른 선택 */
+.qsOn { animation: qsOn 4s steps(1) infinite; }
+@keyframes qsOn { 0% { background: #fff; } 28% { background: var(--blue); } 94% { background: #fff; } }
+.qsDay { animation: qsDay 4s steps(1) infinite; }
+@keyframes qsDay { 0% { background: var(--gray-1); } 30% { background: var(--blue); } 94% { background: var(--gray-1); } }
+.today { box-shadow: 0 0 0 0.5em var(--gray-3) inset; }
+.qsPlace { animation: phOut 4s steps(1) infinite; }
+@keyframes phOut { 0% { opacity: 1; } 30% { opacity: 0; } 94% { opacity: 1; } }
+.qsVal { opacity: 0; animation: phIn 4s steps(1) infinite; }
+@keyframes phIn { 0% { opacity: 0; } 30% { opacity: 1; } 94% { opacity: 0; } }
+.band { box-shadow: 0 0 0 0.5em var(--blue) inset; opacity: 0.6; }

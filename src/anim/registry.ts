@@ -3,6 +3,7 @@ import { FILE_IDS, fileAnim } from './Files';
 import * as Bt from './Buttons';
 import * as Ct from './Content';
 import * as D from './Data';
+import * as Dt from './Dates';
 import * as F from './Forms';
 import * as I from './Indicators';
 import * as M from './Media';
@@ -133,4 +134,19 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'kanban-board': D.Kanban,
   'tree-view': D.TreeView,
   heatmap: D.Heatmap,
+  // 🧩 날짜 고르는 UI
+  'inline-calendar': Dt.InlineCalendar,
+  'popover-calendar': Dt.PopoverCalendar,
+  'month-grid': Dt.MonthGrid,
+  'wheel-picker': Dt.WheelPicker,
+  'manual-input': Dt.ManualInput,
+  calendar: Dt.Calendar,
+  'month-picker': Dt.MonthPicker,
+  'date-range-calendar': Dt.RangeCalendar,
+  'date-range-picker': Dt.RangePicker,
+  'check-in-check-out': Dt.CheckInOut,
+  'time-slot': Dt.TimeSlot,
+  'recurrence-settings': Dt.Recurrence,
+  'quick-select': Dt.QuickSelect,
+  'quick-select-chips': Dt.QuickSelectChips,
 };

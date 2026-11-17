@@ -70,7 +70,7 @@ export function Timeline({ playing }: P) {
           <B x={34} y={20 + i * 18} w={[44, 30, 38, 26][i]} h={2.6} c="g" />
         </span>
       ))}
-      <Callout x={26} y={86} dir="down">일어난 순서대로 선 위에</Callout>
+      <Callout x={40} y={86} dir="down">일어난 순서대로 선 위에</Callout>
     </Stage>
   );
 }
@@ -107,7 +107,7 @@ export function TreeView({ playing }: P) {
       <span className={s.treeRow} style={{ top: '30em', left: '14em' }} >
         <ChevronRight className={s.treeChev2} /><Folder className={s.folder} /><b className={s.treeBar} style={{ width: '20em' }} />
       </span>
-      <Callout x={16.5} y={16} dir="down">눌러서 아래 단계 펼치기</Callout>
+      <Callout x={30} y={16} dir="down">눌러서 아래 단계 펼치기</Callout>
     </Stage>
   );
 }
