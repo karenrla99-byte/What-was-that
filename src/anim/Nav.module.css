@@ -1,0 +1,72 @@
+/* 헤더 */
+.scroll { position: absolute; inset: 0; animation: scroll 4s linear infinite; }
+@keyframes scroll { from { transform: translateY(0); } to { transform: translateY(-45em); } }
+.bar { z-index: 2; box-shadow: 0 0.8em 2em rgba(0, 0, 0, 0.1); }
+.barIcon { position: absolute; right: 4em; top: 4em; width: 8em; height: 8em; color: var(--ink); }
+
+/* 푸터 */
+.toFooter { position: absolute; inset: 0; animation: toFooter 4s var(--ease) infinite; }
+@keyframes toFooter { 0%, 15% { transform: translateY(0); } 50%, 90% { transform: translateY(-14em); } 100% { transform: translateY(0); } }
+
+/* 내비게이션 바 */
+.navLine { position: absolute; left: 34em; top: 12em; width: 9em; height: 1.6em; border-radius: 1em; background: var(--blue); animation: navLine 4.4s var(--ease) infinite; }
+@keyframes navLine { 0%, 20% { transform: translateX(0); } 28%, 45% { transform: translateX(13em); } 53%, 70% { transform: translateX(26em); } 78%, 95% { transform: translateX(39em); } 100% { transform: translateX(0); } }
+
+/* 탭 바 */
+.tabBar { border-width: 0.6em 0 0; box-shadow: 0 -0.6em 2em rgba(0, 0, 0, 0.06); }
+.tabIcon { position: absolute; top: 3em; width: 8em; height: 8em; margin-left: -4em; }
+.tabIcon svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tabIconGray { color: var(--gray-3); }
+.tabIconBlue { color: var(--blue); }
+
+/* 탭 */
+.tabsRow { border-bottom: 0.6em solid var(--gray-2); }
+.tabsLine { position: absolute; left: 2.6em; bottom: -0.6em; width: 14em; height: 1.4em; border-radius: 1em; background: var(--blue); animation: tabsLine 4.5s var(--ease) infinite; }
+@keyframes tabsLine { 0%, 28% { transform: translateX(0); } 33.3%, 61% { transform: translateX(19.2em); } 66.6%, 95% { transform: translateX(38.4em); } 100% { transform: translateX(0); } }
+
+/* 드로어 */
+.menuLeft { position: absolute; left: 4em; top: 4em; width: 8em; height: 8em; color: var(--ink); }
+.dim { position: absolute; inset: 0; z-index: 2; background: rgba(28, 28, 30, 0.4); opacity: 0; animation: dim 4s var(--ease) infinite; }
+@keyframes dim { 0%, 20% { opacity: 0; } 32%, 78% { opacity: 1; } 92%, 100% { opacity: 0; } }
+.drawer { position: absolute; left: 0; top: 0; bottom: 0; width: 38em; z-index: 3; background: #fff; box-shadow: 1em 0 4em rgba(0, 0, 0, 0.2); animation: drawer 4s var(--ease) infinite; }
+@keyframes drawer { 0%, 20% { transform: translateX(-105%); } 32%, 78% { transform: none; } 92%, 100% { transform: translateX(-105%); } }
+
+/* 드롭다운 */
+.chev { position: absolute; right: 2em; top: 50%; width: 5em; height: 5em; margin-top: -2.5em; color: var(--gray-4); }
+.drop { position: absolute; left: 5em; top: 37em; width: 30em; height: 28em; z-index: 3; border-radius: 3em; background: #fff; border: 0.4em solid var(--gray-2); box-shadow: 0 1.6em 4em rgba(0, 0, 0, 0.18); transform-origin: top; animation: open 4s var(--ease) infinite; }
+@keyframes open { 0%, 18% { opacity: 0; transform: scaleY(0.4); } 26%, 78% { opacity: 1; transform: none; } 86%, 100% { opacity: 0; transform: scaleY(0.4); } }
+
+/* 컨텍스트 메뉴 */
+.press { position: absolute; left: 22em; top: 42em; width: 10em; height: 10em; margin: -5em 0 0 -5em; border-radius: 50%; background: rgba(110, 110, 115, 0.35); border: 0.5em solid #fff; animation: longPress 4s ease-out infinite; }
+@keyframes longPress { 0%, 8% { opacity: 0; transform: scale(1.4); } 14% { opacity: 1; transform: scale(1); } 34% { opacity: 1; transform: scale(0.7); } 40%, 100% { opacity: 0; transform: scale(0.7); } }
+.ctx { position: absolute; left: 22em; top: 44em; width: 26em; height: 27em; z-index: 3; border-radius: 3em; background: #fff; border: 0.4em solid var(--gray-2); box-shadow: 0 1.6em 4em rgba(0, 0, 0, 0.2); transform-origin: top left; animation: open2 4s var(--ease) infinite; }
+@keyframes open2 { 0%, 34% { opacity: 0; transform: scale(0.5); } 42%, 84% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; transform: scale(0.5); } }
+
+/* 브레드크럼 */
+.crumb { animation: crumb 3.6s var(--ease) infinite both; }
+@keyframes crumb { 0% { opacity: 0; } 10%, 85% { opacity: 1; } 95%, 100% { opacity: 0; } }
+.crumbArrow { position: absolute; top: 35.5em; width: 6em; height: 6em; color: var(--gray-4); }
+
+/* 페이지네이션 */
+.pages { position: absolute; left: 0; right: 0; top: 66em; display: flex; justify-content: center; gap: 2em; }
+.page { position: relative; width: 9em; height: 9em; display: grid; place-items: center; border-radius: 50%; background: var(--gray-1); }
+.page b { position: relative; font-size: 4.6em; font-weight: 600; color: var(--ink); }
+.pageOn { position: absolute; inset: 0; border-radius: 50%; background: var(--blue); }
+.pageOn + b { color: inherit; }
+
+/* 뒤로 가기·링크: 화면 두 장 */
+.screenA, .screenB { position: absolute; inset: 0; background: #fff; }
+.screenB { animation: screenB 4s var(--ease) infinite; }
+@keyframes screenB { 0%, 30% { transform: none; } 45%, 85% { transform: translateX(105%); } 100% { transform: none; } }
+.link { border-bottom: 0.7em solid var(--blue); background: var(--blue-soft); }
+
+/* 맨 위로 */
+.longScroll { position: absolute; inset: 0; animation: longScroll 4.4s var(--ease) infinite; }
+@keyframes longScroll { 0% { transform: translateY(0); } 50%, 62% { transform: translateY(-110em); } 80%, 100% { transform: translateY(0); } }
+.topBtn { display: grid; place-items: center; z-index: 2; animation: topBtn 4.4s var(--ease) infinite; }
+.topBtn svg { width: 6em; height: 6em; }
+@keyframes topBtn { 0%, 20% { opacity: 0; transform: scale(0.5); } 30%, 70% { opacity: 1; transform: none; } 80%, 100% { opacity: 0; transform: scale(0.5); } }
+
+/* 링크: 누르면 새 화면이 들어옴 */
+.screenIn { position: absolute; inset: 0; background: #fff; transform: translateX(105%); animation: screenIn 4s var(--ease) infinite; }
+@keyframes screenIn { 0%, 34% { transform: translateX(105%); } 48%, 86% { transform: none; } 100% { transform: translateX(105%); } }

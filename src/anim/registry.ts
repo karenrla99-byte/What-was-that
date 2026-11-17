@@ -4,6 +4,7 @@ import * as Bt from './Buttons';
 import * as F from './Forms';
 import * as I from './Indicators';
 import { MENU_ICONS, menuIcon } from './MenuIcons';
+import * as N from './Nav';
 import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
 import * as R from './Ratings';
 import { LAYOUT_IDS, layoutSketch } from './LayoutSketch';
@@ -86,4 +87,18 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'default-vs-resting': Bt.DefaultVsResting,
   // 🧩 메뉴 버튼 모양
   ...Object.fromEntries(MENU_ICONS.map(([id, kind, name]) => [id, menuIcon(kind, name)])),
+  // 🧩 이동 부품
+  header: N.Header,
+  footer: N.Footer,
+  'navigation-bar': N.NavigationBar,
+  'tab-bar': N.TabBar,
+  tabs: N.Tabs,
+  drawer: N.Drawer,
+  'dropdown-menu': N.DropdownMenu,
+  'context-menu': N.ContextMenu,
+  breadcrumb: N.Breadcrumb,
+  pagination: N.Pagination,
+  'back-button': N.BackButton,
+  'back-to-top': N.BackToTop,
+  link: N.LinkAnim,
 };
