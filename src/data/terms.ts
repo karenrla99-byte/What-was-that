@@ -12,7 +12,10 @@ export type Term = {
   groups: { group: GroupKey; sub: string; order: number }[];
   /** 한 줄 설명 (검색용) */
   short: string;
+  /** 원래 뜻 (노션·TERMS.md). 검색에만 씀 */
   meaning: string;
+  /** 쉬운 뜻 (상세 화면의 '뜻') */
+  easy: string;
   /** 프롬프트 예시 문장 */
   prompt: string;
   /** 같이 쓰면 좋은 말 (term id) */

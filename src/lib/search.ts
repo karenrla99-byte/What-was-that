@@ -70,11 +70,11 @@ function matchTerm(term: Term, query: string): Hit | null {
   const en = findLoose(term.en, query);
   if (en) return { term, score: strip(term.en).startsWith(q) ? 64 : 60, where: 'name', en };
 
-  // 2) 설명: 뜻 → 프롬프트 예시 문장 순서로, 검색어가 그대로 들어 있는지
-  const texts = [term.meaning, term.prompt];
+  // 2) 설명: 쉬운 뜻 → 원래 뜻 → 프롬프트 예시 문장 순서로, 검색어가 그대로 들어 있는지
+  const texts = [term.easy, term.meaning, term.prompt];
   for (const text of texts) {
     const r = findLoose(text, query);
-    if (r) return { term, score: text === term.meaning ? 40 : 34, where: 'desc', desc: { text, ranges: [r] } };
+    if (r) return { term, score: text === term.prompt ? 34 : 40, where: 'desc', desc: { text, ranges: [r] } };
   }
 
   // 3) 여러 낱말로 풀어 쓴 말: 낱말 끝을 떼고 모두 들어 있는지 ("아래서 올라오는 창" → 바텀시트)

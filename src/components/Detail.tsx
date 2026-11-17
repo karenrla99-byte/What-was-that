@@ -245,7 +245,7 @@ export default function Detail() {
                 </ul>
               </header>
 
-              <p className={s.meaning}>{term.meaning}</p>
+              <p className={s.meaning}>{term.easy}</p>
 
               <section className={s.promptBox}>
                 <h3 className={s.promptTitle}>

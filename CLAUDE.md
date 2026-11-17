@@ -115,7 +115,8 @@ type Term = {
 type GroupKey = 'start'|'look'|'parts'|'motion'|'screens'|'gesture'|'learn'|'ux'|'size'|'build'|'ai';
 ```
 - 초성은 `ko`에서 런타임 계산 (저장 안 함)
-- 스크립트가 더 넣는 칸: `groups[].order`(TERMS.md 순서) · `vsNote`(짝 id → 비교 설명) · `sprout`(🌱 초보용) · `draft`. 만들기: `npm run build:terms` (프롬프트 초안은 `scripts/prompt-drafts.md`에서 고치기)
+- 스크립트가 더 넣는 칸: `easy`(쉬운 뜻) · `groups[].order`(TERMS.md 순서) · `vsNote`(짝 id → 비교 설명) · `sprout`(🌱 초보용) · `draft`. 만들기: `npm run build:terms` (프롬프트 초안은 `scripts/prompt-drafts.md`, 쉬운 뜻은 `scripts/easy-drafts.md`에서 고치기)
+- **상세 화면의 '뜻'은 `easy`**: 처음 보는 사람도 알 쉬운 말, 한두 문장, "~예요/~해요", 도움이 되면 생활 속 비유. 원래 뜻(`meaning`)은 검색에만 씀
 - `vs` 줄의 짝이 용어로 없으면(예: 벡터 vs 비트맵) **비교 카드 하나**로 만듦 (`anim.type: 'Compare'`)
 - TERMS.md의 `vs 가 vs 나` 줄은 별도 카드가 아니라 **각 용어의 `vs` 칸**으로 넣기 (가↔나 서로 연결). 단 `vs` 줄에 뜻이 적힌 것은 상세의 비교 설명으로 사용
 - 같은 용어가 여러 분류에 나오면 **카드 하나 + groups 여러 개** (PLAN.md 4장 겹침 표 + TERMS.md 참고: 벤토, 스켈레톤, 바텀시트, 순차 등장, 진행 바, 코치마크 등)

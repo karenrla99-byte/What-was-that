@@ -4,7 +4,7 @@
  *
  * - 이름만 적힌 용어의 뜻은 notion-terms.md에서 가져옴
  * - `vs 가 vs 나` 줄은 두 용어의 vs 칸으로 연결 (짝이 용어로 없으면 비교 카드 하나로)
- * - 프롬프트 초안은 scripts/prompt-drafts.md에서 읽음
+ * - 프롬프트 초안은 scripts/prompt-drafts.md, 쉬운 뜻은 scripts/easy-drafts.md에서 읽음
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 
@@ -17,6 +17,8 @@ type Term = {
   groups: { group: GroupKey; sub: string; order: number }[];
   short: string;
   meaning: string;
+  /** 쉬운 뜻 (상세 화면의 '뜻') */
+  easy: string;
   prompt: string;
   related: string[];
   vs?: string[];
@@ -241,7 +243,7 @@ raws.forEach((r, order) => {
     id, ko: r.ko, en: r.en,
     aliases: [...r.aliases, ...(pick(ALIASES, r.ko, r.sub) ?? [])].filter((a) => a !== r.ko),
     groups: [{ group: r.group, sub: r.sub, order }],
-    short: '', meaning: r.meaning, prompt: '', related: [],
+    short: '', meaning: r.meaning, easy: '', prompt: '', related: [],
     anim: { type: ANIM_BY_SUB[r.sub] ?? ANIM_BY_GROUP[r.group], params: { variant: id } },
   };
   if (pick(Object.fromEntries(TRY_IT.map((k) => [k, true])), r.ko, r.sub)) t.tryIt = true;
@@ -293,7 +295,7 @@ rawVs.forEach((v, i) => {
   if (!id || byId.has(id)) { problems.push(`비교 카드 id 문제: ${label}`); return; }
   const t: Term = {
     id, ko: label, en, aliases: [], groups: [{ group: v.group, sub: v.sub, order: raws.length + i }],
-    short: '', meaning, prompt: '', related: sides.filter(Boolean).map((s) => s!.id),
+    short: '', meaning, easy: '', prompt: '', related: sides.filter(Boolean).map((s) => s!.id),
     anim: { type: 'Compare', params: { variant: id } },
   };
   if (v.sprout) t.sprout = true;
@@ -303,19 +305,25 @@ rawVs.forEach((v, i) => {
 });
 
 // ───────── 초안 채우기: short · prompt · related ─────────
-const prompts = new Map<string, string>();
-{
+/** `## 작은 분류` 아래 `이름 | 문장` 줄을 읽음 → "이름@작은 분류" → 문장 */
+function readDrafts(file: string): Map<string, string> {
+  const out = new Map<string, string>();
   let sub = '';
   let text = '';
-  try { text = read('scripts/prompt-drafts.md'); } catch { /* 아직 없음 */ }
+  try { text = read(file); } catch { /* 아직 없음 */ }
   for (const line of text.split('\n')) {
     const h = line.match(/^## (.+)$/);
     if (h) { sub = h[1].trim(); continue; }
     const m = line.match(/^([^>#].*?) \| (.+)$/);
-    if (m) prompts.set(`${m[1].trim()}@${sub}`, m[2].trim());
+    if (m) out.set(`${m[1].trim()}@${sub}`, m[2].trim());
   }
+  return out;
 }
+const prompts = readDrafts('scripts/prompt-drafts.md');
+const easies = readDrafts('scripts/easy-drafts.md');
 const usedPrompts = new Set<string>();
+const usedEasy = new Set<string>();
+const noEasy: string[] = [];
 const noPrompt: string[] = [];
 const badPrompt: string[] = [];
 STARTERS.forEach((ko) => {
@@ -324,8 +332,16 @@ STARTERS.forEach((ko) => {
 });
 
 for (const t of terms) {
-  // short: 뜻의 첫 문장
-  t.short = t.meaning.split(/(?<=[.?!])\s/)[0].replace(/[.]$/, '');
+  // easy: 쉬운 뜻
+  for (const names of [[t.ko], t.aliases]) for (const name of names) for (const g of t.groups) {
+    const key = `${name}@${g.sub}`;
+    if (!easies.has(key)) continue;
+    usedEasy.add(key);
+    if (!t.easy) t.easy = easies.get(key)!;
+  }
+  if (!t.easy) { noEasy.push(`${t.groups[0].sub} > ${t.ko}`); t.easy = t.meaning; }
+  // short: 쉬운 뜻의 첫 문장
+  t.short = t.easy.split(/(?<=[.?!])\s/)[0].replace(/[.]$/, '');
   // prompt
   for (const names of [[t.ko], t.aliases]) for (const name of names) for (const g of t.groups) {
     const key = `${name}@${g.sub}`;
@@ -374,6 +390,7 @@ for (const t of terms) {
 }
 const unusedNotion = notion.filter((n) => !usedNotion.has(n)).map((n) => `${n.section} > ${n.ko}`);
 const unusedPrompts = [...prompts.keys()].filter((k) => !usedPrompts.has(k));
+const unusedEasy = [...easies.keys()].filter((k) => !usedEasy.has(k));
 
 writeFileSync(new URL('src/data/terms.json', root), JSON.stringify(terms, null, 1) + '\n');
 
@@ -398,6 +415,8 @@ show('비교 카드로 만든 vs (짝이 용어로 없음)', compareCards);
 show('프롬프트 초안 없음', noPrompt, 30);
 show('프롬프트 규칙 어김', badPrompt);
 show('안 쓰인 프롬프트 초안', unusedPrompts);
+show('쉬운 뜻 없음 (원래 뜻을 씀)', noEasy);
+show('안 쓰인 쉬운 뜻', unusedEasy);
 show('노션에만 있고 안 쓰인 용어', unusedNotion);
 show('문제', problems);
-if (problems.length || badPrompt.length) process.exitCode = 1;
+if (problems.length || badPrompt.length || noEasy.length) process.exitCode = 1;
