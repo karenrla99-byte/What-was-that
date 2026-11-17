@@ -1,6 +1,7 @@
 import { GROUP_MAP, isGroupKey, type Group } from './groups';
 import { TERMS, type Term } from './terms';
 import { INDEX_KEYS, compareKo, indexKeyOf, type IndexKey } from '../lib/hangul';
+import { search } from '../lib/search';
 
 const byKo = (a: Term, b: Term) => compareKo(a.ko, b.ko);
 
@@ -23,7 +24,9 @@ export function sectionsOf(info: Group): { sub: string; terms: Term[] }[] {
 }
 
 /** 목록 화면 주소에 보이는 카드 순서 (상세 화면의 이전·다음에 씀) */
-export function sequenceFor(pathname: string): Term[] {
+export function sequenceFor(pathname: string, query = ''): Term[] {
+  const q = new URLSearchParams(query).get('q') ?? '';
+  if (q.trim()) return search(TERMS, q).map((h) => h.term);
   const key = pathname.match(/^\/c\/([^/]+)/)?.[1];
   const list = isGroupKey(key)
     ? sectionsOf(GROUP_MAP[key]).flatMap((x) => x.terms)

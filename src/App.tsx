@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
 import CardGrid from './components/CardGrid';
 import Detail from './components/Detail';
 import Footer from './components/Footer';
 import IndexStrip, { indexId } from './components/IndexStrip';
 import SearchBar from './components/SearchBar';
+import SearchResults from './components/SearchResults';
 import Sidebar from './components/Sidebar';
 import StarterRow from './components/StarterRow';
 import TermCard from './components/TermCard';
@@ -12,6 +13,7 @@ import { GROUP_MAP, isGroupKey, subId, type GroupKey } from './data/groups';
 import { ALL_SECTIONS, sectionsOf } from './data/lists';
 import { STARTERS, TERMS } from './data/terms';
 import { useScrollSpy } from './hooks/useScrollSpy';
+import { search, suggest } from './lib/search';
 import s from './App.module.css';
 
 const ALL_IDS = ALL_SECTIONS.map((x) => indexId(x.key));
@@ -23,14 +25,43 @@ function Home() {
   const [drawer, setDrawer] = useState(false);
   const info = group ? GROUP_MAP[group] : null;
 
+  // 검색어: 입력은 바로 반영하고, 주소(?q=)에는 조금 뒤에 적어 둠 (상세에서 돌아와도 남게)
+  const location = useLocation();
+  const navigate = useNavigate();
+  const urlQ = new URLSearchParams(location.search).get('q') ?? '';
+  const [text, setText] = useState(urlQ);
+  const query = useDeferredValue(text).trim();
+  const searching = query.length > 0;
+  const hits = useMemo(() => search(TERMS, query), [query]);
+  const suggestions = useMemo(() => (searching && !hits.length ? suggest(TERMS, query) : []), [searching, hits, query]);
+
+  useEffect(() => {
+    const next = text.trim();
+    if (next === urlQ) return;
+    const timer = setTimeout(() => {
+      navigate({ pathname: location.pathname, search: next ? `?q=${encodeURIComponent(next)}` : '' }, { replace: true });
+    }, 300);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text]);
+
+  useEffect(() => {
+    if (searching) window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [query, searching]);
+
   const sections = useMemo(() => (info ? sectionsOf(info) : []), [info]);
   const spyIds = useMemo(() => (info ? sections.map((x) => subId(x.sub)) : ALL_IDS), [info, sections]);
   const activeId = useScrollSpy(spyIds);
   const activeSub = info ? (sections.find((x) => subId(x.sub) === activeId)?.sub ?? null) : null;
   const activeKey = info ? null : (ALL_SECTIONS.find((x) => indexId(x.key) === activeId)?.key ?? null);
 
+  // 다른 묶음으로 옮기면 맨 위로 + 검색어 지우기 (처음 열 때는 주소의 검색어를 그대로 둠)
+  const lastGroup = useRef<GroupKey | null | undefined>(undefined);
   useEffect(() => {
+    if (lastGroup.current === group) return;
     window.scrollTo({ top: 0, behavior: 'instant' });
+    if (lastGroup.current !== undefined) setText('');
+    lastGroup.current = group;
   }, [group]);
 
   useEffect(() => {
@@ -46,10 +77,12 @@ function Home() {
   return (
     <>
       <Sidebar current={group} activeSub={activeSub} open={drawer} onClose={() => setDrawer(false)} />
-      <div className={`${s.main} ${info ? '' : s.withIndex}`}>
-        <SearchBar onMenu={() => setDrawer(true)} />
+      <div className={`${s.main} ${info || searching ? '' : s.withIndex}`}>
+        <SearchBar value={text} onChange={setText} onMenu={() => setDrawer(true)} />
         <main className={s.content}>
-          {info && Icon ? (
+          {searching ? (
+            <SearchResults query={query} hits={hits} suggestions={suggestions} onPick={setText} />
+          ) : info && Icon ? (
             <>
               <h2 className={s.heading}>
                 <Icon size={26} strokeWidth={2.2} className={s.headingIcon} aria-hidden="true" />
@@ -91,7 +124,7 @@ function Home() {
         </main>
         <Footer linked />
       </div>
-      {!info && <IndexStrip available={AVAILABLE} active={activeKey} />}
+      {!info && !searching && <IndexStrip available={AVAILABLE} active={activeKey} />}
     </>
   );
 }

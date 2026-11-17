@@ -4,13 +4,15 @@ import TermAnim from '../anim/TermAnim';
 import type { Term } from '../data/terms';
 import type { GroupKey } from '../data/groups';
 import { useInView } from '../hooks/useInView';
+import type { Hit } from '../lib/search';
 import GlassCard from './GlassCard';
+import Mark from './Mark';
 import s from './TermCard.module.css';
 
-type Props = { term: Term; group?: GroupKey; index: number };
+type Props = { term: Term; group?: GroupKey; index: number; /** 검색 결과일 때 강조할 곳 */ hit?: Hit };
 
 /** 1:1 카드: 위 75% 애니메이션 칸 + 아래 25% 이름. 누르면 상세 화면으로 커짐 */
-export default function TermCard({ term, group, index }: Props) {
+export default function TermCard({ term, group, index, hit }: Props) {
   const { ref, inView, seen } = useInView<HTMLElement>();
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,8 +48,18 @@ export default function TermCard({ term, group, index }: Props) {
           {term.vs?.length ? <span className={s.vs}>vs</span> : null}
         </div>
         <div className={s.name}>
-          <h3 className={s.ko}>{term.ko}</h3>
-          <p className={s.en} lang="en">{term.en}</p>
+          <h3 className={s.ko}>
+            <Mark text={term.ko} ranges={[hit?.ko]} />
+          </h3>
+          {hit?.alias ? (
+            <p className={s.alias}>
+              <Mark text={hit.alias} ranges={[[0, hit.alias.length]]} />
+            </p>
+          ) : (
+            <p className={s.en} lang="en">
+              <Mark text={term.en} ranges={[hit?.en]} />
+            </p>
+          )}
         </div>
       </Link>
     </GlassCard>

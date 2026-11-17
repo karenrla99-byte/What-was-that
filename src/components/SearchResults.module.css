@@ -1,0 +1,149 @@
+.heading {
+  margin-bottom: 16px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.count {
+  margin-left: 4px;
+  font-size: 0.62em;
+  font-weight: 600;
+  color: var(--ink-sub);
+}
+
+.section {
+  margin-bottom: 36px;
+}
+
+.sub {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.rows {
+  display: grid;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--r-card);
+  border: 1.4px solid transparent;
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur) var(--ease), translate var(--dur) var(--ease);
+}
+
+.row:hover {
+  border-color: var(--blue);
+  translate: 0 -2px;
+}
+
+.rowIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+}
+
+.rowBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rowName {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.rowName em {
+  margin-left: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-sub);
+}
+
+.rowDesc {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 0 24px;
+  text-align: center;
+}
+
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.emptyTitle {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.q {
+  color: var(--blue-text);
+}
+
+.emptyText {
+  margin-top: 8px;
+  font-size: 17px;
+  color: var(--ink-sub);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.chip {
+  min-height: 44px;
+  padding: 6px 18px;
+  border-radius: var(--r-pill);
+  background: var(--blue-soft);
+  color: var(--blue-deep);
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.chip:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .heading {
+    font-size: 22px;
+  }
+  .row {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+}

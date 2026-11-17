@@ -46,7 +46,7 @@ export default function Detail() {
   const [toast, setToast] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const seq = useMemo(() => sequenceFor(bg.pathname), [bg.pathname]);
+  const seq = useMemo(() => sequenceFor(bg.pathname, bg.search), [bg.pathname, bg.search]);
   const pos = term ? seq.indexOf(term) : -1;
   const prev = pos > 0 ? seq[pos - 1] : undefined;
   const next = pos >= 0 && pos < seq.length - 1 ? seq[pos + 1] : undefined;
