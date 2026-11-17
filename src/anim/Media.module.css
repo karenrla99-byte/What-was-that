@@ -1,0 +1,40 @@
+.center { display: grid; place-items: center; }
+.center svg { width: 7em; height: 7em; }
+.tile { animation: tile 4s var(--ease) infinite both; }
+@keyframes tile { 0% { opacity: 0; transform: scale(0.7); } 8%, 86% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; } }
+
+/* 라이트박스 */
+.dim { position: absolute; inset: 0; background: rgba(28, 28, 30, 0.6); opacity: 0; animation: lbDim 4s var(--ease) infinite; }
+@keyframes lbDim { 0%, 18% { opacity: 0; } 30%, 78% { opacity: 1; } 90%, 100% { opacity: 0; } }
+.big { position: absolute; left: 10em; top: 18em; width: 80em; height: 60em; border-radius: 3em; overflow: hidden; transform-origin: 50em 15em; animation: lbBig 4s var(--ease) infinite; }
+@keyframes lbBig { 0%, 18% { opacity: 0; transform: scale(0.28); } 30%, 78% { opacity: 1; transform: none; } 90%, 100% { opacity: 0; transform: scale(0.28); } }
+
+/* 영상 */
+.playBig { position: absolute; left: 50%; top: 40%; width: 16em; height: 16em; margin: -8em 0 0 -8em; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.25); animation: playBig 4s steps(1) infinite; }
+.playBig svg { width: 8em; height: 8em; }
+@keyframes playBig { 0% { opacity: 1; } 20% { opacity: 0; } 92% { opacity: 1; } }
+.vidFill { position: absolute; inset: 0; border-radius: 1.3em; background: var(--blue); transform-origin: left; animation: vidFill 4s linear infinite; }
+@keyframes vidFill { 0%, 20% { transform: scaleX(0); } 92%, 100% { transform: scaleX(1); } }
+.miniPlay { position: absolute; left: 4em; top: 46.4em; width: 4em; height: 4em; }
+
+/* 오디오 */
+.wave { position: absolute; left: 22em; right: 4em; top: 4em; bottom: 4em; display: flex; align-items: center; gap: 1.4em; }
+.wave i { flex: 1; height: 100%; border-radius: 1em; background: var(--blue); transform-origin: center; animation: wave 0.9s ease-in-out infinite alternate; }
+@keyframes wave { from { transform: scaleY(0.2); } to { transform: scaleY(1); } }
+
+/* 임베드 */
+.embed { outline: 0.8em dashed var(--blue); outline-offset: 1.2em; animation: embed 4s var(--ease) infinite; }
+@keyframes embed { 0%, 10% { opacity: 0; transform: scale(0.85); } 22%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+
+/* 지도 */
+.map { background: linear-gradient(90deg, transparent 30%, #fff 30% 34%, transparent 34% 70%, #fff 70% 73%, transparent 73%), linear-gradient(transparent 40%, #fff 40% 45%, transparent 45% 78%, #fff 78% 81%, transparent 81%), var(--gray-1); }
+.pin { position: absolute; left: 44em; top: 26em; width: 12em; height: 12em; animation: pin 3s cubic-bezier(0.3, 1.6, 0.5, 1) infinite; }
+.pin svg { width: 100%; height: 100%; filter: drop-shadow(0 1em 1em rgba(0, 0, 0, 0.25)); }
+@keyframes pin { 0% { transform: translateY(-30em); opacity: 0; } 10% { opacity: 1; } 30%, 90% { transform: none; opacity: 1; } 100% { opacity: 0; } }
+.ripple { position: absolute; left: 50em; top: 38em; width: 18em; height: 7em; margin: -3.5em 0 0 -9em; border-radius: 50%; border: 0.8em solid var(--blue); opacity: 0; animation: ripple 3s ease-out infinite; }
+@keyframes ripple { 0%, 28% { opacity: 0; transform: scale(0.3); } 32% { opacity: 1; } 60%, 100% { opacity: 0; transform: scale(1.4); } }
+
+/* 아이콘 */
+.icon { position: absolute; top: 33em; width: 14em; height: 14em; display: grid; place-items: center; border-radius: 4em; background: var(--blue-soft); color: var(--blue); animation: iconPop 3.6s var(--ease) infinite both; }
+.icon svg { width: 8em; height: 8em; }
+@keyframes iconPop { 0% { opacity: 0; transform: scale(0.4); } 10% { opacity: 1; transform: scale(1.15); } 16%, 86% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; } }

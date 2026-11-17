@@ -1,0 +1,42 @@
+.svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.bar { transform-origin: bottom; animation: bar 3.6s var(--ease) infinite both; }
+@keyframes bar { 0% { transform: scaleY(0); } 18%, 88% { transform: none; } 96%, 100% { transform: scaleY(0); } }
+.axis { fill: none; stroke: var(--gray-3); stroke-width: 0.8; }
+.line { fill: none; stroke: var(--blue); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; animation: draw 3.6s ease-in-out infinite; }
+@keyframes draw { 0% { stroke-dashoffset: 100; } 55%, 90% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 100; } }
+.pt { fill: #fff; stroke: var(--blue); stroke-width: 1.4; opacity: 0; animation: pt 3.6s steps(1) infinite both; }
+@keyframes pt { 0% { opacity: 0; } 4%, 90% { opacity: 1; } 100% { opacity: 0; } }
+.seg { fill: none; stroke-width: 14; transform: rotate(-90deg); transform-origin: 50px 46px; animation: seg 3.6s var(--ease) infinite both; }
+@keyframes seg { 0% { opacity: 0; } 10%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+
+/* 통계 카드: 0 → 24 */
+@property --n { syntax: '<integer>'; inherits: false; initial-value: 0; }
+.count { counter-reset: n var(--n); animation: count 3.6s ease-out infinite; }
+.count::after { content: counter(n); }
+@keyframes count { 0% { --n: 0; } 50%, 100% { --n: 24; } }
+
+/* 타임라인 */
+.step { position: absolute; inset: 0; animation: stepIn 4s var(--ease) infinite both; }
+@keyframes stepIn { 0% { opacity: 0; transform: translateY(1.6em); } 8%, 86% { opacity: 1; transform: none; } 94%, 100% { opacity: 0; } }
+
+/* 칸반 */
+.card { animation: card 4.5s var(--ease) infinite; box-shadow: 0 1em 2.4em rgba(0, 120, 210, 0.3); }
+@keyframes card { 0%, 15% { transform: none; } 35%, 50% { transform: translateX(30em); } 70%, 90% { transform: translateX(60em) translateY(12em); } 100% { transform: none; } }
+
+/* 트리 */
+.treeRow { position: absolute; display: flex; align-items: center; gap: 1.6em; height: 9em; }
+.treeChev, .treeChev2 { width: 5em; height: 5em; color: var(--gray-4); }
+.treeChev { animation: treeChev 4s var(--ease) infinite; }
+@keyframes treeChev { 0%, 15% { transform: none; } 25%, 80% { transform: rotate(90deg); } 90%, 100% { transform: none; } }
+.folder { width: 8em; height: 8em; color: var(--blue); fill: var(--blue-soft); }
+.file { width: 6.5em; height: 6.5em; color: var(--gray-4); }
+.treeBar { height: 3.6em; border-radius: 2em; background: var(--gray-3); }
+.children { position: absolute; left: 34em; top: 28em; height: 36em; width: 50em; overflow: hidden; animation: children 4s var(--ease) infinite; }
+@keyframes children { 0%, 15% { height: 0; } 25%, 80% { height: 36em; } 90%, 100% { height: 0; } }
+.children + .treeRow { animation: pushDown 4s var(--ease) infinite; }
+@keyframes pushDown { 0%, 15% { transform: none; } 25%, 80% { transform: translateY(36em); } 90%, 100% { transform: none; } }
+
+/* 히트맵 */
+.cell { overflow: hidden; }
+.cellFill { position: absolute; inset: 0; background: var(--blue); animation: cellIn 4s var(--ease) infinite both; }
+@keyframes cellIn { 0% { transform: scale(0); } 12%, 88% { transform: none; } 96%, 100% { transform: scale(0); } }

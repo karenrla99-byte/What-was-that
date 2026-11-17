@@ -1,8 +1,11 @@
 import type { ComponentType } from 'react';
 import { FILE_IDS, fileAnim } from './Files';
 import * as Bt from './Buttons';
+import * as Ct from './Content';
+import * as D from './Data';
 import * as F from './Forms';
 import * as I from './Indicators';
+import * as M from './Media';
 import { MENU_ICONS, menuIcon } from './MenuIcons';
 import * as N from './Nav';
 import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
@@ -101,4 +104,33 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'back-button': N.BackButton,
   'back-to-top': N.BackToTop,
   link: N.LinkAnim,
+  // 🧩 콘텐츠 담기
+  'avatar-group': Ct.AvatarGroup,
+  list: Ct.List,
+  table: Ct.Table,
+  accordion: Ct.Accordion,
+  carousel: Ct.Carousel,
+  chip: Ct.Chip,
+  tag: Ct.Tag,
+  avatar: Ct.Avatar,
+  thumbnail: Ct.Thumbnail,
+  'infinite-scroll': Ct.InfiniteScroll,
+  'load-more': Ct.LoadMore,
+  // 🧩 미디어
+  'image-gallery': M.ImageGallery,
+  lightbox: M.Lightbox,
+  'video-player': M.VideoPlayer,
+  'audio-player': M.AudioPlayer,
+  embed: M.Embed,
+  map: M.MapAnim,
+  icon: M.IconAnim,
+  // 🧩 데이터 보여주기
+  'bar-chart': D.BarChart,
+  'line-chart': D.LineChart,
+  'pie-donut-chart': D.PieChart,
+  'stat-card': D.StatCard,
+  timeline: D.Timeline,
+  'kanban-board': D.Kanban,
+  'tree-view': D.TreeView,
+  heatmap: D.Heatmap,
 };
