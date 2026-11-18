@@ -12,7 +12,7 @@ import s from './AI.module.css';
 type P = { playing: boolean };
 
 /** 말풍선 줄. 차례로 나타남 (i번째는 i*gap초 뒤) */
-function Chat({ y = 8, msgs, gap = 0.7, d = 4.4, w = 84 }: { y?: number; msgs: { me?: boolean; t: ReactNode; wide?: boolean }[]; gap?: number; d?: number; w?: number }) {
+export function Chat({ y = 8, msgs, gap = 0.7, d = 4.4, w = 84 }: { y?: number; msgs: { me?: boolean; t: ReactNode; wide?: boolean }[]; gap?: number; d?: number; w?: number }) {
   return (
     <span className={s.chat} style={{ top: `${y}em`, width: `${w}em`, left: `${(100 - w) / 2}em` }}>
       {msgs.map((m, i) => (
@@ -25,7 +25,7 @@ function Chat({ y = 8, msgs, gap = 0.7, d = 4.4, w = 84 }: { y?: number; msgs: {
   );
 }
 
-const Hl = ({ children }: { children: ReactNode }) => <b className={s.hl}>{children}</b>;
+export const Hl = ({ children }: { children: ReactNode }) => <b className={s.hl}>{children}</b>;
 
 /** 아래 결과 칸: d초 중 at 이후 나타남 */
 function Result({ x = 20, y = 50, w = 60, h = 32, at = 0.5, children, style }: { x?: number; y?: number; w?: number; h?: number; at?: number; children: ReactNode; style?: CSSProperties }) {

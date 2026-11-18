@@ -26,6 +26,7 @@ import * as B2 from './Build2';
 import * as B3 from './Build3';
 import * as Vs from './VsPairs';
 import * as Ai from './AI';
+import * as St from './Start';
 import * as Tx from './TextFx';
 import * as Tr from './Transitions';
 import * as Ux from './UX';
@@ -501,4 +502,43 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'multimodal': Ai.Multimodal,
   'connector-mcp': Ai.Connector,
   'hallucination': Ai.Hallucination,
+  // 🌱 처음 시작 (BrowserWindow 템플릿)
+  'vibe-coding': St.VibeCoding,
+  'code': St.Code,
+  'run': St.Run,
+  'preview': St.Preview,
+  'website': St.Website,
+  'web-app': St.WebApp,
+  'no-code': St.NoCode,
+  'template': St.Template,
+  'artifact-canvas': St.ArtifactCanvas,
+  'version': St.Version,
+  'free-tier': St.FreeTier,
+  'browser': St.Browser,
+  'url': St.Url,
+  'new-tab-window': St.NewTab,
+  'incognito-window': St.Incognito,
+  'cookie': St.CookieAnim,
+  'popup-blocker': St.PopupBlocker,
+  'download-upload': St.DownloadUpload,
+  'zip': St.Zip,
+  'zoom': St.Zoom,
+  'shortcuts': St.Shortcuts,
+  'screenshot': St.Screenshot,
+  'code-block': St.CodeBlock,
+  'copy-all': St.CopyAll,
+  'markdown': St.Markdown,
+  'line-number': St.LineNumber,
+  'indentation': St.Indentation,
+  'brackets': St.Brackets,
+  'quotes': St.Quotes,
+  'case-sensitive': St.CaseSensitive,
+  'truncated-code': St.TruncatedCode,
+  'blank-screen': St.BlankScreen,
+  'encoding-utf-8': St.Encoding,
+  'broken-image': St.BrokenImage,
+  'not-updated': St.NotUpdated,
+  'freeze': St.Freeze,
+  'regression': St.Regression,
+  'mobile-bug': St.MobileBug,
 };
