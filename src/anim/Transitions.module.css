@@ -1,0 +1,39 @@
+.layer { position: absolute; inset: 0; background: #fff; }
+
+/* 푸시 */
+.pushOut { animation: pushOut 4s var(--ease) infinite; }
+.pushIn { animation: pushIn 4s var(--ease) infinite; }
+@keyframes pushOut { 0%, 22% { transform: none; } 40%, 82% { transform: translateX(-40%); } 96%, 100% { transform: none; } }
+@keyframes pushIn { 0%, 22% { transform: translateX(102%); } 40%, 82% { transform: none; box-shadow: -2em 0 4em rgba(0, 0, 0, 0.15); } 96%, 100% { transform: translateX(102%); } }
+
+/* 모달 등장 */
+.dim { position: absolute; inset: 0; background: rgba(28, 28, 30, 0.4); opacity: 0; animation: dim 4s var(--ease) infinite; }
+@keyframes dim { 0%, 15% { opacity: 0; } 30%, 80% { opacity: 1; } 92%, 100% { opacity: 0; } }
+.modal { position: absolute; left: 6em; right: 6em; top: 28em; height: 36em; border-radius: 4em; background: #fff; box-shadow: 0 2em 5em rgba(0, 0, 0, 0.25); animation: modal 4s var(--ease) infinite; }
+@keyframes modal { 0%, 15% { opacity: 0; transform: translateY(20em) scale(0.92); } 32%, 80% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; transform: translateY(20em) scale(0.92); } }
+
+/* 페이드 스루 */
+.ftOut { animation: ftOut 4s ease-in-out infinite; }
+.ftIn { opacity: 0; animation: ftIn 4s ease-in-out infinite; }
+@keyframes ftOut { 0%, 20% { opacity: 1; transform: none; } 34%, 86% { opacity: 0; transform: scale(0.94); } 100% { opacity: 1; transform: none; } }
+@keyframes ftIn { 0%, 34% { opacity: 0; transform: scale(1.06); } 48%, 80% { opacity: 1; transform: none; } 90%, 100% { opacity: 0; } }
+
+/* 카드 확장 */
+.expand { position: absolute; left: 5em; top: 34em; width: 47.6em; height: 12em; border-radius: 3em; background: var(--gray-1); overflow: hidden; animation: expand 4s var(--ease) infinite; }
+@keyframes expand { 0%, 18% { left: 5em; top: 34em; width: 47.6em; height: 12em; border-radius: 3em; background: var(--gray-1); } 38%, 80% { left: 0; top: 0; width: 57.6em; height: 87.6em; border-radius: 0; background: #fff; } 96%, 100% { left: 5em; top: 34em; width: 47.6em; height: 12em; border-radius: 3em; background: var(--gray-1); } }
+.expandInner { position: absolute; left: 0; top: 0; width: 57.6em; height: 87.6em; opacity: 0; animation: expandInner 4s var(--ease) infinite; }
+@keyframes expandInner { 0%, 26% { opacity: 0; } 40%, 78% { opacity: 1; } 88%, 100% { opacity: 0; } }
+
+/* 탭 전환 */
+.tabTrack { position: absolute; left: 0; top: 0; display: flex; width: 172.8em; height: 74em; animation: tabTrack 4.5s var(--ease) infinite; }
+.tabPage { position: relative; width: 57.6em; height: 74em; flex: none; background: #fff; }
+@keyframes tabTrack { 0%, 26% { transform: none; } 33.3%, 60% { transform: translateX(-57.6em); } 66.6%, 93% { transform: translateX(-115.2em); } 100% { transform: none; } }
+.tabIcon { position: absolute; top: 3em; width: 8em; height: 8em; color: var(--gray-3); }
+.tabDot { position: absolute; left: 7.6em; top: 1em; width: 4em; height: 1.2em; border-radius: 1em; background: var(--blue); animation: tabDot 4.5s var(--ease) infinite; }
+@keyframes tabDot { 0%, 26% { transform: none; } 33.3%, 60% { transform: translateX(19.2em); } 66.6%, 93% { transform: translateX(38.4em); } 100% { transform: none; } }
+
+/* 시트 확장 */
+.sheet { position: absolute; left: 0; right: 0; top: 50em; height: 87.6em; border-radius: 4em 4em 0 0; background: #fff; box-shadow: 0 -1em 4em rgba(0, 0, 0, 0.2); animation: sheetUp 4s var(--ease) infinite; }
+@keyframes sheetUp { 0%, 22% { top: 50em; border-radius: 4em 4em 0 0; } 45%, 80% { top: 4em; border-radius: 4em 4em 0 0; } 96%, 100% { top: 50em; } }
+.drag { position: absolute; left: 28.8em; top: 52em; width: 10em; height: 10em; margin-left: -5em; border-radius: 50%; background: rgba(110, 110, 115, 0.35); border: 0.5em solid #fff; opacity: 0; animation: drag 4s var(--ease) infinite; }
+@keyframes drag { 0%, 15% { opacity: 0; transform: none; } 22% { opacity: 1; transform: none; } 45% { opacity: 1; transform: translateY(-46em); } 52%, 100% { opacity: 0; transform: translateY(-46em); } }

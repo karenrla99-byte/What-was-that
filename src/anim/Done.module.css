@@ -1,0 +1,89 @@
+.svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* 스피너 */
+.spinner { position: absolute; left: 50%; top: 34em; width: 16em; height: 16em; margin-left: -8em; border-radius: 50%; border: 2.2em solid var(--gray-2); border-top-color: var(--blue); animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 스켈레톤 */
+.skel { animation: skel 4s steps(1) infinite; }
+.real { opacity: 0; animation: real 4s var(--ease) infinite; }
+@keyframes skel { 0% { opacity: 1; } 60% { opacity: 0; } 96% { opacity: 1; } }
+@keyframes real { 0%, 58% { opacity: 0; } 66%, 92% { opacity: 1; } 100% { opacity: 0; } }
+.shimmer { background: linear-gradient(90deg, var(--gray-2) 30%, var(--gray-1) 50%, var(--gray-2) 70%) 0 0 / 300% 100%; animation: shimmer 1.2s linear infinite; }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -50% 0; } }
+
+/* 블러 업 */
+.blurUp { animation: blurUp 3.6s ease-out infinite; }
+@keyframes blurUp { 0%, 10% { filter: blur(3em); } 60%, 90% { filter: none; } 100% { filter: blur(3em); } }
+
+/* 낙관적 UI */
+.heart { position: absolute; left: 42em; top: 32em; width: 16em; height: 16em; }
+.heart svg { width: 100%; height: 100%; animation: heartOn 4s steps(1) infinite; }
+@keyframes heartOn { 0% { fill: none; color: var(--gray-4); } 17% { fill: var(--blue); color: var(--blue); } 94% { fill: none; color: var(--gray-4); } }
+.sending, .sent { opacity: 0; }
+.sending { animation: sending 4s steps(1) infinite; }
+.sent { animation: sent 4s steps(1) infinite; }
+@keyframes sending { 0% { opacity: 0; } 17% { opacity: 1; } 55% { opacity: 0; } }
+@keyframes sent { 0% { opacity: 0; } 55% { opacity: 1; } 94% { opacity: 0; } }
+
+/* 스트리밍 */
+.stream { transform-origin: left; animation: stream 4s steps(6) infinite both; }
+@keyframes stream { 0% { transform: scaleX(0); } 18%, 88% { transform: none; } 96%, 100% { transform: scaleX(0); } }
+
+/* 체크 그리기 */
+.circle, .check { fill: none; stroke: var(--blue); stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; }
+.circle { stroke-width: 4; transform: rotate(-90deg); transform-origin: 50px 42px; animation: drawC 3s ease-in-out infinite; }
+.check { stroke-width: 5; animation: drawK 3s ease-out infinite; }
+@keyframes drawC { 0%, 5% { stroke-dashoffset: 100; } 40%, 90% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 100; } }
+@keyframes drawK { 0%, 40% { stroke-dashoffset: 100; } 60%, 90% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 100; } }
+
+/* 줄긋기 */
+.box { display: grid; place-items: center; animation: box 4s steps(1) infinite; }
+@keyframes box { 0% { background: #fff; border-color: var(--gray-2); } 27% { background: var(--blue); border-color: var(--blue); } 94% { background: #fff; border-color: var(--gray-2); } }
+.boxCheck { width: 5.6em; height: 5.6em; color: #fff; }
+.strike { background: linear-gradient(var(--ink), var(--ink)) 0 55% / 0% 0.1em no-repeat; animation: strike 4s var(--ease) infinite; }
+@keyframes strike { 0%, 28% { background-size: 0% 0.1em; color: var(--ink); } 45%, 92% { background-size: 100% 0.1em; color: var(--gray-4); } 100% { background-size: 0% 0.1em; } }
+
+/* 버튼 모핑 */
+.morph { position: absolute; left: 50em; top: 42em; width: 50em; height: 18em; margin: -9em 0 0 -25em; display: grid; place-items: center; border-radius: 9em; background: var(--blue); animation: morph 4s var(--ease) infinite; }
+@keyframes morph { 0%, 16% { width: 50em; margin-left: -25em; } 32%, 86% { width: 18em; margin-left: -9em; } 100% { width: 50em; margin-left: -25em; } }
+.morphLabel { position: absolute; font-size: 7em; color: #fff; animation: morphLabel 4s steps(1) infinite; }
+@keyframes morphLabel { 0% { opacity: 1; } 18% { opacity: 0; } 90% { opacity: 1; } }
+.morphCheck { position: absolute; width: 9em; height: 9em; color: #fff; opacity: 0; animation: morphCheck 4s var(--ease) infinite; }
+@keyframes morphCheck { 0%, 30% { opacity: 0; transform: scale(0.4); } 38%, 86% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+
+/* 진행률 완료 */
+.fill { position: absolute; inset: 0; border-radius: 3em; background: var(--blue); transform-origin: left; animation: fill 3.6s ease-in-out infinite; }
+@keyframes fill { 0%, 5% { transform: scaleX(0); } 55%, 92% { transform: none; } 100% { transform: scaleX(0); } }
+.doneMark { position: absolute; left: 80em; top: 36em; width: 14em; height: 14em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; opacity: 0; animation: doneMark 3.6s var(--ease) infinite; }
+.doneMark svg { width: 8em; height: 8em; }
+@keyframes doneMark { 0%, 55% { opacity: 0; transform: scale(0.3); } 63% { opacity: 1; transform: scale(1.25); } 70%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 보냄 */
+.plane { position: absolute; left: 20em; top: 52em; width: 14em; height: 14em; color: var(--blue); animation: plane 3s ease-in infinite; }
+.plane svg { width: 100%; height: 100%; }
+@keyframes plane { 0%, 15% { transform: none; opacity: 1; } 70% { transform: translate(50em, -36em) rotate(-8deg) scale(0.7); opacity: 1; } 80%, 100% { transform: translate(60em, -44em) scale(0.5); opacity: 0; } }
+.trail { position: absolute; left: 26em; top: 32em; width: 50em; height: 30em; border-top: 0.8em dashed var(--gray-3); border-radius: 50% 50% 0 0; transform: rotate(-24deg); opacity: 0; animation: trail 3s ease-in infinite; }
+@keyframes trail { 0%, 30% { opacity: 0; } 50%, 75% { opacity: 1; } 90%, 100% { opacity: 0; } }
+
+/* 스탬프 */
+.stamp { position: absolute; left: calc(50em / 9); top: calc(42em / 9); padding: 0.3em 0.5em; border: 0.18em solid var(--blue); border-radius: 0.4em; color: var(--blue); font-size: 9em; font-weight: 800; white-space: nowrap; transform: translate(-50%, -50%) rotate(-12deg); opacity: 0; animation: stamp 3s cubic-bezier(0.2, 1.4, 0.4, 1) infinite; }
+@keyframes stamp { 0%, 20% { opacity: 0; transform: translate(-50%, -50%) rotate(-12deg) scale(2.4); } 32%, 88% { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) rotate(-12deg) scale(1); } }
+
+/* 배지 획득 */
+.badge { position: absolute; left: 36em; top: 22em; width: 28em; height: 28em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; box-shadow: 0 0 0 1.4em var(--blue-soft); animation: badge 3.6s cubic-bezier(0.3, 1.6, 0.5, 1) infinite; }
+.badge svg { width: 15em; height: 15em; }
+@keyframes badge { 0%, 10% { opacity: 0; transform: scale(0.2) rotate(-40deg); } 30%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.rays { position: absolute; left: 50em; top: 36em; width: 60em; height: 60em; margin: -30em 0 0 -30em; border-radius: 50%; background: repeating-conic-gradient(var(--blue-soft) 0 10deg, transparent 10deg 30deg); opacity: 0; animation: rays 3.6s linear infinite; }
+@keyframes rays { 0%, 20% { opacity: 0; transform: rotate(0); } 35%, 85% { opacity: 1; } 100% { opacity: 0; transform: rotate(60deg); } }
+.badgeText { opacity: 0; animation: fadeInK 3.6s ease infinite; }
+@keyframes fadeInK { 0%, 30% { opacity: 0; } 40%, 88% { opacity: 1; } 100% { opacity: 0; } }
+
+/* 컨페티 */
+.piece { position: absolute; left: 50em; top: 62em; width: 2.4em; height: 4em; border-radius: 0.4em; opacity: 0; animation: piece 3s cubic-bezier(0.2, 0.7, 0.4, 1) infinite; }
+@keyframes piece { 0%, 10% { opacity: 0; transform: none; } 14% { opacity: 1; } 55% { opacity: 1; transform: translate(var(--x), var(--h)) rotate(var(--r)); } 90%, 100% { opacity: 0; transform: translate(var(--x), calc(var(--h) + 30em)) rotate(calc(var(--r) * 2)); } }
+
+/* 완료 화면 */
+.bigCheck { position: absolute; left: 50%; top: 12em; width: 24em; height: 24em; margin-left: -12em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; animation: badge 3.6s cubic-bezier(0.3, 1.6, 0.5, 1) infinite; }
+.bigCheck svg { width: 13em; height: 13em; }
+.fadeIn { animation: fadeInK 3.6s ease infinite; }

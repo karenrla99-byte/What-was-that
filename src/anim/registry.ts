@@ -4,14 +4,18 @@ import * as Bt from './Buttons';
 import * as Ct from './Content';
 import * as D from './Data';
 import * as Dt from './Dates';
+import * as Dn from './Done';
 import * as F from './Forms';
 import * as I from './Indicators';
 import * as M from './Media';
 import { MENU_ICONS, menuIcon } from './MenuIcons';
+import * as Mo from './Motion';
 import * as N from './Nav';
 import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
 import * as R from './Ratings';
 import * as Sr from './Search';
+import * as Tx from './TextFx';
+import * as Tr from './Transitions';
 import { LAYOUT_IDS, layoutSketch } from './LayoutSketch';
 import { DESIGN_STYLES, styleSwatch } from './StyleSwatch';
 import { TYPE_STYLES, typeSwatch } from './TypeSwatch';
@@ -163,4 +167,60 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'initial-consonant-search': Sr.ChoseongSearch,
   card: Sr.Card,
   'bottom-sheet': Sr.BottomSheet,
+  // 🎬 움직임 (MotionBox 템플릿)
+  'ease-in': Mo.EaseIn,
+  'ease-out': Mo.EaseOut,
+  'ease-in-out': Mo.EaseInOut,
+  linear: Mo.Linear,
+  spring: Mo.Spring,
+  bounce: Mo.Bounce,
+  'staggered-entrance': Mo.Stagger,
+  fade: Mo.Fade,
+  slide: Mo.Slide,
+  'zoom-transition': Mo.ZoomTransition,
+  'shared-element-transition': Mo.SharedElement,
+  duration: Mo.Duration,
+  delay: Mo.Delay,
+  loop: Mo.Loop,
+  'hover-effect': Mo.HoverEffect,
+  'micro-interaction': Mo.MicroInteraction,
+  'parallax-scrolling': Mo.Parallax,
+  'scroll-triggered-animation': Mo.ScrollReveal,
+  shake: Mo.Shake,
+  pulse: Mo.Pulse,
+  // 🎬 화면 전환
+  'push-transition': Tr.Push,
+  'modal-entrance': Tr.ModalEntrance,
+  'fade-through': Tr.FadeThrough,
+  'card-expansion': Tr.CardExpansion,
+  'tab-transition': Tr.TabTransition,
+  'sheet-expansion': Tr.SheetExpansion,
+  // 🎬 텍스트 등장 효과
+  'typing-effect': Tx.Typing,
+  'fade-up': Tx.FadeUp,
+  'staggered-character-animation': Tx.StaggeredChars,
+  'count-up': Tx.CountUp,
+  'scramble-text': Tx.Scramble,
+  'mask-reveal': Tx.MaskReveal,
+  highlight: Tx.Highlight,
+  'word-swap': Tx.WordSwap,
+  'blur-in': Tx.BlurIn,
+  marquee: Tx.Marquee,
+  // 🎬 로딩 패턴
+  spinner: Dn.Spinner,
+  skeleton: Dn.Skeleton,
+  'blur-up': Dn.BlurUp,
+  'optimistic-ui': Dn.OptimisticUi,
+  'streaming-text': Dn.StreamingText,
+  'loading-button': Bt.Loading,
+  // 🎬 완료 표시
+  'checkmark-animation': Dn.CheckDraw,
+  'task-strikethrough': Dn.Strike,
+  'button-morphing': Dn.ButtonMorph,
+  'progress-completion': Dn.ProgressDone,
+  'send-animation': Dn.SendAnim,
+  stamp: Dn.Stamp,
+  'badge-award': Dn.BadgeAward,
+  confetti: Dn.Confetti,
+  'completion-screen': Dn.CompletionScreen,
 };
