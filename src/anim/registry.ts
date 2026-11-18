@@ -24,6 +24,7 @@ import * as Sz from './Size';
 import * as B1 from './Build1';
 import * as B2 from './Build2';
 import * as B3 from './Build3';
+import * as Vs from './VsPairs';
 import * as Tx from './TextFx';
 import * as Tr from './Transitions';
 import * as Ux from './UX';
@@ -104,7 +105,6 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'call-to-action': Bt.Cta,
   'toggle-button': Bt.ToggleButton,
   'button-group': Bt.ButtonGroup,
-  'default-vs-resting': Bt.DefaultVsResting,
   // 🧩 메뉴 버튼 모양
   ...Object.fromEntries(MENU_ICONS.map(([id, kind, name]) => [id, menuIcon(kind, name)])),
   // 🧩 이동 부품
@@ -424,7 +424,8 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'access-control': B2.AccessControl,
   'row-level-security-rls': B2.Rls,
   'secret-leak': B2.SecretLeak,
-  'public-vs-private-repository': B2.PublicPrivate,
+  'public-repository': B2.PublicRepo,
+  'private-repository': B2.PrivateRepo,
   'console': B2.Console,
   'error-message': B2.ErrorMessage,
   'bug': B2.BugAnim,
@@ -461,4 +462,9 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'image-optimization': B3.ImageOptimization,
   'lazy-loading': B3.LazyLoading,
   'file-size': B3.FileSize,
+  // 비교 카드에서 나눈 짝
+  'console-error': Vs.ConsoleError,
+  'console-warning': Vs.ConsoleWarning,
+  'chat-mode': Vs.ChatMode,
+  'agent-mode': Vs.AgentMode,
 };

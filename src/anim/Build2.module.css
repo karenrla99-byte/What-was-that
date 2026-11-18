@@ -165,13 +165,18 @@
 .warn { position: absolute; left: 4em; top: 60em; width: 10em; height: 10em; color: var(--ink); animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0.3; } }
 
-/* 공개 vs 비공개 */
-.pubIcon, .privIcon { position: absolute; top: 28em; width: 20em; height: 20em; }
-.pubIcon { left: 16em; color: var(--blue); }
-.privIcon { left: 64em; color: var(--ink); }
-.eyes { position: absolute; top: 58em; width: 7em; height: 7em; color: var(--ink-sub); animation: thief 4s var(--ease) infinite both; }
-.me { position: absolute; left: 69em; top: 56em; width: 10em; height: 10em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
-.me svg { width: 6em; height: 6em; }
+/* 공개·비공개 저장소 */
+.pubIcon, .privIcon { position: absolute; left: 38em; top: 20em; width: 24em; height: 24em; }
+.pubIcon { color: var(--blue); }
+.privIcon { color: var(--ink); }
+.eyes { position: absolute; top: 54em; width: 7em; height: 7em; color: var(--ink-sub); animation: thief 4s var(--ease) infinite both; }
+.me, .me2 { position: absolute; top: 52em; width: 11em; height: 11em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
+.me { left: 37em; }
+.me2 { left: 51em; background: var(--blue-soft); color: var(--blue); }
+.me svg, .me2 svg { width: 6.4em; height: 6.4em; }
+.blockedUser { position: absolute; left: 82em; display: grid; place-items: center; color: var(--gray-3); animation: thief 4s var(--ease) infinite both; }
+.blockedUser svg { grid-area: 1 / 1; width: 11em; height: 11em; }
+.blockedUser svg:last-child { width: 13em; height: 13em; color: var(--ink-sub); }
 
 /* 콘솔 */
 .errLine { display: flex !important; align-items: center; gap: 0.3em; margin: 0 -0.4em; padding: 0 0.4em; border-radius: 0.3em; background: var(--gray-2); font-weight: 700; }

@@ -40,8 +40,10 @@ const BODIES: Record<string, ReactNode> = {
   emoji: <div className={s.emoji}>{[s.faceA, s.faceB].map((c) => (
     <svg key={c} viewBox="0 0 24 24" className={c}><circle cx="12" cy="12" r="10.5" /><circle cx="8.6" cy="10" r="1.3" /><circle cx="15.4" cy="10" r="1.3" /><path d="M7.5 14q4.5 4.5 9 0" /></svg>
   ))}</div>,
-  'vector-vs-bitmap': <div className={s.vs}><span><i className={s.vector} /></span><span><i className={s.bitmap} /></span></div>,
-  'cover-vs-contain': <div className={s.vs}><span className={s.fit}><Pic className={s.cover} /></span><span className={s.fit}><Pic className={s.contain} /></span></div>,
+  vector: <><div className={`${s.vs} ${s.one}`}><span><i className={s.vector} /></span></div><Tag>키워도 선명</Tag></>,
+  bitmap: <><div className={`${s.vs} ${s.one}`}><span><i className={s.bitmap} /></span></div><Tag>키우면 계단</Tag></>,
+  cover: <><div className={`${s.vs} ${s.one}`}><span className={s.fit}><Pic className={s.cover} /></span></div><Tag>꽉 채우고 잘림</Tag></>,
+  contain: <><div className={`${s.vs} ${s.one}`}><span className={s.fit}><Pic className={s.contain} /></span></div><Tag>다 보이고 빈칸</Tag></>,
 };
 
 export function fileAnim(variant: string) {

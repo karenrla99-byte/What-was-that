@@ -349,18 +349,26 @@ export function SecretLeak({ playing }: P) {
   );
 }
 
-export function PublicPrivate({ playing }: P) {
+export function PublicRepo({ playing }: P) {
   return (
     <Stage playing={playing}>
-      <B x={4} y={14} w={44} h={62} r={4} c="a" />
-      <B x={52} y={14} w={44} h={62} r={4} c="a" />
-      <T x={26} y={19} size={4.4} align="center" weight={700}>공개</T>
-      <T x={74} y={19} size={4.4} align="center" weight={700}>비공개</T>
+      <B x={22} y={12} w={56} h={58} r={5} c="a" />
       <Globe className={s.pubIcon} />
-      {[0, 1, 2, 3].map((i) => <Eye key={i} className={s.eyes} style={{ left: `${8 + i * 9.4}em`, animationDelay: `${i * 0.25}s` }} />)}
+      {[0, 1, 2, 3, 4].map((i) => <Eye key={i} className={s.eyes} style={{ left: `${26 + i * 9.6}em`, animationDelay: `${i * 0.25}s` }} />)}
+      <Callout x={50} y={78}>누구나 코드를 볼 수 있어요</Callout>
+    </Stage>
+  );
+}
+
+export function PrivateRepo({ playing }: P) {
+  return (
+    <Stage playing={playing}>
+      <B x={22} y={12} w={56} h={58} r={5} c="a" />
       <Lock className={s.privIcon} />
       <span className={s.me}><User /></span>
-      <Callout x={50} y={80}>누구나 보거나, 나만 보거나</Callout>
+      <span className={s.me2}><User /></span>
+      {[0, 1].map((i) => <span key={i} className={s.blockedUser} style={{ top: `${22 + i * 22}em` }}><Users /><X strokeWidth={3} /></span>)}
+      <Callout x={50} y={78}>나와 초대한 사람만 봐요</Callout>
     </Stage>
   );
 }

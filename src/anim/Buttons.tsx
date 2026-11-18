@@ -224,23 +224,3 @@ export function ButtonGroup({ playing }: P) {
   );
 }
 
-export function DefaultVsResting({ playing }: P) {
-  return (
-    <Stage playing={playing}>
-      <T x={26} y={10} size={6} align="center">디폴트</T>
-      <T x={74} y={10} size={6} align="center">레스팅</T>
-      <B x={49.6} y={10} w={0.8} h={78} r={0.4} c="g" />
-      {[0, 1, 2].map((i) => (
-        <span key={i}>
-          <B x={8} y={24 + i * 14} w={9} h={9} r={5} c="w">
-            {i === 1 && <span className={s.dot} />}
-          </B>
-          <B x={20} y={26.5 + i * 14} w={[16, 22, 14][i]} h={4} c={i === 1 ? 'k' : 'g'} />
-        </span>
-      ))}
-      <B x={58} y={38} w={32} h={14} r={7} c="p"><T x={16} y={3.4} size={5.4} c="white" align="center">저장</T></B>
-      <T x={26} y={70} size={4.2} c="sub" weight={400} align="center">처음부터 골라진 값</T>
-      <T x={74} y={70} size={4.2} c="sub" weight={400} align="center">아무도 안 건드린 모습</T>
-    </Stage>
-  );
-}

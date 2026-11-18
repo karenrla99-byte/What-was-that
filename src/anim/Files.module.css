@@ -134,3 +134,8 @@
 .contain { width: 100%; height: 53%; }
 .fit .pic { animation: fitPulse var(--d) ease-in-out infinite; }
 @keyframes fitPulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* 하나만 크게 (벡터·비트맵·잘라 맞추기·전체 보이기) */
+.one > span { width: 50em; height: 50em; }
+.one > .fit { width: 36em; height: 48em; }
+.fa .tag { white-space: nowrap; }
