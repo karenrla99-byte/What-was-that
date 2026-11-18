@@ -1,0 +1,73 @@
+/* 토스트 */
+.toast { position: absolute; left: 50%; bottom: calc(6em / 4.2); z-index: 3; padding: 0.6em 1.2em; border-radius: 3em; background: var(--ink); color: #fff; font-size: 4.2em; font-weight: 600; white-space: nowrap; transform: translateX(-50%); opacity: 0; animation: toast 4s var(--ease) infinite; }
+@keyframes toast { 0%, 18% { opacity: 0; transform: translate(-50%, 2em); } 26%, 66% { opacity: 1; transform: translate(-50%, 0); } 76%, 100% { opacity: 0; transform: translate(-50%, 0); } }
+
+/* 스낵바 */
+.gone { animation: gone 4.6s var(--ease) infinite; }
+@keyframes gone { 0%, 12% { opacity: 1; transform: none; } 24%, 64% { opacity: 0; transform: translateX(-30em); } 74%, 100% { opacity: 1; transform: none; } }
+.snack { position: absolute; left: calc(4em / 4); right: calc(4em / 4); bottom: calc(5em / 4); z-index: 3; display: flex; justify-content: space-between; align-items: center; padding: 0 1em; height: 2.6em; border-radius: 0.6em; background: var(--ink); color: #fff; font-size: 4em; opacity: 0; animation: snack 4.6s var(--ease) infinite; }
+.snack b { font-weight: 600; }
+.undoTxt { color: #7cc8ff; }
+@keyframes snack { 0%, 18% { opacity: 0; transform: translateY(1em); } 26%, 64% { opacity: 1; transform: none; } 72%, 100% { opacity: 0; } }
+
+/* 배너 */
+.banner { position: absolute; left: 0; right: 0; top: 0; z-index: 3; display: flex; align-items: center; gap: 0.4em; height: 3em; padding: 0 0.8em; background: var(--blue-soft); color: var(--blue-deep); font-size: 3.8em; font-weight: 600; animation: banner 4.4s var(--ease) infinite; }
+.banner svg { width: 1.2em; height: 1.2em; }
+.banner .x { margin-left: auto; color: var(--gray-4); }
+@keyframes banner { 0%, 10% { transform: translateY(-100%); } 22%, 90% { transform: none; } 100% { transform: translateY(-100%); } }
+.bannerPush { position: absolute; inset: 0; animation: bannerPush 4.4s var(--ease) infinite; }
+@keyframes bannerPush { 0%, 10% { transform: none; } 22%, 90% { transform: translateY(11.4em); } 100% { transform: none; } }
+
+/* 모달·확인 창·오버레이 */
+.dim { opacity: 0; animation: dim 4.2s var(--ease) infinite; }
+@keyframes dim { 0%, 12% { opacity: 0; } 22%, 62% { opacity: 1; } 72%, 100% { opacity: 0; } }
+.pop { opacity: 0; animation: pop 4.2s var(--ease) infinite; }
+@keyframes pop { 0%, 12% { opacity: 0; transform: scale(0.85); } 22%, 62% { opacity: 1; transform: none; } 70%, 100% { opacity: 0; transform: scale(0.95); } }
+.panel { position: absolute; left: 0; right: 0; bottom: 0; height: 52em; z-index: 3; border-radius: 4em 4em 0 0; background: #fff; transform: translateY(105%); animation: panel 4.2s var(--ease) infinite; }
+@keyframes panel { 0%, 12% { transform: translateY(105%); } 22%, 62% { transform: none; } 72%, 100% { transform: translateY(105%); } }
+
+/* 인라인 오류 */
+.typed { overflow: hidden; width: 0; vertical-align: top; animation: typed 4s steps(6) infinite; }
+@keyframes typed { 0%, 5% { width: 0; } 35%, 92% { width: 3.4em; } 100% { width: 0; } }
+.errField { animation: errField 4s step-end infinite, shake 4s linear infinite; }
+@keyframes errField { 0% { border-color: var(--gray-2); } 40% { border-color: var(--ink); } 94% { border-color: var(--gray-2); } }
+@keyframes shake { 0%, 40%, 47%, 100% { transform: none; } 42% { transform: translateX(-1.4em); } 44% { transform: translateX(1.4em); } 46% { transform: translateX(-0.6em); } }
+.errMsg { position: absolute; left: 6em; top: 38em; display: flex; align-items: center; gap: 0.3em; font-size: 3.6em; font-weight: 600; color: var(--ink); opacity: 0; animation: errMsg 4s step-end infinite; }
+.errMsg { left: calc(6em / 3.6); top: calc(38em / 3.6); }
+.errMsg svg { width: 1.2em; height: 1.2em; }
+@keyframes errMsg { 0% { opacity: 0; } 40% { opacity: 1; } 94% { opacity: 0; } }
+
+/* 툴팁 */
+.iconBtn { display: grid; place-items: center; }
+.iconBtn svg { width: 6em; height: 6em; color: var(--ink); }
+.tooltip { position: absolute; left: calc(47.5em / 3.8); top: calc(18em / 3.8); z-index: 3; padding: 0.3em 0.7em; border-radius: 0.5em; background: var(--ink); color: #fff; font-size: 3.8em; font-weight: 600; transform: translateX(-50%); opacity: 0; animation: tooltip 3.6s var(--ease) infinite; }
+.tooltip::before { content: ''; position: absolute; left: 50%; bottom: 100%; margin-left: -0.4em; border: 0.4em solid transparent; border-bottom-color: var(--ink); }
+@keyframes tooltip { 0%, 36% { opacity: 0; } 42%, 78% { opacity: 1; } 84%, 100% { opacity: 0; } }
+.cursor { animation: cursor 3.6s var(--ease) infinite; }
+@keyframes cursor { 0%, 10% { left: 30em; top: 50em; opacity: 0; } 15% { opacity: 1; left: 30em; top: 50em; } 36%, 78% { left: 48em; top: 10em; opacity: 1; } 95%, 100% { left: 30em; top: 50em; opacity: 0; } }
+
+/* 배지 */
+.bell { position: absolute; right: 5em; top: 3em; width: 9em; height: 9em; color: var(--ink); }
+.bell > svg { width: 100%; height: 100%; }
+.badge { position: absolute; right: -2em; top: -1.6em; min-width: 6em; height: 6em; display: grid; place-items: center; border-radius: 3em; background: var(--blue); border: 0.7em solid #fff; animation: badgePop 1.2s cubic-bezier(0.3, 1.8, 0.5, 1) infinite; }
+@property --b { syntax: '<integer>'; inherits: false; initial-value: 1; }
+.n { font-size: 3.4em; color: #fff; counter-reset: b var(--b); animation: count 3.6s step-end infinite; }
+.n::after { content: counter(b); }
+@keyframes count { 0% { --b: 1; } 33.3% { --b: 2; } 66.6% { --b: 3; } }
+@keyframes badgePop { 0% { transform: scale(0.6); } 30%, 100% { transform: none; } }
+
+/* 팝오버 */
+.help { position: absolute; left: 25em; top: 10em; width: 5.2em; height: 5.2em; color: var(--blue); }
+.popover { position: absolute; left: 6em; top: 19em; z-index: 3; width: 45.6em; padding: 3em; border-radius: 3em; background: #fff; border: 0.4em solid var(--gray-2); box-shadow: 0 1.6em 4em rgba(0, 0, 0, 0.16); display: flex; flex-direction: column; gap: 1.2em; transform-origin: 21em 0; animation: popover 4s var(--ease) infinite; }
+.popover::before { content: ''; position: absolute; left: 20em; top: -2.6em; border: 1.2em solid transparent; border-bottom-color: #fff; }
+.popTitle { font-size: 4.2em; color: var(--ink); }
+.popText { font-size: 3.6em; color: var(--ink-sub); }
+.popBtn { align-self: flex-start; padding: 0.3em 0.8em; border-radius: 2em; background: var(--blue); color: #fff; font-size: 3.4em; font-weight: 600; }
+@keyframes popover { 0%, 15% { opacity: 0; transform: scale(0.7); } 25%, 82% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; transform: scale(0.7); } }
+
+/* 실행 취소 */
+.undoCard { animation: undoCard 4.4s var(--ease) infinite; }
+@keyframes undoCard { 0%, 10% { opacity: 1; transform: none; } 22%, 56% { opacity: 0; transform: scale(0.9); } 66%, 100% { opacity: 1; transform: none; } }
+.undoBtn { opacity: 0; animation: undoBtn 4.4s var(--ease) infinite; }
+@keyframes undoBtn { 0%, 18% { opacity: 0; transform: translateY(2em); } 26%, 60% { opacity: 1; transform: none; } 68%, 100% { opacity: 0; } }
+.undoIcon { position: absolute; left: 3em; top: 2.4em; width: 5em; height: 5em; color: #fff; }

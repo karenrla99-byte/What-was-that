@@ -5,14 +5,18 @@ import * as Ct from './Content';
 import * as D from './Data';
 import * as Dt from './Dates';
 import * as Dn from './Done';
+import * as Em from './Empty';
+import * as Fb from './Feedback';
 import * as F from './Forms';
 import * as I from './Indicators';
 import * as M from './Media';
 import { MENU_ICONS, menuIcon } from './MenuIcons';
 import * as Mo from './Motion';
+import * as Pm from './Perms';
 import * as N from './Nav';
 import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
 import * as R from './Ratings';
+import * as Sc from './Screens';
 import * as Sr from './Search';
 import * as Tx from './TextFx';
 import * as Tr from './Transitions';
@@ -223,4 +227,51 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'badge-award': Dn.BadgeAward,
   confetti: Dn.Confetti,
   'completion-screen': Dn.CompletionScreen,
+  // 📱 첫 화면과 시작 단계
+  'splash-screen': Sc.Splash,
+  onboarding: Sc.Onboarding,
+  'permission-request': Sc.PermissionRequest,
+  'coach-mark': Sc.CoachMark,
+  'social-login': Sc.SocialLogin,
+  'terms-and-conditions-consent': Sc.TermsConsent,
+  'profile-setup': Sc.ProfileSetup,
+  'welcome-screen': Sc.WelcomeScreen,
+  // 📱 권한 묻는 화면
+  'notification-permission': Pm.NotificationPermission,
+  'location-permission': Pm.LocationPermission,
+  'camera-permission': Pm.CameraPermission,
+  'microphone-permission': Pm.MicrophonePermission,
+  'permission-pre-prompt': Pm.PrePrompt,
+  'system-permission-dialog': Pm.SystemDialog,
+  'permission-re-prompt': Pm.RePrompt,
+  'open-settings': Pm.OpenSettings,
+  'limited-access': Pm.LimitedAccess,
+  'permission-denied-screen': Pm.DeniedScreen,
+  // 📱 빈 화면
+  'first-use-empty-state': Em.FirstUse,
+  'no-filter-results': Em.NoFilterResults,
+  offline: Em.Offline,
+  'permission-required': Em.PermissionRequired,
+  'all-done': Em.AllDone,
+  'post-deletion-empty-state': Em.PostDeletion,
+  'error-screen': Em.ErrorScreen,
+  locked: Em.Locked,
+  '404-not-found': Em.NotFound,
+  // 📱 알림·피드백
+  toast: Fb.Toast,
+  snackbar: Fb.Snackbar,
+  banner: Fb.Banner,
+  modal: Fb.Modal,
+  'inline-error': Fb.InlineError,
+  tooltip: Fb.Tooltip,
+  badge: Fb.Badge,
+  popover: Fb.Popover,
+  'confirm-dialog': Fb.ConfirmDialog,
+  undo: Fb.Undo,
+  'overlay-dim': Fb.Overlay,
+  // 📱 단계별 진행
+  'wizard-multi-step-form': Sc.Wizard,
+  'review-step': Sc.ReviewStep,
+  'draft-autosave': Sc.DraftAutosave,
+  'unsaved-changes-warning': Sc.UnsavedWarning,
 };

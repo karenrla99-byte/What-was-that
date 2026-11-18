@@ -1,0 +1,10 @@
+.list, .after { position: absolute; inset: 0; }
+.done { animation: done 4.4s var(--ease) infinite both; }
+@keyframes done { 0%, 10% { opacity: 1; transform: none; } 22%, 92% { opacity: 0; transform: translateX(30em); } 100% { opacity: 1; transform: none; } }
+.after { opacity: 0; animation: after 4.4s var(--ease) infinite; }
+@keyframes after { 0%, 28% { opacity: 0; } 36%, 90% { opacity: 1; } 100% { opacity: 0; } }
+.swipeAway { animation: swipeAway 4.4s var(--ease) infinite; }
+@keyframes swipeAway { 0%, 15% { transform: none; opacity: 1; } 32%, 92% { transform: translateX(-60em); opacity: 0; } 100% { transform: none; opacity: 1; } }
+.prog { position: absolute; inset: 0; width: 50%; border-radius: 2em; background: var(--blue); }
+.wobble { display: inline-block; animation: wobble 2.4s ease-in-out infinite; }
+@keyframes wobble { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }

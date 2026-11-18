@@ -28,7 +28,7 @@ export function B({ x, y, w, h, r = 2, right, bottom, c = 'g', className = '', s
 
 type TProps = {
   x: number; y: number; size?: number; align?: 'left' | 'center' | 'right';
-  c?: 'ink' | 'sub' | 'blue' | 'white' | 'light'; weight?: 400 | 600 | 700;
+  c?: 'ink' | 'sub' | 'blue' | 'white' | 'light'; weight?: 400 | 600 | 700 | 800;
   className?: string; style?: CSSProperties; children: ReactNode;
 };
 

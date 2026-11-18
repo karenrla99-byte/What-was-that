@@ -1,0 +1,41 @@
+.dim { opacity: 0; animation: dim 4.2s var(--ease) infinite; }
+@keyframes dim { 0%, 12% { opacity: 0; } 22%, 62% { opacity: 1; } 72%, 100% { opacity: 0; } }
+.pop { opacity: 0; animation: pop 4.2s var(--ease) infinite; }
+@keyframes pop { 0%, 12% { opacity: 0; transform: scale(0.85); } 22%, 62% { opacity: 1; transform: none; } 70%, 100% { opacity: 0; transform: scale(0.95); } }
+.result { position: absolute; left: 50%; top: 30em; width: 22em; height: 22em; margin-left: -11em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; opacity: 0; animation: result 4.2s cubic-bezier(0.3, 1.6, 0.5, 1) infinite; }
+.result svg { width: 11em; height: 11em; }
+@keyframes result { 0%, 68% { opacity: 0; transform: scale(0.4); } 76%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+.layer { position: absolute; inset: 0; background: #fff; }
+.bigIcon { position: absolute; left: 50%; top: 8em; width: 24em; height: 24em; margin-left: -12em; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--blue); }
+.bigIcon svg { width: 12em; height: 12em; }
+
+/* 미리 안내 → 공식 창 */
+.dim2 { opacity: 0; animation: dim2 4.6s var(--ease) infinite; }
+@keyframes dim2 { 0%, 30% { opacity: 0; } 38%, 85% { opacity: 1; } 95%, 100% { opacity: 0; } }
+.pop2 { opacity: 0; animation: pop2 4.6s var(--ease) infinite; }
+@keyframes pop2 { 0%, 30% { opacity: 0; transform: scale(0.85); } 38%, 85% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; } }
+
+/* 다시 묻기 */
+.slideUp { animation: slideUp 4s var(--ease) infinite; }
+@keyframes slideUp { 0%, 15% { opacity: 0; transform: translateY(6em); } 28%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+.reIcon { position: absolute; left: 3em; top: 3.6em; width: 7em; height: 7em; color: var(--blue); }
+
+/* 설정으로 보내기 */
+.settings { transform: translateX(102%); animation: settings 4.6s var(--ease) infinite; }
+@keyframes settings { 0%, 22% { transform: translateX(102%); } 34%, 90% { transform: none; } 100% { transform: translateX(102%); } }
+.sw { position: absolute; right: 3em; top: 2.2em; width: 10em; height: 5.6em; border-radius: 3em; background: var(--gray-3); }
+.sw i { position: absolute; left: 0.6em; top: 0.6em; width: 4.4em; height: 4.4em; border-radius: 50%; background: #fff; }
+.swOn { animation: swOn 4.6s step-end infinite; }
+.swOn i { animation: swKnob 4.6s var(--ease) infinite; }
+@keyframes swOn { 0% { background: var(--gray-3); } 55% { background: var(--blue); } 96% { background: var(--gray-3); } }
+@keyframes swKnob { 0%, 52% { transform: none; } 58%, 92% { transform: translateX(4.4em); } 100% { transform: none; } }
+
+/* 일부만 허용 */
+.lock { position: absolute; left: 50%; top: 50%; width: 5em; height: 5em; margin: -2.5em 0 0 -2.5em; color: var(--gray-3); }
+.plus { position: absolute; left: 4em; top: 1.8em; width: 5em; height: 5em; color: var(--blue); }
+
+/* 거절 뒤 */
+.up { position: absolute; left: 3.6em; top: 2.4em; width: 5em; height: 5em; color: #fff; }
+.glow { animation: glow 2.2s ease-in-out infinite; }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 149, 255, 0.45); } 50% { box-shadow: 0 0 0 2.4em rgba(0, 149, 255, 0); } }
