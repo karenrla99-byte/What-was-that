@@ -1,0 +1,54 @@
+.layer { position: absolute; inset: 0; }
+
+/* ── Flow ── */
+.node { position: absolute; z-index: 1; display: grid; place-items: center; margin: 0; transform: translate(-50%, -50%); border-radius: 50%; border: 0.8em solid var(--gray-3); background: #fff; color: var(--gray-4); }
+.node.sq { border-radius: 26%; }
+.node.hot { background: var(--blue); border-color: var(--blue); color: #fff; }
+.node > svg { width: 50%; height: 50%; }
+.nodeLabel { position: absolute; left: 50%; top: calc(100% + 1.6em); transform: translateX(-50%); white-space: nowrap; }
+.nodeLabel > span { display: block; font-size: 3.6em; font-weight: 600; color: var(--ink); }
+.arrow { position: absolute; height: 0; border-top: 0.6em dashed var(--gray-3); transform-origin: 0 50%; margin-top: -0.3em; }
+.arrow::after { content: ''; position: absolute; right: -0.6em; top: -1.9em; border: 1.6em solid transparent; border-left: 2.2em solid var(--gray-3); border-right: 0; }
+.token { position: absolute; z-index: 3; width: 9em; height: 9em; display: grid; place-items: center; transform: translate(-50%, -50%); border-radius: 50%; background: var(--blue); color: #fff; box-shadow: 0 0.6em 1.6em rgba(0, 149, 255, 0.35); }
+.token > svg { width: 5.4em; height: 5.4em; }
+.token:empty { width: 6em; height: 6em; }
+
+/* ── 창 ── */
+.win { position: absolute; display: block; border-radius: 2.6em; background: #fff; border: 0.6em solid var(--gray-2); overflow: hidden; box-shadow: 0 1em 3em rgba(0, 0, 0, 0.06); }
+.bar { position: absolute; left: 0; right: 0; top: 0; height: 7em; display: flex; align-items: center; gap: 1.2em; padding: 0 2.6em; background: var(--gray-1); }
+.bar > i { width: 2em; height: 2em; border-radius: 50%; background: var(--gray-3); flex: none; }
+.wtitle { flex: 1; min-width: 0; margin-left: 1.4em; height: 4.4em; display: flex; align-items: center; padding: 0 1.4em; border-radius: 2.2em; background: #fff; overflow: hidden; }
+.wtitle > span { font-size: 2.8em; font-weight: 600; color: var(--ink-sub); white-space: nowrap; }
+.code .wtitle, .term .wtitle { background: none; }
+.term { background: var(--ink); border-color: var(--ink); }
+.term .bar { background: #2c2c30; }
+.term .bar > i { background: #55555c; }
+.term .wtitle > span { color: #9a9ea8; }
+.body { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.55em 0.75em; line-height: 1.55; font-weight: 500; color: var(--ink); white-space: nowrap; font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; letter-spacing: -0.02em; }
+.browser .body, .plain .body { font-family: var(--font); padding: 0; }
+.term .body { color: #e3e5ea; }
+.kw { color: var(--blue-text); font-weight: 700; }
+.term .kw { color: #4db5ff; }
+.str { color: var(--ink-sub); }
+.term .str { color: #9a9ea8; }
+.cm { color: var(--gray-4); font-style: normal; }
+
+.lines { display: block; animation-name: lines; animation-iteration-count: infinite; }
+@keyframes lines { 0% { clip-path: inset(0 0 100% 0); } 55%, 94% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 0); opacity: 0; } }
+.lines > * { display: block; }
+
+/* ── 단계 이름표 ── */
+.steps { position: absolute; left: 0; right: 0; display: flex; justify-content: center; gap: 1.6em; }
+.step { position: relative; display: grid; }
+.step > span { grid-area: 1 / 1; padding: 0.35em 0.8em; border-radius: 2em; font-size: 3.6em; font-weight: 600; background: var(--gray-1); color: var(--ink-sub); white-space: nowrap; }
+.step > .stepOn { background: var(--blue); color: #fff; }
+
+/* ── 글자 상자 ── */
+.tagPos { position: absolute; z-index: 2; transform: translate(-50%, -50%); white-space: nowrap; }
+.tag { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.3em 0.7em; border-radius: 0.7em; font-weight: 600; line-height: 1.2; }
+.tag svg { width: 1.1em; height: 1.1em; }
+.tag_gray { background: var(--gray-1); color: var(--ink); }
+.tag_blue { background: var(--blue); color: #fff; }
+.tag_soft { background: var(--blue-soft); color: var(--blue-deep); }
+.tag_dark { background: var(--ink); color: #fff; }
+.tag_plain { background: none; color: var(--ink); padding: 0; }

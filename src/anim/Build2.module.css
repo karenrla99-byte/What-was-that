@@ -1,0 +1,240 @@
+.layer { position: absolute; inset: 0; }
+.grid { position: absolute; display: grid; gap: 0.8em; }
+.grid i { border-radius: 1.4em; background: var(--gray-1); }
+.grid .head { background: var(--gray-3); }
+
+/* CRUD: 표 x14 y20 w72, 행 높이 8, 간격 0.8 → 행 n 의 top = 20 + 8.8*(n+1) */
+.newRow, .readRow, .editCell, .delRow { position: absolute; border-radius: 1.4em; animation-iteration-count: infinite; animation-timing-function: var(--ease); }
+.newRow { left: 14em; top: 55.2em; width: 72em; height: 8em; background: var(--blue); animation-name: newRow; }
+@keyframes newRow { 0% { opacity: 0; transform: translateY(4em); } 10%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+.readRow { left: 13em; top: 27.8em; width: 74em; height: 10em; border: 0.8em solid var(--blue); animation-name: readRow; }
+@keyframes readRow { 0%, 25% { opacity: 0; } 28%, 48% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.editCell { left: 38.8em; top: 37.6em; width: 22.4em; height: 8em; background: var(--blue-soft); border: 0.6em solid var(--blue); animation-name: editCell; }
+@keyframes editCell { 0%, 50% { opacity: 0; } 53%, 74% { opacity: 1; } 76%, 100% { opacity: 0; } }
+.delRow { left: 14em; top: 46.4em; width: 72em; height: 8em; background: var(--gray-3); animation-name: delRow; }
+@keyframes delRow { 0%, 76% { opacity: 0; transform: none; } 79%, 84% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; transform: translateX(30em); } }
+
+/* 행·열 */
+.rowHl, .colHl { position: absolute; border: 0.9em solid var(--blue); border-radius: 2em; animation: 4.4s steps(1) infinite; }
+.rowHl { left: 12.5em; top: 28.9em; width: 75em; height: 11em; animation-name: hlA; }
+.colHl { left: 30.6em; top: 10.5em; width: 21em; height: 47.5em; animation-name: hlB; }
+.rowHl b, .colHl b { position: absolute; display: grid; place-items: center; width: 2em; height: 2em; border-radius: 50%; background: var(--blue); color: #fff; font-size: 4.4em; }
+.rowHl b { left: -2.4em; top: 50%; margin-top: -1em; }
+.colHl b { left: 50%; bottom: -2.4em; margin-left: -1em; }
+@keyframes hlA { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes hlB { 0% { opacity: 0; } 50% { opacity: 1; } }
+
+/* 스키마 */
+.schema { position: absolute; left: 14em; top: 14em; width: 72em; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8em; }
+.schema > span { display: grid; justify-items: center; gap: 0.2em; padding: 1.4em 0; border-radius: 1.4em; background: var(--blue); }
+.schema b { font-size: 4.4em; color: #fff; }
+.schema i { font-size: 3.2em; font-style: normal; font-weight: 600; color: var(--blue-soft); }
+.fitRow { animation: fitRow 4s var(--ease) infinite both; }
+@keyframes fitRow { 0% { opacity: 0; transform: translateX(-12em); } 14%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 로컬 스토리지 */
+.box { position: absolute; left: 14em; top: 20em; width: 20em; height: 18em; display: grid; place-items: center; border-radius: 2.6em; border: 0.6em dashed var(--blue); color: var(--blue); }
+.box svg { width: 9em; height: 9em; }
+.saveDot { position: absolute; left: 25em; top: 30em; width: 6em; height: 6em; border-radius: 50%; background: var(--blue); animation: saveDot 3.6s var(--ease) infinite; }
+@keyframes saveDot { 0%, 10% { opacity: 0; transform: none; } 18% { opacity: 1; } 50%, 70% { opacity: 1; transform: translateY(18em) scale(0.8); } 80%, 100% { opacity: 0; transform: translateY(18em) scale(0.8); } }
+.phoneIcon { position: absolute; left: 74em; top: 30em; width: 14em; height: 14em; color: var(--gray-3); }
+.noX { position: absolute; left: 76em; top: 48em; width: 10em; height: 10em; color: var(--ink-sub); }
+
+/* 스토리지 */
+.dbSide { position: absolute; left: 36em; top: 60em; display: flex; align-items: center; gap: 0.3em; color: var(--gray-4); }
+.dbSide svg { width: 6em; height: 6em; }
+.dbSide span { font-size: 3.4em; font-weight: 600; }
+
+/* 스프레드시트 DB */
+.sheetIcon { position: absolute; left: 63em; top: 8em; width: 12em; height: 12em; color: var(--blue); }
+.grid .newCell { background: var(--blue); animation: newCell 4.4s var(--ease) infinite both; }
+@keyframes newCell { 0%, 30% { opacity: 0; transform: translateX(-4em); } 42%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* CSV */
+.csv { display: block; padding: 0.5em 0.8em; font-weight: 600; line-height: 1.5; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.csv b { color: var(--blue); font-size: 1.2em; }
+.csvTable { position: absolute; left: 20em; top: 16em; width: 60em; display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
+.csvTable span { display: grid; place-items: center; height: 2.4em; border-radius: 0.5em; background: var(--gray-1); font-size: 4.6em; font-weight: 600; }
+.csvTable .th { background: var(--blue); color: #fff; }
+
+/* API */
+.word { font-size: 5em; font-weight: 800; }
+.sunBack { position: absolute; left: 6em; top: 18em; width: 10em; height: 10em; color: var(--blue); animation: sunBack 5s var(--ease) infinite; }
+@keyframes sunBack { 0%, 86% { opacity: 0; transform: scale(0.4); } 90%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* API 키 */
+.lockBox { position: absolute; left: 50em; top: 20em; width: 30em; height: 30em; display: grid; place-items: center; border-radius: 6em; background: var(--gray-1); }
+.lockBox svg { grid-area: 1 / 1; width: 16em; height: 16em; }
+.locked { color: var(--gray-4); animation: lk 4s steps(1) infinite; }
+.unlocked { color: var(--blue); animation: ulk 4s steps(1) infinite; }
+@keyframes lk { 0% { opacity: 1; } 42% { opacity: 0; } 95% { opacity: 1; } }
+@keyframes ulk { 0% { opacity: 0; } 42% { opacity: 1; } 95% { opacity: 0; } }
+.keyFly { position: absolute; left: 8em; top: 28em; width: 14em; height: 14em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; animation: keyFly 4s var(--ease) infinite; }
+.keyFly svg { width: 8em; height: 8em; }
+@keyframes keyFly { 0%, 5% { transform: none; opacity: 0; } 12% { opacity: 1; } 38% { transform: translateX(30em); opacity: 1; } 44%, 100% { transform: translateX(30em) scale(0.6); opacity: 0; } }
+.flowData { position: absolute; left: 82em; top: 30em; display: grid; gap: 2em; }
+.flowData i { width: 10em; height: 2.4em; border-radius: 1.2em; background: var(--blue); opacity: 0; animation: data 4s var(--ease) infinite both; }
+@keyframes data { 0%, 45% { opacity: 0; transform: translateX(-6em); } 55%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 환경 변수 */
+.envCode { display: grid; padding: 0.6em 0.8em; }
+.envCode > span { grid-area: 1 / 1; }
+.envBefore { animation: lk 4.4s steps(1) infinite; }
+.envAfter { animation: ulk 4.4s steps(1) infinite; }
+.vault { position: absolute; left: 70em; top: 46em; width: 24em; height: 24em; display: grid; place-items: center; align-content: center; gap: 0.6em; border-radius: 4em; background: var(--ink); color: #fff; }
+.vault svg { width: 8em; height: 8em; }
+.vault span { font-size: 4em; font-weight: 700; }
+.keyMove { position: absolute; left: 34em; top: 24em; width: 10em; height: 10em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; animation: keyMove 4.4s var(--ease) infinite; }
+.keyMove svg { width: 6em; height: 6em; }
+@keyframes keyMove { 0%, 10% { opacity: 0; transform: none; } 16% { opacity: 1; transform: none; } 40% { opacity: 1; transform: translate(43em, 30em) scale(0.7); } 46%, 100% { opacity: 0; transform: translate(43em, 30em) scale(0.5); } }
+
+/* 로그인 */
+.typed { position: absolute; left: 2.4em; top: 1.6em; font-size: 4em; font-weight: 600; color: var(--ink); line-height: 1.2; }
+.avatar { position: absolute; left: 40em; top: 20em; width: 20em; height: 20em; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--blue); }
+.avatar svg { width: 11em; height: 11em; }
+.shield { position: absolute; left: 54em; top: 32em; width: 10em; height: 10em; color: #fff; fill: var(--blue); }
+
+/* 실시간 */
+.msgA, .msgB { animation: 3.6s var(--ease) infinite both; }
+.msgA { animation-name: msgA; }
+.msgB { animation-name: msgB; }
+@keyframes msgA { 0%, 10% { opacity: 0; transform: translateY(3em); } 22%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes msgB { 0%, 26% { opacity: 0; transform: scale(0.8); } 34%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 백업 */
+.dbA, .dbCopy { position: absolute; top: 26em; width: 30em; height: 32em; display: grid; place-items: center; }
+.dbA svg, .dbCopy svg { width: 24em; height: 24em; }
+.dbA { left: 15em; color: var(--gray-4); animation: dbA 5s var(--ease) infinite; }
+.dbCopy { left: 55em; color: var(--blue); animation: dbCopy 5s var(--ease) infinite; }
+@keyframes dbA { 0%, 50% { opacity: 1; transform: none; } 58%, 74% { opacity: 0.15; transform: rotate(-8deg) translateY(2em); } 86%, 100% { opacity: 1; transform: none; } }
+@keyframes dbCopy { 0%, 6% { opacity: 0; transform: translateX(-40em); } 30%, 100% { opacity: 1; transform: none; } }
+.restore { position: absolute; left: 44em; top: 16em; width: 12em; height: 12em; color: var(--blue); opacity: 0; animation: restore 5s var(--ease) infinite; }
+@keyframes restore { 0%, 72% { opacity: 0; transform: rotate(0); } 78%, 92% { opacity: 1; transform: rotate(-200deg); } 100% { opacity: 0; } }
+
+/* 동기화 */
+.syncA, .syncB { animation: 4s var(--ease) infinite both; }
+.syncA { animation-name: msgA; }
+.syncB { animation-name: msgB; animation-delay: 0.6s; }
+.syncIcon { position: absolute; left: 52em; top: 30em; width: 13em; height: 13em; color: var(--blue); animation: spin 2s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 개인정보 */
+.field { position: absolute; left: 26em; width: 48em; height: 8em; display: flex; align-items: center; padding-left: 3em; border-radius: 1.6em; background: var(--blue-soft); }
+.field span { font-size: 4.4em; font-weight: 600; color: var(--blue-deep); }
+.cut { animation: cut 4.4s var(--ease) infinite both; }
+@keyframes cut { 0%, 30% { opacity: 1; background: var(--blue-soft); } 40%, 88% { opacity: 0.25; background: var(--gray-1); } 100% { opacity: 1; } }
+.cut span { text-decoration: line-through; }
+
+/* 익명화 */
+.eyeOff { position: absolute; left: 82em; top: 10em; width: 10em; height: 10em; color: var(--blue); }
+
+/* HTTPS */
+.addr { position: absolute; left: 14em; top: 14em; width: 72em; height: 14em; display: flex; align-items: center; gap: 0.4em; padding: 0 1em; border-radius: 7em; background: #fff; border: 0.6em solid var(--gray-2); font-size: 1em; }
+.addr svg { width: 7em; height: 7em; color: var(--blue); }
+.addr span { font-size: 4.6em; font-weight: 600; color: var(--ink); }
+.wideToken { width: 20em !important; border-radius: 4.5em !important; }
+.scramble { display: grid; }
+.scramble b { grid-area: 1 / 1; font-size: 4em; text-align: center; }
+.scramble b:first-child { animation: lk 3.6s steps(1) infinite; animation-name: scr1; }
+.scramble b:last-child { animation: scr2 3.6s steps(1) infinite; }
+@keyframes scr1 { 0% { opacity: 1; } 20%, 100% { opacity: 0; } }
+@keyframes scr2 { 0% { opacity: 0; } 20%, 100% { opacity: 1; } }
+
+/* 접근 권한 */
+.docIcon { position: absolute; left: 10em; top: 12em; width: 20em; height: 20em; color: var(--gray-4); }
+.who { position: absolute; inset: 0; }
+.okMark, .lockMark { position: absolute; left: 62em; top: 6em; width: 13em; height: 13em; padding: 2.4em; border-radius: 50%; }
+.okMark { background: var(--blue); color: #fff; }
+.lockMark { background: var(--ink); color: #fff; }
+
+/* RLS */
+.owner { position: absolute; left: 18em; width: 8em; height: 8em; color: var(--blue); }
+.owner svg { width: 100%; height: 100%; }
+.others { animation: others 4.4s var(--ease) infinite; }
+.others .owner { color: var(--gray-4); }
+@keyframes others { 0%, 25% { opacity: 1; filter: none; } 40%, 90% { opacity: 0.25; filter: blur(0.8em); } 100% { opacity: 1; filter: none; } }
+
+/* 비밀 키 노출 */
+.globe { position: absolute; left: 6em; top: 6em; width: 12em; height: 12em; color: var(--gray-4); }
+.leakKey { position: absolute; left: 22em; top: 12em; width: 14em; height: 14em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
+.leakKey svg { width: 8em; height: 8em; }
+.thief { position: absolute; left: 70em; display: flex; align-items: center; gap: 1em; color: var(--ink-sub); opacity: 0; animation: thief 4.4s var(--ease) infinite both; }
+.thief svg { width: 9em; height: 9em; }
+.thief svg:last-child { width: 6em; height: 6em; color: var(--blue); }
+@keyframes thief { 0% { opacity: 0; transform: translateX(6em); } 12%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.warn { position: absolute; left: 4em; top: 60em; width: 10em; height: 10em; color: var(--ink); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0.3; } }
+
+/* 공개 vs 비공개 */
+.pubIcon, .privIcon { position: absolute; top: 24em; width: 20em; height: 20em; }
+.pubIcon { left: 16em; color: var(--blue); }
+.privIcon { left: 64em; color: var(--ink); }
+.eyes { position: absolute; top: 54em; width: 7em; height: 7em; color: var(--ink-sub); animation: thief 4s var(--ease) infinite both; }
+.me { position: absolute; left: 69em; top: 52em; width: 10em; height: 10em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
+.me svg { width: 6em; height: 6em; }
+
+/* 콘솔 */
+.errLine { display: flex !important; align-items: center; gap: 0.3em; margin: 0 -0.4em; padding: 0 0.4em; border-radius: 0.3em; background: var(--gray-2); font-weight: 700; }
+.errLine svg { width: 1em; height: 1em; }
+.caret { display: inline-block; width: 0.12em; height: 1.1em; vertical-align: -0.15em; background: var(--blue); animation: blink 0.9s steps(1) infinite; }
+
+/* 에러 메시지 */
+.errBox { position: absolute; left: 6em; top: 12em; width: 88em; height: 16em; display: flex; align-items: center; gap: 0.5em; padding: 0 0.8em; border-radius: 3em; background: var(--ink); color: #fff; font-size: 1em; animation: sel 4.4s steps(1) infinite; }
+.errBox svg { width: 7em; height: 7em; flex: none; margin-left: 3em; }
+.errBox span { font-size: 4.2em; font-weight: 600; font-family: ui-monospace, Menlo, Consolas, monospace; }
+@keyframes sel { 0% { box-shadow: none; } 20%, 60% { box-shadow: 0 0 0 1.2em var(--blue); } 64%, 100% { box-shadow: none; } }
+.copyIcon { position: absolute; left: 44em; top: 34em; width: 12em; height: 12em; display: grid; place-items: center; border-radius: 3em; background: var(--blue); color: #fff; animation: pop 4.4s var(--ease) infinite; }
+.copyIcon svg { width: 6em; height: 6em; }
+@keyframes pop { 0%, 22% { opacity: 0; transform: scale(0.5); } 30%, 46% { opacity: 1; transform: none; } 52%, 100% { opacity: 0; transform: translateY(14em) scale(0.5); } }
+.chat { position: absolute; left: 14em; top: 52em; width: 72em; height: 14em; display: flex; align-items: center; gap: 0.5em; padding-left: 3em; border-radius: 4em 4em 4em 1em; background: var(--blue-soft); color: var(--blue-deep); animation: chat 4.4s var(--ease) infinite; }
+.chat svg { width: 7em; height: 7em; flex: none; }
+.chat span { font-size: 4.2em; font-weight: 600; }
+@keyframes chat { 0%, 50% { opacity: 0; transform: translateY(3em); } 58%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 버그 */
+.badScore span::after { content: '10'; animation: score 4s steps(1) infinite; }
+@keyframes score { 0% { content: '10'; } 30% { content: '0'; } 95% { content: '10'; } }
+.badScore { color: var(--ink); }
+.bugIcon { position: absolute; left: 66em; top: 20em; width: 11em; height: 11em; color: var(--ink); animation: crawl 4s ease-in-out infinite; }
+@keyframes crawl { 0%, 100% { transform: translate(0, 0) rotate(10deg); } 25% { transform: translate(-4em, 6em) rotate(-20deg); } 50% { transform: translate(2em, 14em) rotate(30deg); } 75% { transform: translate(-2em, 8em) rotate(-10deg); } }
+
+/* 디버깅 */
+.dbgLines { display: grid; gap: 0.2em; padding: 0.6em 0.8em; font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 600; }
+.badLine { display: grid; margin: 0 -0.4em; padding: 0 0.4em; border-radius: 0.3em; animation: badLine 4.4s steps(1) infinite; }
+.badLine > span { grid-area: 1 / 1; }
+@keyframes badLine { 0%, 35% { background: none; } 40%, 92% { background: var(--blue-soft); } }
+.wrong { animation: lk2 4.4s steps(1) infinite; }
+.right { color: var(--blue-deep); animation: ulk2 4.4s steps(1) infinite; }
+@keyframes lk2 { 0% { opacity: 1; } 62% { opacity: 0; } 98% { opacity: 1; } }
+@keyframes ulk2 { 0% { opacity: 0; } 62% { opacity: 1; } 98% { opacity: 0; } }
+.lens { position: absolute; left: 20em; top: 22em; width: 16em; height: 16em; color: var(--blue); animation: lens 4.4s var(--ease) infinite; }
+@keyframes lens { 0% { transform: translate(40em, 14em); } 35%, 60% { transform: translate(18em, 6em); } 70%, 100% { transform: translate(52em, 6em); opacity: 0; } }
+.fixed { position: absolute; left: 76em; top: 26em; width: 11em; height: 11em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; opacity: 0; animation: fixedIn 4.4s var(--ease) infinite; }
+.fixed svg { width: 6em; height: 6em; }
+@keyframes fixedIn { 0%, 64% { opacity: 0; transform: scale(0.4); } 72%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 캐시 */
+.cacheBox { position: absolute; left: 22em; top: 70em; display: flex; align-items: center; gap: 1em; }
+.cacheBox span { font-size: 4em; font-weight: 700; color: var(--ink-sub); }
+.cacheBox i { width: 10em; height: 7em; border-radius: 1.4em; background: var(--gray-3); }
+.newFile { position: absolute; left: 62em; top: 20em; width: 32em; display: grid; justify-items: center; gap: 1.4em; }
+.newFile b { font-size: 3.6em; color: var(--blue-deep); }
+.newFile i { width: 26em; height: 18em; border-radius: 3em; background: var(--blue); }
+.blocked { position: absolute; left: 54em; top: 30em; width: 10em; height: 10em; color: var(--ink); animation: blink 1.2s steps(1) infinite; }
+
+/* 강력 새로고침 */
+.keys { position: absolute; left: 0; right: 0; top: 8em; display: flex; justify-content: center; gap: 2em; }
+.keys b { display: grid; place-items: center; min-width: 2.4em; height: 2em; padding: 0 0.5em; border-radius: 0.4em; background: #fff; border: 0.12em solid var(--gray-3); box-shadow: 0 0.16em 0 var(--gray-3); font-size: 4.6em; color: var(--ink); animation: key 4.4s var(--ease) infinite both; }
+@keyframes key { 0%, 8% { transform: none; background: #fff; } 12%, 28% { transform: translateY(0.12em); background: var(--blue); color: #fff; box-shadow: none; } 32%, 100% { transform: none; background: #fff; } }
+.oldV { animation: lk 4.4s steps(1) infinite; animation-name: oldV; }
+@keyframes oldV { 0% { opacity: 1; } 30% { opacity: 0; } 98% { opacity: 1; } }
+.newV { opacity: 0; animation: newV 4.4s var(--ease) infinite; }
+@keyframes newV { 0%, 50% { opacity: 0; } 58%, 94% { opacity: 1; } 100% { opacity: 0; } }
+.spin { position: absolute; left: 24em; top: 10em; width: 12em; height: 12em; color: var(--blue); opacity: 0; animation: spinShow 4.4s linear infinite; }
+@keyframes spinShow { 0%, 30% { opacity: 0; transform: rotate(0); } 34% { opacity: 1; } 50% { opacity: 1; transform: rotate(540deg); } 54%, 100% { opacity: 0; transform: rotate(540deg); } }
+
+/* 로컬 서버 */
+.pop { animation: newV 3.6s var(--ease) infinite; }
+.globeOff { position: absolute; left: 72em; top: 24em; display: grid; justify-items: center; gap: 2em; color: var(--gray-3); }
+.globeOff svg { width: 16em; height: 16em; }
+.globeOff svg:last-child { width: 10em; height: 10em; color: var(--ink-sub); }
