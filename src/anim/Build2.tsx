@@ -352,10 +352,10 @@ export function SecretLeak({ playing }: P) {
 export function PublicPrivate({ playing }: P) {
   return (
     <Stage playing={playing}>
-      <B x={4} y={10} w={44} h={64} r={4} c="a" />
-      <B x={52} y={10} w={44} h={64} r={4} c="a" />
-      <T x={26} y={14} size={4.4} align="center" weight={700}>공개</T>
-      <T x={74} y={14} size={4.4} align="center" weight={700}>비공개</T>
+      <B x={4} y={14} w={44} h={62} r={4} c="a" />
+      <B x={52} y={14} w={44} h={62} r={4} c="a" />
+      <T x={26} y={19} size={4.4} align="center" weight={700}>공개</T>
+      <T x={74} y={19} size={4.4} align="center" weight={700}>비공개</T>
       <Globe className={s.pubIcon} />
       {[0, 1, 2, 3].map((i) => <Eye key={i} className={s.eyes} style={{ left: `${8 + i * 9.4}em`, animationDelay: `${i * 0.25}s` }} />)}
       <Lock className={s.privIcon} />

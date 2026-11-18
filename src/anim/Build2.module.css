@@ -166,11 +166,11 @@
 @keyframes blink { 50% { opacity: 0.3; } }
 
 /* 공개 vs 비공개 */
-.pubIcon, .privIcon { position: absolute; top: 24em; width: 20em; height: 20em; }
+.pubIcon, .privIcon { position: absolute; top: 28em; width: 20em; height: 20em; }
 .pubIcon { left: 16em; color: var(--blue); }
 .privIcon { left: 64em; color: var(--ink); }
-.eyes { position: absolute; top: 54em; width: 7em; height: 7em; color: var(--ink-sub); animation: thief 4s var(--ease) infinite both; }
-.me { position: absolute; left: 69em; top: 52em; width: 10em; height: 10em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
+.eyes { position: absolute; top: 58em; width: 7em; height: 7em; color: var(--ink-sub); animation: thief 4s var(--ease) infinite both; }
+.me { position: absolute; left: 69em; top: 56em; width: 10em; height: 10em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
 .me svg { width: 6em; height: 6em; }
 
 /* 콘솔 */

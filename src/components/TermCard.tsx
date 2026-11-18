@@ -45,7 +45,7 @@ export default function TermCard({ term, group, index, hit }: Props) {
       >
         <div className={s.stage}>
           <TermAnim term={term} group={group} playing={inView} size="card" />
-          {term.vs?.length ? <span className={s.vs}>vs</span> : null}
+          {term.vs?.length || term.anim.type === 'Compare' ? <span className={s.vs}>vs</span> : null}
         </div>
         <div className={s.name}>
           <h3 className={s.ko}>

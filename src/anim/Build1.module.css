@@ -114,8 +114,8 @@
 @keyframes pkg { 0% { opacity: 0; transform: none; } 10% { opacity: 1; } 40%, 100% { opacity: 0; transform: translateY(40em) scale(0.5); } }
 
 /* 단일 HTML vs 리액트 */
-.oneFile { position: absolute; left: 16em; top: 28em; width: 20em; height: 20em; color: var(--gray-4); stroke-width: 1.4; }
-.tree { position: absolute; left: 56em; top: 22em; display: grid; gap: 1em; }
+.oneFile { position: absolute; left: 16em; top: 34em; width: 20em; height: 20em; color: var(--gray-4); stroke-width: 1.4; }
+.tree { position: absolute; left: 56em; top: 30em; display: grid; gap: 1em; }
 .tree > span { display: flex; align-items: center; gap: 0.3em; font-size: 3.6em; font-weight: 600; color: var(--ink); animation: treeIn 4.4s var(--ease) infinite both; }
 .tree > span:nth-child(2), .tree > span:nth-child(3), .tree > span:nth-child(4) { padding-left: 1.2em; }
 .tree svg { width: 1.1em; height: 1.1em; color: var(--blue); }

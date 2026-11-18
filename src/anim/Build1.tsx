@@ -307,10 +307,10 @@ export function NpmInstall({ playing }: P) {
 export function HtmlVsReact({ playing }: P) {
   return (
     <Stage playing={playing}>
-      <B x={4} y={8} w={44} h={70} r={4} c="a" />
-      <B x={52} y={8} w={44} h={70} r={4} c="s" />
-      <T x={26} y={12} size={4.2} align="center" weight={700}>단일 HTML</T>
-      <T x={74} y={12} size={4.2} align="center" weight={700} c="blue">리액트 프로젝트</T>
+      <B x={4} y={14} w={44} h={66} r={4} c="a" />
+      <B x={52} y={14} w={44} h={66} r={4} c="s" />
+      <T x={26} y={19} size={4.2} align="center" weight={700}>단일 HTML</T>
+      <T x={74} y={19} size={4.2} align="center" weight={700} c="blue">리액트 프로젝트</T>
       <File className={s.oneFile} />
       <span className={s.tree}>
         {['src', '  App.tsx', '  Card.tsx', '  Quiz.tsx', 'package.json'].map((t, i) => (
