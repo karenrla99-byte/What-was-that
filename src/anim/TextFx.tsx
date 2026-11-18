@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { B, T, win } from './kit';
+import { B, T } from './kit';
 import { Callout, Stage } from './Stage';
 import s from './TextFx.module.css';
 
@@ -15,9 +15,16 @@ function Line({ children, className = '' }: { children: React.ReactNode; classNa
 }
 
 export function Typing({ playing }: P) {
+  // 글자 자리는 처음부터 잡아 두고(가운데 고정), 왼쪽부터 한 글자씩 보이게
   return (
     <Stage playing={playing}>
-      <Line className={s.typing}>{WORD}</Line>
+      <Line>
+        <span className={s.typeWrap}>
+          <span className={s.typeGhost}>{WORD}</span>
+          <span className={s.typeText}>{WORD}</span>
+          <span className={s.caret} />
+        </span>
+      </Line>
       <Callout x={50} y={60}>한 글자씩 쳐지듯 나타나요</Callout>
     </Stage>
   );
@@ -52,20 +59,30 @@ export function CountUp({ playing }: P) {
 }
 
 export function Scramble({ playing }: P) {
-  const frames = ['#@%&', '반@가%', '반가#요', WORD];
+  // 앞 절반: 글자가 빠르게 뒤섞이며 왼쪽부터 하나씩 제자리 찾기 → 뒤 절반: 진짜 글로 멈춤
+  const frames = ['쀍@뷁#', '%뙇&쀍', '반#뷁@', '반쀍%뙇', '반가@#', '반가뷁&', '반가워%', '반가워뙇'];
   return (
     <Stage playing={playing}>
-      {frames.map((f, i) => <Line key={f} className={s.abs}><span style={{ ...win(i, 4, 2.4), display: 'block' }}>{f}</span></Line>)}
+      {frames.map((f, i) => (
+        <Line key={f}><span className={s.scrFrame} style={{ animationDelay: `${i * 0.2}s` }}>{f}</span></Line>
+      ))}
+      <Line><span className={s.scrFinal}>{WORD}</span></Line>
       <Callout x={50} y={60}>마구 바뀌다가 진짜 글로 멈춰요</Callout>
     </Stage>
   );
 }
 
 export function MaskReveal({ playing }: P) {
+  // 파란 막이 글자 위를 지나가며 덮었다가 걷히면 글이 드러남
   return (
     <Stage playing={playing}>
-      <Line className={s.mask}>{WORD}<span className={s.wiper} /></Line>
-      <Callout x={50} y={60}>가려진 글이 닦이듯 드러나요</Callout>
+      <Line>
+        <span className={s.maskWrap}>
+          <span className={s.maskText}>{WORD}</span>
+          <span className={s.maskBar} />
+        </span>
+      </Line>
+      <Callout x={50} y={60}>막이 걷히며 글이 드러나요</Callout>
     </Stage>
   );
 }
@@ -74,21 +91,24 @@ export function Highlight({ playing }: P) {
   return (
     <Stage playing={playing}>
       <Line><mark className={s.marker}>{WORD}</mark></Line>
-      <Callout x={50} y={60}>형광펜처럼 뒤에 색이 칠해져요</Callout>
+      <Callout x={50} y={60}>형광펜으로 그은 듯 색이 칠해져요</Callout>
     </Stage>
   );
 }
 
 export function WordSwap({ playing }: P) {
-  const words = ['책 읽는', '그림 그리는', '노래하는'];
+  // 문장은 그대로, 가운데 낱말만 위로 굴러가며 바뀜
+  const words = ['책 읽는', '그림 그리는', '노래하는', '책 읽는'];
   return (
     <Stage playing={playing}>
-      <T x={50} y={26} size={7} align="center" c="sub">오늘은</T>
-      <B x={14} y={38} w={72} h={14} r={3} c="s" style={{ overflow: 'hidden' }}>
-        {words.map((w, i) => <T key={w} x={36} y={3} size={7} c="blue" weight={700} align="center" className={s.swap} style={win(i, 3, 4.5)}>{w}</T>)}
-      </B>
-      <T x={50} y={56} size={7} align="center" c="sub">날</T>
-      <Callout x={50} y={70}>한 낱말만 계속 바뀌어요</Callout>
+      <span className={s.swapLine}>
+        오늘은
+        <span className={s.swapBox}>
+          <span className={s.swapRoll}>{words.map((w, i) => <b key={i}>{w}</b>)}</span>
+        </span>
+        날
+      </span>
+      <Callout x={50} y={60}>한 낱말만 계속 바뀌어요</Callout>
     </Stage>
   );
 }

@@ -250,7 +250,7 @@ export default function Detail() {
               <section className={s.promptBox}>
                 <h3 className={s.promptTitle}>
                   <MessageCircle size={17} strokeWidth={2.2} aria-hidden="true" />
-                  프롬프트에 이렇게 쓰세요
+                  프롬프트 이렇게 써보세요
                 </h3>
                 <div className={s.promptWrap}>
                   <p className={s.prompt}>

@@ -100,14 +100,17 @@ export function Strike({ playing }: P) {
 }
 
 export function ButtonMorph({ playing }: P) {
+  // 누름 → 동그랗게 줄며 빙글빙글 → 체크로 바뀜 → 다시 버튼("보냈어요")으로
   return (
     <Stage playing={playing}>
       <span className={s.morph}>
         <b className={s.morphLabel}>보내기</b>
-        <Check className={s.morphCheck} strokeWidth={3} />
+        <span className={s.morphRing} />
+        <Check className={s.morphCheck} strokeWidth={3.2} />
+        <b className={s.morphDone}>보냈어요</b>
       </span>
-      <Tap x={50} y={42} at={0.15} d={4} size={12} />
-      <Callout x={50} y={60}>버튼이 동그랗게 줄어 체크로</Callout>
+      <Tap x={50} y={42} at={0.1} d={4.4} size={12} />
+      <Callout x={50} y={60}>버튼 모양이 바뀌며 진행을 알려요</Callout>
     </Stage>
   );
 }
@@ -123,11 +126,20 @@ export function ProgressDone({ playing }: P) {
 }
 
 export function SendAnim({ playing }: P) {
+  // 쓴 글 → 보내기 누름 → 종이비행기가 날아가고 글이 비워짐 → "보냈어요"
   return (
     <Stage playing={playing}>
-      <span className={s.trail} />
+      <span className={s.sentBubble}>
+        <B x={4} y={3.6} w={30} h={3.4} c="n" style={{ background: 'rgba(255,255,255,0.85)' }} />
+      </span>
+      <B x={8} y={62} w={84} h={16} r={8} c="w">
+        <B x={5} y={5} w={44} h={4} c="c" className={s.draft} />
+        <B x={66} y={1.6} w={12} h={12} r={6} c="p" className={s.sendBtn} />
+      </B>
       <span className={s.plane}><Send /></span>
-      <Callout x={50} y={70}>종이비행기처럼 슝</Callout>
+      <span className={s.sentText}>보냈어요</span>
+      <Tap x={80} y={70} at={0.18} d={4} size={11} />
+      <Callout x={80} y={60} dir="down">누르면 종이비행기처럼 슝</Callout>
     </Stage>
   );
 }

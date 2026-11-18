@@ -1,15 +1,23 @@
 .line { position: absolute; left: 0; right: 0; top: calc(34em / 14); display: flex; justify-content: center; font-size: 14em; font-weight: 700; line-height: 1.2; color: var(--ink); white-space: nowrap; }
-.abs { position: absolute; }
 
-/* 타이핑 */
-.typing { justify-content: flex-start; left: 50%; right: auto; transform: translateX(-50%); width: 4.15em; }
-.typing { overflow: hidden; border-right: 0.08em solid var(--blue); animation: typing 3.6s steps(4) infinite, caret 0.6s steps(1) infinite; }
-@keyframes typing { 0% { width: 0; } 55%, 90% { width: 4.15em; } 100% { width: 0; } }
-@keyframes caret { 50% { border-right-color: transparent; } }
+/* 타이핑: 자리는 고정, 왼쪽부터 한 글자씩 */
+.typeWrap { position: relative; display: inline-block; }
+.typeGhost { visibility: hidden; }
+.typeText { position: absolute; left: 0; top: 0; clip-path: inset(0 100% 0 0); animation: typeClip 3.6s steps(4, jump-none) infinite; }
+@keyframes typeClip { 0%, 5% { clip-path: inset(0 100% 0 0); } 5.01% { clip-path: inset(0 75% 0 0); } 60%, 90% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 100% 0 0); } }
+.caret { position: absolute; top: 0.1em; bottom: 0.1em; left: 0; width: 0.07em; background: var(--blue); animation: caretMove 3.6s steps(4, jump-none) infinite, caret 0.6s steps(1) infinite; }
+@keyframes caretMove { 0%, 5% { left: 0; } 5.01% { left: 25%; } 60%, 90% { left: 100%; } 100% { left: 0; } }
+@keyframes caret { 50% { opacity: 0; } }
 
 /* 페이드 업 */
 .fadeUp { animation: fadeUp 3s var(--ease) infinite; }
 @keyframes fadeUp { 0% { opacity: 0; transform: translateY(0.5em); } 30%, 80% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; } }
+
+/* 스크램블: 0.2초마다 다른 글자 → 절반 뒤 진짜 글 */
+.scrFrame { opacity: 0; animation: scr 3.6s steps(1) infinite; }
+@keyframes scr { 0% { opacity: 1; } 5.55%, 100% { opacity: 0; } }
+.scrFinal { opacity: 0; animation: scrFinal 3.6s steps(1) infinite; }
+@keyframes scrFinal { 0% { opacity: 0; } 44.4% { opacity: 1; } 95% { opacity: 0; } }
 
 /* 글자 순차 */
 .char { display: inline-block; animation: char 3s var(--ease) infinite both; animation-delay: calc(var(--i) * 0.18s); }
@@ -21,19 +29,28 @@
 .count::after { content: counter(n); }
 @keyframes count { 0% { --n: 0; } 60%, 100% { --n: 100; } }
 
-/* 마스크 리빌 */
-.mask { overflow: hidden; }
-.wiper { position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: var(--glass-bg-strong); animation: wipe 3s var(--ease) infinite; }
-.wiper::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0.3em; background: var(--blue); }
-@keyframes wipe { 0%, 10% { transform: none; } 55%, 85% { transform: translateX(100%); } 100% { transform: none; } }
+/* 마스크 리빌: 막이 덮었다가 걷힘 */
+.maskWrap { position: relative; display: inline-block; }
+.maskText { opacity: 0; animation: maskText 3.6s steps(1) infinite; }
+@keyframes maskText { 0% { opacity: 0; } 35% { opacity: 1; } 92% { opacity: 0; } }
+.maskBar { position: absolute; left: -0.05em; right: -0.05em; top: 0.05em; bottom: 0.05em; background: var(--blue); transform: scaleX(0); animation: maskBar 3.6s cubic-bezier(0.7, 0, 0.3, 1) infinite; }
+@keyframes maskBar {
+  0%, 8% { transform: scaleX(0); transform-origin: left; }
+  35% { transform: scaleX(1); transform-origin: left; }
+  35.01% { transform: scaleX(1); transform-origin: right; }
+  62%, 100% { transform: scaleX(0); transform-origin: right; }
+}
 
-/* 하이라이트 */
-.marker { color: inherit; background: linear-gradient(transparent 55%, var(--blue-soft) 55%) 0 0 / 0% 100% no-repeat; animation: marker 3s var(--ease) infinite; }
+/* 하이라이트: 노란 형광펜 (보기 쉽게 이 효과만 노랑) */
+.marker { color: inherit; padding: 0 0.08em; background: linear-gradient(transparent 45%, #ffe066 45%, #ffe066 92%, transparent 92%) 0 0 / 0% 100% no-repeat; animation: marker 3s var(--ease) infinite; }
 @keyframes marker { 0%, 15% { background-size: 0% 100%; } 55%, 88% { background-size: 100% 100%; } 100% { background-size: 0% 100%; } }
 
-/* 단어 교체 */
-.swap { animation: swapIn 1.5s var(--ease) infinite; }
-@keyframes swapIn { 0% { transform: translateY(0.8em); } 20%, 100% { transform: none; } }
+/* 단어 교체: 가운데 낱말만 위로 굴러감 */
+.swapLine { position: absolute; left: 0; right: 0; top: calc(36em / 8); display: flex; justify-content: center; align-items: center; gap: 0.3em; font-size: 8em; font-weight: 700; color: var(--ink); white-space: nowrap; }
+.swapBox { display: inline-block; height: 1.4em; padding: 0 0.3em; border-radius: 0.3em; background: var(--blue-soft); overflow: hidden; }
+.swapRoll { display: flex; flex-direction: column; align-items: center; animation: roll 4.5s cubic-bezier(0.6, 0, 0.3, 1) infinite; }
+.swapRoll b { height: 1.4em; line-height: 1.4em; color: var(--blue); }
+@keyframes roll { 0%, 26% { transform: none; } 33.3%, 59% { transform: translateY(-1.4em); } 66.6%, 92% { transform: translateY(-2.8em); } 100% { transform: translateY(-4.2em); } }
 
 /* 블러 인 */
 .blurIn { animation: blurIn 3s ease-out infinite; }
