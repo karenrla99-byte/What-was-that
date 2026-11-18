@@ -196,14 +196,14 @@
 .br { position: absolute; left: 50em; top: 26em; display: flex; gap: 0.3em; transform: translateX(-50%); font-size: 12em; font-weight: 700; font-family: ui-monospace, Menlo, Consolas, monospace; }
 .br { left: calc(50em / 12); top: calc(26em / 12); }
 .br b { color: var(--ink); animation: 4.4s steps(1) infinite; }
-.b0, .b5 { animation-name: pairA; }
-.b1, .b4 { animation-name: pairB; }
-.b2, .b3 { animation-name: pairC; }
+.br .b0, .br .b5 { animation-name: pairA; }
+.br .b1, .br .b4 { animation-name: pairB; }
+.br .b2, .br .b3 { animation-name: pairC; }
 @keyframes pairC { 0% { color: var(--blue); } 25% { color: var(--ink); } }
 @keyframes pairB { 0% { color: var(--ink); } 25% { color: var(--blue); } 50% { color: var(--ink); } }
 @keyframes pairA { 0% { color: var(--ink); } 50% { color: var(--blue); } }
 .br .missing { color: var(--gray-2); animation-name: missing; }
-@keyframes missing { 0% { color: transparent; text-shadow: none; } 50% { color: transparent; outline: 0.03em dashed var(--ink); } }
+@keyframes missing { 0% { color: transparent; outline: none; } 50% { color: transparent; outline: 0.04em dashed var(--ink); } }
 .brX { position: absolute; left: 80em; top: 30em; width: 12em; height: 12em; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: #fff; animation: blockIn 4.4s var(--ease) infinite; }
 .brX svg { width: 7em; height: 7em; }
 
