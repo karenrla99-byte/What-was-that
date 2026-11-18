@@ -116,11 +116,20 @@ export function ButtonMorph({ playing }: P) {
 }
 
 export function ProgressDone({ playing }: P) {
+  // 숫자가 0% → 100%로 오르며 막대가 차고, 다 차면 숫자 자리에 체크 + 글이 "다 올렸어요"로
   return (
     <Stage playing={playing}>
-      <B x={14} y={40} w={64} h={6} r={3} c="g"><span className={s.fill} /></B>
-      <span className={s.doneMark}><Check strokeWidth={3.5} /></span>
-      <Callout x={46} y={50}>끝까지 차고 반짝</Callout>
+      <B x={10} y={26} w={80} h={36} r={5} c="w">
+        <T x={6} y={6} size={5} className={s.pdBusy}>사진 올리는 중</T>
+        <T x={6} y={6} size={5} c="blue" className={s.pdDone}>다 올렸어요</T>
+        <span className={s.pdPct} />
+        <span className={s.pdCheck}><Check strokeWidth={3.5} /></span>
+        <B x={6} y={19} w={66.8} h={5} r={2.5} c="g" style={{ overflow: 'hidden' }}>
+          <span className={s.fill} />
+          <span className={s.shine} />
+        </B>
+      </B>
+      <Callout x={50} y={64}>끝까지 차면 다 됐다고 알려요</Callout>
     </Stage>
   );
 }

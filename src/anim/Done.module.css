@@ -63,12 +63,22 @@
 .morphCheck { position: absolute; width: 9em; height: 9em; color: #fff; opacity: 0; animation: morphCheck 4.4s cubic-bezier(0.3, 1.6, 0.5, 1) infinite; }
 @keyframes morphCheck { 0%, 52% { opacity: 0; transform: scale(0.3); } 60%, 76% { opacity: 1; transform: none; } 80%, 100% { opacity: 0; transform: none; } }
 
-/* 진행률 완료 */
-.fill { position: absolute; inset: 0; border-radius: 3em; background: var(--blue); transform-origin: left; animation: fill 3.6s ease-in-out infinite; }
-@keyframes fill { 0%, 5% { transform: scaleX(0); } 55%, 92% { transform: none; } 100% { transform: scaleX(0); } }
-.doneMark { position: absolute; left: 80em; top: 36em; width: 14em; height: 14em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; opacity: 0; animation: doneMark 3.6s var(--ease) infinite; }
-.doneMark svg { width: 8em; height: 8em; }
-@keyframes doneMark { 0%, 55% { opacity: 0; transform: scale(0.3); } 63% { opacity: 1; transform: scale(1.25); } 70%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+/* 진행률 완료 (4초): 5~60% 차오름 · 60%에 완료 표시 · 92%까지 머묾 */
+@property --pct { syntax: '<integer>'; inherits: false; initial-value: 0; }
+.fill { position: absolute; inset: 0; border-radius: 2.5em; background: var(--blue); transform-origin: left; animation: fill 4s infinite; }
+@keyframes fill { 0%, 5% { transform: scaleX(0); animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); } 60%, 92% { transform: none; } 100% { transform: scaleX(0); } }
+.pdPct { position: absolute; right: calc(5em / 5); top: calc(5.4em / 5); font-size: 5em; font-weight: 700; color: var(--ink); counter-reset: p var(--pct); animation: pct 4s infinite; }
+.pdPct::after { content: counter(p) '%'; }
+@keyframes pct { 0%, 5% { --pct: 0; opacity: 1; animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); } 59.9% { --pct: 100; opacity: 1; } 60%, 100% { --pct: 100; opacity: 0; } }
+.pdCheck { position: absolute; right: 5em; top: 4em; width: 9em; height: 9em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; opacity: 0; animation: pdCheck 4s infinite; }
+.pdCheck svg { width: 5.6em; height: 5.6em; }
+@keyframes pdCheck { 0%, 60% { opacity: 0; transform: scale(0.3); } 66% { opacity: 1; transform: scale(1.2); } 72%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.pdBusy { animation: pdBusy 4s step-end infinite; }
+.pdDone { opacity: 0; animation: pdDone 4s step-end infinite; }
+@keyframes pdBusy { 0% { opacity: 1; } 60% { opacity: 0; } 96% { opacity: 1; } }
+@keyframes pdDone { 0% { opacity: 0; } 60% { opacity: 1; } 96% { opacity: 0; } }
+.shine { position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent); opacity: 0; animation: shine 4s infinite; }
+@keyframes shine { 0%, 60% { opacity: 0; transform: none; } 62% { opacity: 1; } 78%, 100% { opacity: 0; transform: translateX(480%); } }
 
 /* 보냄 (4초): 18% 누름 → 비행기 날아감 → 글 칸 비워짐 → 위에 보낸 말풍선 */
 .draft { animation: draft 4s steps(1) infinite; }

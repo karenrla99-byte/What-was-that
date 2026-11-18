@@ -15,14 +15,13 @@ function Line({ children, className = '' }: { children: React.ReactNode; classNa
 }
 
 export function Typing({ playing }: P) {
-  // 글자 자리는 처음부터 잡아 두고(가운데 고정), 왼쪽부터 한 글자씩 보이게
+  // 낱말 자리는 가운데 고정. 글자가 하나씩 생기고, 커서(|)는 늘 마지막 글자 바로 뒤에
   return (
     <Stage playing={playing}>
       <Line>
         <span className={s.typeWrap}>
-          <span className={s.typeGhost}>{WORD}</span>
-          <span className={s.typeText}>{WORD}</span>
-          <span className={s.caret} />
+          <span className={s.caretStart} />
+          {[...WORD].map((c, i) => <span key={i} className={`${s.key} ${s[`k${i}`]}`}>{c}</span>)}
         </span>
       </Line>
       <Callout x={50} y={60}>한 글자씩 쳐지듯 나타나요</Callout>
