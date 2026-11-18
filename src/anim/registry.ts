@@ -25,6 +25,7 @@ import * as B1 from './Build1';
 import * as B2 from './Build2';
 import * as B3 from './Build3';
 import * as Vs from './VsPairs';
+import * as Ai from './AI';
 import * as Tx from './TextFx';
 import * as Tr from './Transitions';
 import * as Ux from './UX';
@@ -467,4 +468,37 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'console-warning': Vs.ConsoleWarning,
   'chat-mode': Vs.ChatMode,
   'agent-mode': Vs.AgentMode,
+  // 💬 AI와 일하기 (ChatFlow 템플릿)
+  'prompt': Ai.Prompt,
+  'four-parts-of-a-good-prompt': Ai.FourParts,
+  'product-requirements-document': Ai.Prd,
+  'wireframe': Ai.Wireframe,
+  'mockup': Ai.Mockup,
+  'prototype': Ai.Prototype,
+  'reference': Ai.Reference,
+  'design-system': Ai.DesignSystem,
+  'design-token': Ai.DesignToken,
+  'user-flow': Ai.UserFlow,
+  'accessibility': Ai.AccessibilityAnim,
+  'alt-text': Ai.AltText,
+  'few-shot-example': Ai.FewShot,
+  'constraints': Ai.Constraints,
+  'acceptance-criteria': Ai.AcceptanceCriteria,
+  'plan-first': Ai.PlanFirst,
+  'small-steps': Ai.SmallSteps,
+  'iteration': Ai.Iteration,
+  'screenshot-feedback': Ai.ScreenshotFeedback,
+  'paste-the-error': Ai.PasteError,
+  'save-working-version': Ai.SaveWorking,
+  'rollback': Ai.Rollback,
+  'refactoring': Ai.Refactoring,
+  'fresh-start': Ai.FreshStart,
+  'coding-agent': Ai.CodingAgent,
+  'model': Ai.Model,
+  'token': Ai.Token,
+  'context': Ai.Context,
+  'project-instructions': Ai.ProjectInstructions,
+  'multimodal': Ai.Multimodal,
+  'connector-mcp': Ai.Connector,
+  'hallucination': Ai.Hallucination,
 };

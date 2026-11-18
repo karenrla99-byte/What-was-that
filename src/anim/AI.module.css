@@ -1,0 +1,210 @@
+.layer { position: absolute; inset: 0; }
+.mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85em; }
+@keyframes show { 0% { opacity: 0; transform: translateY(2em); } 10%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 말풍선 */
+.chat { position: absolute; display: flex; flex-direction: column; gap: 2.4em; }
+.bub { display: flex; align-items: flex-start; gap: 1.6em; max-width: 80%; opacity: 0; animation-name: bub; animation-iteration-count: infinite; animation-fill-mode: both; animation-timing-function: var(--ease); }
+.bub.wide { max-width: 90%; }
+@keyframes bub { 0% { opacity: 0; transform: translateY(3em) scale(0.96); } 8%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.me { align-self: flex-end; }
+.ai { align-self: flex-start; }
+.who { flex: none; width: 9em; height: 9em; padding: 1.8em; border-radius: 50%; background: var(--blue-soft); color: var(--blue); }
+.bt { display: block; padding: 0.55em 0.85em; border-radius: 1em; font-size: 4.2em; font-weight: 600; line-height: 1.45; }
+.me .bt { background: var(--blue); color: #fff; border-bottom-right-radius: 0.25em; }
+.ai .bt { background: var(--gray-1); color: var(--ink); border-bottom-left-radius: 0.25em; }
+.hl { color: inherit; text-decoration: underline; text-decoration-thickness: 0.12em; text-underline-offset: 0.18em; }
+.ai .hl { color: var(--blue-deep); }
+.inlineIc { display: inline-block; width: 1em; height: 1em; vertical-align: -0.15em; color: var(--blue); }
+
+/* 결과 칸 */
+.result { position: absolute; border-radius: 4em; background: #fff; border: 0.6em solid var(--gray-2); overflow: hidden; opacity: 0; animation: result 4.4s var(--ease) infinite; }
+@keyframes result { 0%, 40% { opacity: 0; transform: translateY(3em) scale(0.95); } 52%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 24em; border-radius: 4em 4em 0 0; background: var(--blue); animation: sheet 4.4s var(--ease) infinite; }
+@keyframes sheet { 0%, 55% { transform: translateY(100%); } 68%, 100% { transform: none; } }
+
+/* 4요소 */
+.card4 { position: absolute; left: 10em; top: 12em; width: 80em; display: grid; gap: 2.4em; }
+.row4 { display: flex; align-items: center; gap: 1em; height: 13em; padding: 0 3em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); animation: show 4.4s var(--ease) infinite both; }
+.row4 b, .row4 span { font-size: 4.4em; }
+.row4 b { width: 4.6em; flex: none; color: var(--blue); }
+.row4 span { font-weight: 600; }
+
+/* PRD */
+.doc { position: absolute; left: 18em; top: 8em; width: 64em; height: 70em; display: grid; align-content: start; gap: 4em; padding: 6em 5em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); }
+.docTitle { font-size: 5em; }
+.docRow { display: flex; align-items: center; gap: 3em; animation: show 4.4s var(--ease) infinite both; }
+.docRow i { font-size: 4em; font-style: normal; font-weight: 700; color: var(--blue); width: 2.6em; flex: none; }
+.docRow em { height: 3em; border-radius: 1.5em; background: var(--gray-2); }
+
+/* 와이어프레임·목업 */
+.wire { border: 0.5em solid var(--gray-4); }
+.draw { position: absolute; inset: 0; animation: drawIn 4s var(--ease) infinite; }
+@keyframes drawIn { 0% { clip-path: inset(0 0 100% 0); } 60%, 92% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 0); opacity: 0; } }
+
+/* 프로토타입 */
+.link { position: absolute; left: 42em; top: 58em; width: 16em; height: 0; border-top: 0.7em dashed var(--blue); }
+.link::after { content: ''; position: absolute; right: -0.8em; top: -2.2em; border: 1.8em solid transparent; border-left: 2.6em solid var(--blue); border-right: 0; }
+.next { opacity: 0.25; animation: nextOn 4s var(--ease) infinite; }
+@keyframes nextOn { 0%, 40% { opacity: 0.25; } 50%, 92% { opacity: 1; } 100% { opacity: 0.25; } }
+
+/* 레퍼런스 */
+.refCard { position: absolute; left: 6em; top: 20em; width: 36em; display: grid; gap: 1.6em; padding: 2em; border-radius: 3em; background: #fff; border: 0.6em dashed var(--gray-3); transform: rotate(-4deg); }
+.refCard svg { width: 100%; height: 22em; border-radius: 2em; }
+.refCard b { font-size: 4em; text-align: center; color: var(--ink-sub); }
+.arrowR { position: absolute; left: 44em; top: 42em; width: 11em; height: 0; border-top: 0.7em dashed var(--blue); }
+.arrowR::after { content: ''; position: absolute; right: -0.8em; top: -2.2em; border: 1.8em solid transparent; border-left: 2.6em solid var(--blue); border-right: 0; }
+.refOut { position: absolute; left: 0; right: 0; top: 0; height: 24em; }
+.refOut svg { width: 100%; height: 100%; }
+
+/* 디자인 시스템 */
+.ds { position: absolute; left: 14em; top: 8em; width: 72em; height: 22em; display: flex; align-items: center; justify-content: space-around; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); }
+.swatches { display: flex; gap: 1.4em; }
+.swatches i { width: 7em; height: 7em; border-radius: 50%; background: var(--blue); }
+.swatches i:nth-child(2) { background: var(--blue-soft); }
+.swatches i:nth-child(3) { background: var(--ink); }
+.swatches i:nth-child(4) { background: var(--gray-2); }
+.aa { font-size: 9em; color: var(--ink); }
+.btns { display: grid; gap: 1.4em; }
+.btns i { width: 16em; height: 5em; border-radius: 2.5em; background: var(--blue); }
+.btns i + i { background: none; border: 0.6em solid var(--blue); }
+.mini { position: absolute; top: 40em; width: 24em; height: 34em; display: grid; align-content: start; gap: 2em; padding: 3em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); animation: show 4.4s var(--ease) infinite both; }
+.mini i { height: 3em; width: 70%; border-radius: 1.5em; background: var(--ink); }
+.mini b { height: 10em; border-radius: 2em; background: var(--blue-soft); }
+.mini em { height: 5em; border-radius: 2.5em; background: var(--blue); }
+
+/* 디자인 토큰 */
+.token { position: absolute; left: 50em; top: 18em; display: flex; align-items: center; gap: 2em; padding: 2.4em 4em; border-radius: 5em; background: var(--ink); color: #fff; transform: translateX(-50%); white-space: nowrap; }
+.token span { font-size: 5em; font-weight: 700; }
+.tokVal { width: 9em; height: 9em; border-radius: 2em; animation: tokCol 4.4s steps(1) infinite; }
+.tokBtn { position: absolute; top: 44em; width: 24em; height: 12em; border-radius: 6em; animation: tokCol 4.4s steps(1) infinite; }
+@keyframes tokCol { 0% { background: var(--blue); } 50% { background: var(--gray-4); } }
+
+/* 유저 플로우 */
+.n { font-size: 4.4em; font-weight: 700; }
+
+/* 접근성 */
+.bigText { animation: big 6s steps(1) infinite; display: inline-block; }
+@keyframes big { 0% { transform: scale(1.6); } 33.3% { transform: none; } }
+.focusRing { animation: ring 6s steps(1) infinite; }
+@keyframes ring { 0% { box-shadow: none; } 66.6% { box-shadow: 0 0 0 1.4em #fff, 0 0 0 2.6em var(--ink); } }
+.tools { position: absolute; left: 70em; top: 14em; display: grid; gap: 3em; }
+.tools > span { position: relative; width: 14em; height: 14em; }
+.toolOff, .toolOn { position: absolute; inset: 0; display: grid; place-items: center; border-radius: 3.4em; }
+.toolOff { background: var(--gray-1); color: var(--gray-4); }
+.toolOn { background: var(--blue); color: #fff; }
+.tools svg { width: 7em; height: 7em; }
+.a11y { position: absolute; left: 4em; top: 4em; width: 9em; height: 9em; color: var(--blue); }
+
+/* 대체 텍스트 */
+.altPic { position: absolute; left: 10em; top: 14em; width: 40em; height: 46em; border-radius: 3em; overflow: hidden; }
+.altPic svg { width: 100%; height: 100%; }
+.altBubble { position: absolute; left: 50em; top: 18em; height: 14em; display: flex; align-items: center; gap: 0.4em; padding: 0 3em; border-radius: 7em 7em 7em 1.4em; background: var(--blue); color: #fff; animation: show 4.4s var(--ease) infinite both; animation-delay: 0.6s; white-space: nowrap; }
+.altBubble svg { width: 6.4em; height: 6.4em; }
+.altBubble span { font-size: 4.2em; font-weight: 700; }
+
+/* 제약 조건 */
+.rules { position: absolute; left: 6em; top: 18em; display: grid; gap: 3em; }
+.rules span { display: flex; align-items: center; gap: 0.4em; padding: 0.4em 0.8em; border-radius: 0.8em; background: var(--ink); color: #fff; font-size: 4.2em; font-weight: 700; white-space: nowrap; animation: show 4.4s var(--ease) infinite both; }
+.rules svg { width: 1em; height: 1em; }
+.noAd { position: absolute; left: 4em; top: 42em; display: flex; align-items: center; gap: 2em; color: var(--gray-3); }
+.noAd span { padding: 0.2em 0.6em; border: 0.15em solid var(--gray-3); border-radius: 0.4em; font-size: 4em; font-weight: 800; text-decoration: line-through; }
+.noAd svg { width: 6em; height: 6em; color: var(--ink-sub); }
+
+/* 체크리스트 */
+.check { position: absolute; left: 12em; top: 12em; display: grid; gap: 3em; }
+.check > span { display: flex; align-items: center; gap: 0.6em; font-size: 4.6em; font-weight: 600; }
+.check i { display: grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 0.4em; border: 0.14em solid var(--gray-3); background: #fff; color: transparent; animation: tick 4.4s steps(1) infinite both; }
+.check i svg { width: 1.1em; height: 1.1em; }
+@keyframes tick { 0% { background: var(--blue); border-color: var(--blue); color: #fff; } 92% { background: #fff; border-color: var(--gray-3); color: transparent; } }
+.check i { animation-name: tickIn; }
+@keyframes tickIn { 0% { background: #fff; border-color: var(--gray-3); color: transparent; } 1%, 100% { background: var(--blue); border-color: var(--blue); color: #fff; } }
+
+/* 작게 나눠 요청 */
+.step { position: absolute; top: 24em; width: 26em; height: 34em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); opacity: 0.2; animation-name: stepOn; animation-iteration-count: infinite; animation-timing-function: var(--ease); animation-fill-mode: both; }
+@keyframes stepOn { 0% { opacity: 0.2; transform: translateY(2em); } 10%, 90% { opacity: 1; transform: none; border-color: var(--blue); } 100% { opacity: 1; } }
+.ok { position: absolute; right: 2em; bottom: 2em; width: 8em; height: 8em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
+.ok svg { width: 5em; height: 5em; }
+
+/* 스크린샷 피드백 */
+.shot { position: absolute; left: 12em; top: 10em; width: 40em; height: 40em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); transform: rotate(-3deg); box-shadow: 0 1em 3em rgba(0, 0, 0, 0.08); }
+.circle { position: absolute; left: 1.4em; top: 22em; width: 20em; height: 12em; border-radius: 50%; border: 0.8em solid var(--ink); animation: circ 4.4s var(--ease) infinite; }
+@keyframes circ { 0%, 15% { opacity: 0; transform: scale(1.4); } 25%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.cam { position: absolute; left: 58em; top: 14em; width: 14em; height: 14em; color: var(--gray-4); }
+.say { position: absolute; left: 28em; top: 58em; height: 13em; display: flex; align-items: center; gap: 0.4em; padding: 0 3em; border-radius: 6.5em 6.5em 1.4em 6.5em; background: var(--blue); color: #fff; white-space: nowrap; animation: show 4.4s var(--ease) infinite both; animation-delay: 1.2s; }
+.say svg { width: 6em; height: 6em; }
+.say span { font-size: 4.2em; font-weight: 700; }
+
+/* 에러 붙여 넣기 */
+.errLine { display: block; margin: 0.3em 0.4em 0; padding: 0 0.4em; border-radius: 0.3em; background: var(--ink); color: #fff; font-weight: 700; }
+
+/* 버전 */
+.vline { position: absolute; left: 14em; right: 14em; top: 40em; height: 1em; border-radius: 1em; background: var(--gray-3); }
+.ver { position: absolute; top: 28em; width: 16em; height: 24em; display: grid; justify-items: center; align-content: center; gap: 1.4em; border-radius: 4em; background: #fff; border: 0.8em solid var(--blue); color: var(--blue); animation: show 4.4s var(--ease) infinite both; }
+.ver b { font-size: 5.4em; }
+.ver svg { width: 7em; height: 7em; }
+.verBad { border-color: var(--ink); color: var(--ink); background: var(--gray-1); }
+.verBack { animation: show 4.4s var(--ease) infinite both, back 4.4s steps(1) infinite; }
+@keyframes back { 0% { background: #fff; color: var(--blue); } 70% { background: var(--blue); color: #fff; } 96% { background: #fff; color: var(--blue); } }
+.saveTag { position: absolute; left: calc(26em / 4); top: calc(18em / 4); transform: translateX(-50%); padding: 0.3em 0.7em; border-radius: 0.6em; background: var(--blue-soft); color: var(--blue-deep); font-size: 4em; font-weight: 700; white-space: nowrap; }
+.backArrow { position: absolute; left: 56em; top: 14em; width: 14em; height: 14em; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: #fff; animation: backA 4.4s var(--ease) infinite; }
+.backArrow svg { width: 8em; height: 8em; }
+@keyframes backA { 0%, 45% { opacity: 0; transform: translateX(10em); } 60%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 새 대화로 시작 */
+.longChat { position: absolute; left: 6em; top: 8em; width: 34em; height: 70em; display: grid; align-content: start; gap: 2em; padding: 3em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); overflow: hidden; -webkit-mask-image: linear-gradient(transparent, #000 50%); mask-image: linear-gradient(transparent, #000 50%); }
+.longChat i, .ctxScroll i { height: 5em; width: 70%; border-radius: 2.5em; background: var(--gray-2); }
+.longChat .r, .ctxScroll .r { justify-self: end; background: var(--blue-soft); }
+.summary { position: absolute; left: 34em; top: 34em; height: 13em; display: flex; align-items: center; gap: 0.4em; padding: 0 3em; border-radius: 3em; background: var(--blue); color: #fff; white-space: nowrap; animation: summary 4.4s var(--ease) infinite; }
+.summary svg { width: 6em; height: 6em; }
+.summary span { font-size: 4em; font-weight: 700; }
+@keyframes summary { 0%, 15% { opacity: 0; transform: translateX(-10em); } 25%, 45% { opacity: 1; transform: none; } 60%, 100% { opacity: 0; transform: translateX(26em); } }
+.newChat { position: absolute; left: 62em; top: 14em; width: 32em; height: 56em; display: grid; align-content: start; gap: 3em; padding: 3em; border-radius: 3em; background: #fff; border: 0.6em solid var(--blue); }
+.newChat b { font-size: 4em; color: var(--blue); }
+.newChat i { height: 9em; border-radius: 2em; background: var(--blue); animation: newIn 4.4s var(--ease) infinite; }
+@keyframes newIn { 0%, 58% { opacity: 0; transform: scale(0.8); } 66%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 모델 */
+.model { position: absolute; left: 10em; width: 80em; height: 20em; display: flex; align-items: center; gap: 3em; padding: 0 4em; border-radius: 4em; background: #fff; border: 0.6em solid var(--gray-2); }
+.mIcon { width: 11em; height: 11em; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--blue); flex: none; }
+.mIcon svg { width: 6em; height: 6em; }
+.mName { font-size: 4.2em; font-weight: 700; white-space: nowrap; width: 8.6em; }
+.mBar { flex: 1; height: 3em; border-radius: 1.5em; background: var(--gray-1); overflow: hidden; }
+.mBar i { display: block; height: 100%; border-radius: inherit; background: var(--blue); animation: fillBar linear infinite; }
+@keyframes fillBar { from { width: 0; } to { width: 100%; } }
+
+/* 토큰 */
+.tokens { position: absolute; left: 50em; top: 24em; display: flex; transform: translateX(-50%); }
+.tokens span { padding: 0.3em 0.15em; margin: 0 0.06em; border-radius: 0.3em; font-size: 6.4em; font-weight: 700; color: var(--ink); white-space: pre; animation: tokOn 4.4s steps(1) infinite both; }
+.tokens span:nth-child(odd) { --tc: var(--blue-soft); }
+.tokens span:nth-child(even) { --tc: var(--gray-2); }
+@keyframes tokOn { 0% { background: var(--tc); } 92% { background: none; } }
+.count span::after { content: '토큰 6개'; animation: cnt 4.4s steps(1) infinite; }
+@keyframes cnt { 0% { content: '토큰 0개'; } 15% { content: '토큰 1개'; } 24% { content: '토큰 2개'; } 33% { content: '토큰 3개'; } 42% { content: '토큰 4개'; } 51% { content: '토큰 5개'; } 60%, 100% { content: '토큰 6개'; } }
+
+/* 컨텍스트 */
+.ctxWin { position: absolute; z-index: 2; left: 18em; top: 16em; width: 64em; height: 50em; border-radius: 3em; border: 1em solid var(--blue); box-shadow: 0 0 0 100em rgba(250, 250, 248, 0.75); }
+.ctxScroll { position: absolute; left: 22em; top: 20em; width: 56em; display: grid; gap: 2.6em; animation: ctx 4.4s linear infinite; }
+@keyframes ctx { from { transform: translateY(20em); } to { transform: translateY(-40em); } }
+
+/* 프로젝트 지침 */
+.pinned { position: absolute; left: 22em; top: 8em; width: 56em; display: grid; grid-template-columns: auto 1fr; gap: 2em 2em; align-items: center; padding: 3em 4em; border-radius: 3em; background: var(--ink); color: #fff; }
+.pinned svg { width: 6em; height: 6em; color: var(--blue); }
+.pinned span { font-size: 4.2em; font-weight: 700; }
+.pinned i { grid-column: 1 / -1; height: 2.4em; border-radius: 1.2em; background: #55555c; }
+.chatMini { position: absolute; top: 46em; width: 24em; height: 28em; display: grid; align-content: start; gap: 2em; padding: 3em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-2); animation: show 4.4s var(--ease) infinite both; }
+.chatMini i { height: 4em; width: 80%; border-radius: 2em; background: var(--gray-2); }
+.chatMini i + i { justify-self: end; background: var(--blue-soft); }
+.chatMini b { position: absolute; right: 2em; bottom: 2em; width: 8em; height: 8em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
+.chatMini b svg { width: 5em; height: 5em; }
+
+/* 할루시네이션 */
+.ghost { position: absolute; left: 50em; top: 64em; padding: 0.3em 0.7em; border-radius: 0.6em; border: 0.15em dashed var(--gray-4); color: var(--gray-4); font-size: 4.2em; font-weight: 700; transform: translateX(-50%); animation: ghost 4.4s var(--ease) infinite; }
+.ghost { left: calc(50em / 4.2); top: calc(64em / 4.2); }
+@keyframes ghost { 0%, 20% { opacity: 0; } 30%, 50% { opacity: 1; } 60%, 100% { opacity: 0; } }
+.lens { position: absolute; left: 60em; top: 34em; width: 14em; height: 14em; color: var(--ink); animation: lensM 4.4s ease-in-out infinite; }
+@keyframes lensM { 0%, 30% { transform: none; } 45% { transform: translate(-30em, 2em); } 60% { transform: translate(-30em, 22em); } 100% { transform: translate(-30em, 22em); } }
+.nope { position: absolute; left: 70em; top: 54em; width: 13em; height: 13em; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: #fff; animation: nope 4.4s var(--ease) infinite; }
+.nope svg { width: 7em; height: 7em; }
+@keyframes nope { 0%, 62% { opacity: 0; transform: scale(0.4); } 70%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
