@@ -392,7 +392,7 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'library': B1.Library,
   'single-html-file': B1.SingleHtml,
   'npm-install': B1.NpmInstall,
-  'single-html-vs-react-project': B1.HtmlVsReact,
+  'react-project': B1.ReactProject,
   'folder-structure': B1.FolderStructure,
   'path': B1.PathAnim,
   'file-extension': B1.FileExtension,

@@ -304,20 +304,15 @@ export function NpmInstall({ playing }: P) {
   );
 }
 
-export function HtmlVsReact({ playing }: P) {
+export function ReactProject({ playing }: P) {
   return (
     <Stage playing={playing}>
-      <B x={4} y={14} w={44} h={66} r={4} c="a" />
-      <B x={52} y={14} w={44} h={66} r={4} c="s" />
-      <T x={26} y={19} size={4.2} align="center" weight={700}>단일 HTML</T>
-      <T x={74} y={19} size={4.2} align="center" weight={700} c="blue">리액트 프로젝트</T>
-      <File className={s.oneFile} />
       <span className={s.tree}>
-        {['src', '  App.tsx', '  Card.tsx', '  Quiz.tsx', 'package.json'].map((t, i) => (
-          <span key={t} style={{ animationDelay: `${i * 0.3}s` }}>{t.startsWith(' ') ? <FileCode2 /> : <Folder />}{t.trim()}</span>
+        {['내 앱', 'src', 'App.tsx', 'Quiz.tsx', 'Card.tsx', 'Button.tsx', 'package.json'].map((t, i) => (
+          <span key={t} className={i >= 2 && i <= 5 ? s.sub : undefined} style={{ animationDelay: `${i * 0.25}s` }}>{t.includes('.tsx') ? <FileCode2 /> : t.includes('.') ? <File /> : <Folder />}{t}</span>
         ))}
       </span>
-      <Callout x={50} y={84} dir="down">간단하면 하나, 크면 나눠서</Callout>
+      <Callout x={50} y={84} dir="down">화면과 기능을 여러 파일로 나눠요</Callout>
     </Stage>
   );
 }

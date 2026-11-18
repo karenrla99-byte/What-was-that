@@ -63,6 +63,7 @@ const ALIASES: Record<string, string[]> = {
   '수량 스테퍼': ['스테퍼'],
   '기본': ['디폴트'],
   '바텀시트': ['하단 시트'],
+  '단일 HTML 파일': ['단일 HTML'],
   '벤토 그리드': ['벤토 레이아웃'],
   '스플릿': ['스플릿 레이아웃'],
   '메이슨리': ['메이슨리 레이아웃'],
@@ -76,7 +77,6 @@ const EN: Record<string, string> = {
   '좋은 프롬프트 4요소': 'Four Parts of a Good Prompt',
   'PRD': 'Product Requirements Document',
   '벡터 vs 비트맵': 'Vector vs Bitmap',
-  '단일 HTML vs 리액트 프로젝트': 'Single HTML vs React Project',
 };
 
 /** id 직접 정하기 (영어 이름이 겹치는 서로 다른 용어) */

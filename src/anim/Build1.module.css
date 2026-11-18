@@ -115,9 +115,10 @@
 
 /* 단일 HTML vs 리액트 */
 .oneFile { position: absolute; left: 16em; top: 34em; width: 20em; height: 20em; color: var(--gray-4); stroke-width: 1.4; }
-.tree { position: absolute; left: 56em; top: 30em; display: grid; gap: 1em; }
-.tree > span { display: flex; align-items: center; gap: 0.3em; font-size: 3.6em; font-weight: 600; color: var(--ink); animation: treeIn 4.4s var(--ease) infinite both; }
-.tree > span:nth-child(2), .tree > span:nth-child(3), .tree > span:nth-child(4) { padding-left: 1.2em; }
+.tree { position: absolute; left: 50em; top: 8em; transform: translateX(-50%); display: grid; gap: 1.4em; }
+.tree > span { display: flex; align-items: center; gap: 0.3em; font-size: 5em; font-weight: 600; color: var(--ink); animation: treeIn 4.4s var(--ease) infinite both; }
+.tree > span:nth-child(n+2) { padding-left: 1em; }
+.tree > .sub { padding-left: 2em !important; }
 .tree svg { width: 1.1em; height: 1.1em; color: var(--blue); }
 @keyframes treeIn { 0% { opacity: 0; transform: translateX(-1em); } 10%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 
