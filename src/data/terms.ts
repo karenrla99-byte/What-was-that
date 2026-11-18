@@ -16,6 +16,8 @@ export type Term = {
   meaning: string;
   /** 쉬운 뜻 (상세 화면의 '뜻') */
   easy: string;
+  /** 자세한 설명 ([자세히 보기]에서 펼침). ' // '로 문단 나눔 */
+  more?: string;
   /** 프롬프트 예시 문장 */
   prompt: string;
   /** 같이 쓰면 좋은 말 (term id) */

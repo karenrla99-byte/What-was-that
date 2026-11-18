@@ -251,8 +251,8 @@ export function Framework({ playing }: P) {
           <path d="M4 22 L30 4 L56 22 M8 20 V46 H52 V20 M8 33 H52 M30 20 V46" pathLength="100" />
         </svg>
       </span>
-      {[[24, 44], [48, 44], [24, 60], [48, 60]].map(([x, y], i) => (
-        <B key={i} x={x} y={y} w={20} h={12} r={1.4} c={i === 0 ? 'p' : 's'} className={s.fill} style={{ animationDelay: `${1.2 + i * 0.35}s` }} />
+      {[[28, 33], [51.5, 33], [28, 47], [51.5, 47]].map(([x, y], i) => (
+        <B key={i} x={x} y={y} w={20.5} h={11.6} r={1.4} c={i === 0 ? 'p' : 's'} className={s.fill} style={{ animationDelay: `${1.2 + i * 0.35}s` }} />
       ))}
       <Callout x={50} y={80}>틀과 규칙이 먼저 있고, 안을 채워요</Callout>
     </Stage>

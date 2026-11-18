@@ -240,6 +240,50 @@
   line-height: 1.6;
 }
 
+/* 자세히 보기: 기본 설명 아래 접었다 펼치는 칸 */
+.meanBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.moreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px 6px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue-deep);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.moreBtn:hover { background: #d4ecff; }
+.moreBtn svg { transition: transform 0.3s var(--ease); }
+.moreBtn .flip { transform: rotate(180deg); }
+
+.more {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--glass-bg-strong);
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.more[hidden] { display: none; }
+.moreOpen { animation: moreIn 0.3s var(--ease); }
+@keyframes moreIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.more p { margin: 0; }
+
 /* 프롬프트: 회색 상자, 복사 버튼은 문장 칸 오른쪽 위 */
 .promptBox {
   padding: 12px 14px 14px;

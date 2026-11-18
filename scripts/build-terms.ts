@@ -19,6 +19,7 @@ type Term = {
   meaning: string;
   /** 쉬운 뜻 (상세 화면의 '뜻') */
   easy: string;
+  more?: string;
   prompt: string;
   related: string[];
   vs?: string[];
@@ -323,6 +324,8 @@ function readDrafts(file: string): Map<string, string> {
 }
 const prompts = readDrafts('scripts/prompt-drafts.md');
 const easies = readDrafts('scripts/easy-drafts.md');
+const mores = readDrafts('scripts/more-drafts.md');
+const usedMore = new Set<string>();
 const usedPrompts = new Set<string>();
 const usedEasy = new Set<string>();
 const noEasy: string[] = [];
@@ -340,6 +343,13 @@ for (const t of terms) {
     if (!easies.has(key)) continue;
     usedEasy.add(key);
     if (!t.easy) t.easy = easies.get(key)!;
+  }
+  // more: 자세한 설명 (자세히 보기)
+  for (const names of [[t.ko], t.aliases]) for (const name of names) for (const g of t.groups) {
+    const key = `${name}@${g.sub}`;
+    if (!mores.has(key)) continue;
+    usedMore.add(key);
+    if (!t.more) t.more = mores.get(key)!;
   }
   if (!t.easy) { noEasy.push(`${t.groups[0].sub} > ${t.ko}`); t.easy = t.meaning; }
   // short: 쉬운 뜻의 첫 문장
@@ -393,6 +403,7 @@ for (const t of terms) {
 const unusedNotion = notion.filter((n) => !usedNotion.has(n)).map((n) => `${n.section} > ${n.ko}`);
 const unusedPrompts = [...prompts.keys()].filter((k) => !usedPrompts.has(k));
 const unusedEasy = [...easies.keys()].filter((k) => !usedEasy.has(k));
+const unusedMore = [...mores.keys()].filter((k) => !usedMore.has(k));
 
 writeFileSync(new URL('src/data/terms.json', root), JSON.stringify(terms, null, 1) + '\n');
 
@@ -419,6 +430,8 @@ show('프롬프트 규칙 어김', badPrompt);
 show('안 쓰인 프롬프트 초안', unusedPrompts);
 show('쉬운 뜻 없음 (원래 뜻을 씀)', noEasy);
 show('안 쓰인 쉬운 뜻', unusedEasy);
+show('안 쓰인 자세한 설명', unusedMore);
+console.log(`\n■ 자세한 설명: ${terms.filter((t) => t.more).length}개`);
 show('노션에만 있고 안 쓰인 용어', unusedNotion);
 show('문제', problems);
 if (problems.length || badPrompt.length || noEasy.length) process.exitCode = 1;

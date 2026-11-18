@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Check, ChevronLeft, ChevronRight, Copy, KeyRound, MessageCircle, RotateCcw, Scale, X } from 'lucide-react';
+import { ArrowLeft, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, KeyRound, MessageCircle, RotateCcw, Scale, X } from 'lucide-react';
 import TermAnim from '../anim/TermAnim';
 import { GROUP_MAP } from '../data/groups';
 import { sequenceFor } from '../data/lists';
@@ -44,6 +44,7 @@ export default function Detail() {
   const [compare, setCompare] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [more, setMore] = useState(false);
 
   const seq = useMemo(() => sequenceFor(bg.pathname, bg.search), [bg.pathname, bg.search]);
   const pos = term ? seq.indexOf(term) : -1;
@@ -81,6 +82,7 @@ export default function Detail() {
   useEffect(() => {
     setCompare(null);
     setCopied(false);
+    setMore(false);
     setReplay(0);
     panelRef.current?.scrollTo(0, 0);
   }, [id]);
@@ -245,7 +247,20 @@ export default function Detail() {
                 </ul>
               </header>
 
-              <p className={s.meaning}>{term.easy}</p>
+              <div className={s.meanBox}>
+                <p className={s.meaning}>{term.easy}</p>
+                {term.more && (
+                  <>
+                    <button type="button" className={s.moreBtn} aria-expanded={more} aria-controls="term-more" onClick={() => setMore((v) => !v)}>
+                      {more ? '접기' : '자세히 보기'}
+                      <ChevronDown size={16} strokeWidth={2.4} aria-hidden="true" className={more ? s.flip : undefined} />
+                    </button>
+                    <div id="term-more" className={`${s.more} ${more ? s.moreOpen : ''}`} hidden={!more}>
+                      {term.more.split(' // ').map((p, i) => <p key={i}>{p}</p>)}
+                    </div>
+                  </>
+                )}
+              </div>
 
               <section className={s.promptBox}>
                 <h3 className={s.promptTitle}>
