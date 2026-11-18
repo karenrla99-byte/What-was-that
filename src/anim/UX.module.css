@@ -1,0 +1,66 @@
+.svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.guide { animation: guide 4.4s ease infinite; }
+@keyframes guide { 0%, 34% { opacity: 0; } 45%, 90% { opacity: 1; } 100% { opacity: 0; } }
+.chev { position: absolute; right: 2em; top: 1.6em; width: 4.4em; height: 4.4em; color: var(--gray-4); animation: chev 4.4s var(--ease) infinite; }
+@keyframes chev { 0%, 55% { transform: none; } 62%, 92% { transform: rotate(180deg); } 100% { transform: none; } }
+.more { position: absolute; left: 0; right: 0; top: 34em; height: 22em; transform-origin: top; animation: more 4.4s var(--ease) infinite; }
+@keyframes more { 0%, 55% { opacity: 0; transform: scaleY(0.3); } 62%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.raised { box-shadow: 0 1.2em 0 var(--blue-deep), 0 2.4em 3em rgba(0, 120, 210, 0.3); }
+
+/* 피드백 */
+.tapL, .tapR { position: absolute; left: 21em; top: 26em; width: 9em; height: 9em; margin: -4.5em 0 0 -4.5em; border-radius: 50%; background: rgba(110, 110, 115, 0.35); border: 0.5em solid #fff; opacity: 0; animation: tapX 4.4s ease-out infinite; }
+@keyframes tapX { 0%, 40% { opacity: 0; transform: scale(1.3); } 46% { opacity: 1; transform: scale(1); } 52% { transform: scale(0.8); } 60%, 100% { opacity: 0; } }
+.fbBtn { animation: fbBtn 4.4s step-end infinite; }
+@keyframes fbBtn { 0% { background: var(--blue); } 50% { background: var(--blue-deep); } 58% { background: var(--blue); } }
+.fbDone { position: absolute; left: 0; right: 0; top: calc(38em / 4); text-align: center; font-size: 4em; font-weight: 700; color: var(--blue); opacity: 0; animation: fbDone 4.4s step-end infinite; }
+@keyframes fbDone { 0% { opacity: 0; } 52% { opacity: 1; } 94% { opacity: 0; } }
+
+/* 터치 영역 · 피츠 */
+.finger { position: absolute; width: 12em; height: 12em; margin: -6em 0 0 -6em; border-radius: 50%; background: rgba(110, 110, 115, 0.3); border: 0.5em solid #fff; }
+.thumb { position: absolute; left: 10em; top: 40em; width: 14em; height: 14em; color: var(--gray-3); transform: rotate(20deg); }
+
+.cal { position: absolute; right: 1.6em; top: 1.4em; width: 5em; height: 5em; color: var(--blue); }
+.undo { position: absolute; left: 2.4em; top: 2.4em; width: 4.6em; height: 4.6em; color: #fff; }
+
+/* 사용성 */
+.pathBad { fill: none; stroke: var(--gray-3); stroke-width: 1.6; stroke-linejoin: round; stroke-dasharray: 2 2; }
+.pathGood { fill: none; stroke: var(--blue); stroke-width: 1.8; stroke-linecap: round; stroke-dasharray: 100; animation: drawP 4.4s ease-in-out infinite; }
+@keyframes drawP { 0%, 34% { stroke-dashoffset: 100; } 60%, 92% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 100; } }
+.goal { fill: var(--blue); }
+
+/* 페르소나 */
+.who { position: absolute; left: 50%; top: 50%; width: 10em; height: 10em; margin: -5em 0 0 -5em; color: var(--blue); }
+.trait { animation: trait 4s var(--ease) infinite both; }
+@keyframes trait { 0% { opacity: 0; transform: translateX(-2em); } 12%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+
+/* 사용자 여정 */
+.stop { position: absolute; top: 37em; width: 14em; height: 14em; margin-left: -7em; display: grid; place-items: center; border-radius: 50%; background: #fff; border: 0.8em solid var(--gray-2); color: var(--blue); }
+.stop svg { width: 7em; height: 7em; }
+.walker { position: absolute; left: 16em; top: 30em; width: 7em; height: 7em; margin: -3.5em 0 0 -3.5em; border-radius: 50%; background: var(--ink); animation: walk 4.4s var(--ease) infinite; }
+@keyframes walk { 0%, 8% { left: 16em; } 26%, 32% { left: 38.6em; } 50%, 56% { left: 61.2em; } 74%, 92% { left: 83.8em; } 100% { left: 16em; } }
+
+/* 정보 구조 */
+.tree { fill: none; stroke: var(--gray-3); stroke-width: 0.8; }
+.tn { animation: tn 4s var(--ease) infinite both; }
+@keyframes tn { 0% { opacity: 0; transform: scale(0.7); } 10%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+
+/* 사용성 테스트 */
+.testTap { position: absolute; left: 27em; top: 60em; width: 9em; height: 9em; margin: -4.5em 0 0 -4.5em; border-radius: 50%; background: rgba(110, 110, 115, 0.35); border: 0.5em solid #fff; animation: tapX 2.2s ease-out infinite; }
+.eyeBox { position: absolute; left: 62em; top: 14em; width: 16em; height: 16em; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--blue); }
+.eyeBox svg { width: 9em; height: 9em; }
+.note { animation: trait 4s var(--ease) infinite both; }
+
+/* A/B */
+.barA, .barB { transform-origin: bottom; animation: 4s var(--ease) infinite; }
+.barA { animation-name: barA; }
+.barB { animation-name: barB; }
+@keyframes barA { 0%, 10% { transform: scaleY(0.1); } 55%, 90% { transform: scaleY(0.45); } 100% { transform: scaleY(0.1); } }
+@keyframes barB { 0%, 10% { transform: scaleY(0.1); } 55%, 90% { transform: none; } 100% { transform: scaleY(0.1); } }
+.flask { position: absolute; left: 44em; top: 54em; width: 12em; height: 12em; color: var(--gray-4); }
+
+/* 보편적 설계 */
+.stair, .stair2 { fill: none; stroke: var(--gray-4); stroke-width: 1.6; stroke-linejoin: round; }
+.stair2 { stroke: var(--gray-2); }
+.ramp { fill: none; stroke: var(--blue); stroke-width: 2.4; stroke-linecap: round; }
+.wheel { position: absolute; left: 4em; top: 30em; width: 10em; height: 10em; color: var(--blue); animation: roll 4.4s var(--ease) infinite; }
+@keyframes roll { 0%, 34% { transform: none; } 80%, 92% { transform: translate(24em, -14em); } 100% { transform: none; } }

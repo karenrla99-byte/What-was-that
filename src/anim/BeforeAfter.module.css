@@ -1,0 +1,12 @@
+.panel { position: absolute; top: 16em; width: 42em; height: 58em; border-radius: 4em; background: #fff; border: 0.6em solid var(--gray-2); overflow: hidden; }
+.bad { left: 5em; }
+.good { left: 53em; border-color: var(--blue); animation: good 4.4s var(--ease) infinite; }
+@keyframes good { 0%, 22% { opacity: 0; transform: translateX(-3em); } 34%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.label { position: absolute; top: 7.6em; display: flex; align-items: center; gap: 0.2em; font-size: 4.4em; font-weight: 700; }
+.label svg { width: 1.1em; height: 1.1em; }
+.badL { left: calc(5em / 4.4); color: var(--ink-sub); }
+.goodL { left: calc(53em / 4.4); color: var(--blue); animation: good 4.4s var(--ease) infinite; }
+.label { top: calc(7.6em / 4.4); }
+.arrow { position: absolute; left: 47.6em; top: 43em; border-top: 2.4em solid transparent; border-bottom: 2.4em solid transparent; border-left: 3em solid var(--gray-3); animation: good 4.4s var(--ease) infinite; }
+.note { position: absolute; left: 0; right: 0; top: calc(78em / 4.2); text-align: center; font-size: 4.2em; font-weight: 600; color: var(--ink); }
+[data-size='card'] .note { display: none; }

@@ -20,8 +20,10 @@ import { PROPERTY_IDS, propertyMorph } from './PropertyMorph';
 import * as R from './Ratings';
 import * as Sc from './Screens';
 import * as Sr from './Search';
+import * as Sz from './Size';
 import * as Tx from './TextFx';
 import * as Tr from './Transitions';
+import * as Ux from './UX';
 import { LAYOUT_IDS, layoutSketch } from './LayoutSketch';
 import { DESIGN_STYLES, styleSwatch } from './StyleSwatch';
 import { TYPE_STYLES, typeSwatch } from './TypeSwatch';
@@ -320,4 +322,51 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'save-as-image': Le.SaveImage,
   print: Le.PrintAnim,
   'shared-gallery': Le.SharedGallery,
+  // 🧠 UX 원칙 (BeforeAfter 템플릿)
+  'visual-hierarchy': Ux.VisualHierarchy,
+  'white-space': Ux.WhiteSpace,
+  proximity: Ux.Proximity,
+  alignment: Ux.Alignment,
+  consistency: Ux.Consistency,
+  readability: Ux.Readability,
+  'cognitive-load': Ux.CognitiveLoad,
+  'progressive-disclosure': Ux.ProgressiveDisclosure,
+  affordance: Ux.Affordance,
+  feedback: Ux.Feedback,
+  'touch-target': Ux.TouchTarget,
+  'fitts-law': Ux.FittsLaw,
+  'hick-law': Ux.HickLaw,
+  'default-value': Ux.DefaultValue,
+  'error-prevention': Ux.ErrorPrevention,
+  reversibility: Ux.Reversibility,
+  'dark-pattern': Ux.DarkPattern,
+  usability: Ux.Usability,
+  persona: Ux.Persona,
+  'user-journey': Ux.UserJourney,
+  'information-architecture': Ux.InfoArchitecture,
+  'usability-test': Ux.UsabilityTest,
+  'a-b-test': Ux.ABTest,
+  'plain-language': Ux.PlainLanguage,
+  'universal-design': Ux.UniversalDesign,
+  // 📐 화면 크기 (ResizeFrame 템플릿 등)
+  'responsive-design': Sz.Responsive,
+  breakpoint: Sz.Breakpoint,
+  viewport: Sz.Viewport,
+  px: Sz.Px,
+  'mobile-first': Sz.MobileFirst,
+  'landscape-portrait': Sz.Orientation,
+  fixed: Sz.Fixed,
+  sticky: Sz.Sticky,
+  'z-index': Sz.ZIndex,
+  overflow: Sz.Overflow,
+  'center-alignment': Sz.CenterAlign,
+  fullscreen: Sz.Fullscreen,
+  'safe-area': Sz.SafeArea,
+  'cross-browser': Sz.CrossBrowser,
+  'device-mode': Sz.DeviceMode,
+  'large-touch-display': Sz.LargeDisplay,
+  'add-to-home-screen-pwa': Sz.AddToHome,
+  'offline-support': Sz.OfflineSupport,
+  'print-style': Sz.PrintStyle,
+  'wake-lock': Sz.WakeLock,
 };

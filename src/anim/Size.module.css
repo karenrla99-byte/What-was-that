@@ -1,0 +1,128 @@
+.layer { position: absolute; inset: 0; }
+
+/* 반응형: 틀이 넓음(84) → 중간(50) → 좁음(28), 5초 */
+.frame { position: absolute; left: 50em; top: 12em; height: 58em; border-radius: 3em; border: 0.8em solid var(--gray-3); background: #fff; overflow: hidden; transform: translateX(-50%); animation: frame 5s var(--ease) infinite; }
+@keyframes frame { 0%, 26% { width: 84em; } 33.3%, 60% { width: 50em; } 66.6%, 93% { width: 28em; } 100% { width: 84em; } }
+.frameGrow { position: absolute; left: 50em; top: 12em; height: 58em; border-radius: 3em; border: 0.8em solid var(--gray-3); background: #fff; overflow: hidden; transform: translateX(-50%); animation: grow 5s var(--ease) infinite; }
+@keyframes grow { 0%, 26% { width: 28em; } 33.3%, 60% { width: 50em; } 66.6%, 93% { width: 84em; } 100% { width: 28em; } }
+
+/* 브레이크포인트 */
+.frame2 { position: absolute; left: 50em; top: 18em; height: 46em; border-radius: 3em; border: 0.8em solid var(--gray-3); background: #fff; overflow: hidden; transform: translateX(-50%); animation: frame2 4.4s var(--ease) infinite; }
+@keyframes frame2 { 0% { width: 66em; } 45% { width: 50.4em; } 50%, 90% { width: 32em; } 100% { width: 66em; } }
+.bpLine { position: absolute; left: 24.8em; top: 12em; width: 0; height: 58em; border-left: 0.6em dashed var(--blue); }
+.bpTag { position: absolute; left: calc(24.8em / 4); top: calc(6em / 4); transform: translateX(-50%); padding: 0.2em 0.5em; border-radius: 0.5em; background: var(--blue); color: #fff; font-size: 4em; font-weight: 700; }
+
+/* 뷰포트 */
+.page { position: absolute; left: 25em; top: 8em; width: 54em; height: 120em; animation: pageScroll 4.4s ease-in-out infinite; opacity: 0.35; }
+@keyframes pageScroll { 0%, 10% { transform: none; } 50%, 60% { transform: translateY(-48em); } 100% { transform: none; } }
+.window { position: absolute; left: 22em; top: 22em; width: 56em; height: 46em; border-radius: 2em; border: 1em solid var(--blue); box-shadow: 0 0 0 100em rgba(250, 250, 248, 0.55); }
+
+/* 픽셀 */
+.lens { position: absolute; left: 44em; top: 16em; width: 44em; height: 44em; display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.5em; padding: 1em; border-radius: 50%; overflow: hidden; background: var(--gray-1); border: 1em solid var(--gray-3); animation: lens 3.6s var(--ease) infinite; }
+.lens i { background: #fff; }
+.lens .on { background: var(--blue); }
+@keyframes lens { 0%, 10% { transform: scale(0.3); opacity: 0; } 30%, 90% { transform: none; opacity: 1; } 100% { opacity: 0; } }
+.measure { position: absolute; left: 14em; top: 52em; width: 22em; border-top: 0.6em solid var(--ink); }
+.measure b { position: absolute; left: 0; right: 0; top: calc(1.6em / 4.4); text-align: center; font-size: 4.4em; color: var(--ink); }
+
+/* 가로·세로 */
+.rotor { position: absolute; left: 32em; top: 14em; width: 36em; height: 60em; border-radius: 4em; border: 1em solid var(--gray-3); background: #fff; overflow: hidden; animation: rotor 4.4s var(--ease) infinite; }
+@keyframes rotor { 0%, 40% { transform: none; } 50%, 90% { transform: rotate(-90deg) scale(0.9); } 100% { transform: none; } }
+.portrait, .landscape { position: absolute; inset: 0; }
+.landscape { transform: rotate(90deg); transform-origin: 17em 17em; }
+.landscape { width: 58em; height: 34em; }
+
+/* 고정·스티키 */
+.scroll { position: absolute; inset: 0; animation: scroll 4s linear infinite; }
+@keyframes scroll { from { transform: translateY(0); } to { transform: translateY(-70em); } }
+.fixedBar { z-index: 2; }
+.scroll2 { position: absolute; inset: 0; animation: scroll2 4.4s linear infinite; }
+@keyframes scroll2 { 0% { transform: translateY(0); } 90%, 100% { transform: translateY(-60em); } }
+.stickyBar { z-index: 2; box-shadow: 0 0.6em 1.6em rgba(0, 0, 0, 0.08); animation: sticky 4.4s linear infinite; }
+@keyframes sticky { 0% { transform: translateY(0); } 46.6%, 100% { transform: translateY(-42em); } }
+
+/* 겹침 순서 */
+.zUp { animation: zUp 4s step-end infinite; }
+@keyframes zUp { 0% { z-index: 0; opacity: 0.85; } 40% { z-index: 3; opacity: 1; } 90% { z-index: 0; opacity: 0.85; } }
+
+/* 넘침 */
+.spill, .clipInner { display: grid; gap: 2em; }
+.spill i, .clipInner i { height: 6em; border-radius: 2em; background: var(--gray-3); }
+.spill { position: absolute; left: 26em; top: 18em; width: 48em; animation: spill 4.4s step-end infinite; }
+.spill i { border: 0.4em dashed var(--gray-4); background: none; }
+@keyframes spill { 0% { opacity: 1; } 50% { opacity: 0; } }
+.clipBox { position: absolute; left: 22.7em; top: 14.7em; width: 54.6em; height: 42.6em; padding: 3.3em; border-radius: 3.6em; overflow: hidden; opacity: 0; animation: clip 4.4s step-end infinite; }
+@keyframes clip { 0% { opacity: 0; } 50% { opacity: 1; } }
+.clipInner { animation: clipScroll 2.2s ease-in-out infinite alternate; }
+@keyframes clipScroll { from { transform: none; } to { transform: translateY(-26em); } }
+.bar { position: absolute; right: 1.4em; top: 4em; width: 1.6em; height: 16em; border-radius: 1em; background: var(--blue); animation: barMove 2.2s ease-in-out infinite alternate; }
+@keyframes barMove { from { transform: none; } to { transform: translateY(18em); } }
+
+/* 가운데 정렬 */
+.cross { position: absolute; left: 10em; top: 10em; width: 80em; height: 66em; background: linear-gradient(var(--blue-soft), var(--blue-soft)) 50% 0 / 0.5em 100% no-repeat, linear-gradient(var(--blue-soft), var(--blue-soft)) 0 50% / 100% 0.5em no-repeat; }
+.toCenter { animation: toCenter 4s var(--ease) infinite; }
+@keyframes toCenter { 0%, 15% { transform: none; } 50%, 90% { transform: translate(24em, 22em); } 100% { transform: none; } }
+
+/* 전체화면 */
+.browser { position: absolute; left: 12em; top: 14em; width: 76em; height: 54em; border-radius: 3em; background: #fff; border: 0.6em solid var(--gray-3); overflow: hidden; animation: fs 4.4s var(--ease) infinite; }
+@keyframes fs { 0%, 25% { left: 12em; top: 14em; width: 76em; height: 54em; border-radius: 3em; } 45%, 85% { left: 0; top: 0; width: 100em; height: 100em; border-radius: 0; } 100% { left: 12em; top: 14em; width: 76em; height: 54em; border-radius: 3em; } }
+.chrome { position: absolute; left: 0; right: 0; top: 0; height: 9em; display: flex; align-items: center; gap: 1.4em; padding: 0 3em; background: var(--gray-1); animation: chrome 4.4s var(--ease) infinite; }
+.chrome i { width: 2.6em; height: 2.6em; border-radius: 50%; background: var(--gray-3); }
+.chrome b { flex: 1; height: 4.4em; margin-left: 2em; border-radius: 2em; background: #fff; }
+@keyframes chrome { 0%, 25% { transform: none; } 45%, 85% { transform: translateY(-100%); } 100% { transform: none; } }
+.video { position: absolute; left: 0; right: 0; bottom: 0; top: 9em; animation: video 4.4s var(--ease) infinite; }
+@keyframes video { 0%, 25% { top: 9em; } 45%, 85% { top: 0; } 100% { top: 9em; } }
+
+/* 안전 영역 */
+.notch { position: absolute; left: 50%; top: 0; z-index: 3; width: 22em; height: 5em; margin-left: -11em; border-radius: 0 0 3em 3em; background: var(--ink); }
+.homeBar { position: absolute; left: 50%; bottom: 2em; z-index: 3; width: 20em; height: 1.6em; margin-left: -10em; border-radius: 1em; background: var(--ink); }
+.safe { position: absolute; left: 2em; right: 2em; top: 7em; bottom: 6em; border-radius: 3em; border: 0.6em dashed var(--blue); background: rgba(229, 244, 255, 0.5); }
+.safeBtn { animation: safeBtn 4s var(--ease) infinite; }
+@keyframes safeBtn { 0%, 25% { transform: translateY(6em); } 50%, 90% { transform: none; } 100% { transform: translateY(6em); } }
+
+/* 크로스 브라우저 */
+.mini { position: absolute; top: 20em; width: 26em; height: 30em; border-radius: 2.4em; border: 0.6em solid var(--gray-3); background: #fff; overflow: hidden; animation: mini 4s var(--ease) infinite both; }
+@keyframes mini { 0% { opacity: 0; transform: translateY(2em); } 10%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.miniTop { position: absolute; left: 0; right: 0; top: 0; height: 5em; background: var(--gray-1); }
+.t0 { border-bottom: 0.6em solid var(--gray-3); }
+.t1 { background: var(--gray-2); }
+.t2 { background: var(--blue-soft); }
+.ok { position: absolute; right: 1.4em; bottom: 1.4em; width: 7em; height: 7em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; }
+.ok svg { width: 4.4em; height: 4.4em; }
+
+/* 기기 모드 */
+.devPage { position: absolute; left: 10em; top: 16em; height: 56em; border-radius: 2em; border: 0.6em solid var(--ink); background: #fff; overflow: hidden; animation: dev 4.4s var(--ease) infinite; }
+@keyframes dev { 0%, 25% { width: 48em; } 45%, 90% { width: 26em; } 100% { width: 48em; } }
+.devtools { position: absolute; left: 60em; top: 20em; width: 30em; height: 52em; display: grid; gap: 2em; align-content: start; padding: 2em; border-radius: 2em; background: #fff; }
+.devtools i { height: 2.4em; border-radius: 1em; background: var(--gray-2); }
+
+/* 홈 화면에 추가 */
+.homeGrid { position: absolute; left: 5em; top: 8em; display: grid; grid-template-columns: repeat(4, 10em); gap: 2.4em; }
+.homeGrid i, .newApp { height: 10em; border-radius: 2.6em; background: var(--gray-2); }
+.newApp { display: grid; place-items: center; background: var(--blue); color: #fff; font-size: 1em; font-style: normal; opacity: 0; animation: newApp 4.4s cubic-bezier(0.3, 1.6, 0.5, 1) infinite; }
+.newApp { font-size: 6em; height: 1.66em; border-radius: 0.44em; }
+@keyframes newApp { 0%, 55% { opacity: 0; transform: scale(0.3); } 62%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.shareSheet { position: absolute; left: 0; right: 0; bottom: 0; height: 28em; padding: 4em; display: grid; gap: 2em; align-content: start; border-radius: 4em 4em 0 0; background: #fff; box-shadow: 0 -1em 4em rgba(0, 0, 0, 0.18); animation: share 4.4s var(--ease) infinite; }
+@keyframes share { 0%, 5% { transform: translateY(105%); } 15%, 35% { transform: none; } 45%, 100% { transform: translateY(105%); } }
+.shareRow { display: flex; align-items: center; gap: 0.4em; height: 2.4em; padding: 0 0.6em; border-radius: 0.6em; background: var(--gray-1); font-size: 4em; font-weight: 600; color: var(--ink); }
+.shareRow svg { width: 1.1em; height: 1.1em; color: var(--blue); }
+.addRow { background: var(--blue-soft); color: var(--blue-deep); }
+
+/* 오프라인 사용 */
+.net { position: absolute; right: 5em; top: 4em; width: 9em; height: 9em; color: var(--blue); }
+.net svg { width: 100%; height: 100%; }
+
+/* 인쇄 스타일 */
+.screenV, .paperV { position: absolute; top: 14em; height: 44em; border-radius: 2em; background: #fff; overflow: hidden; }
+.screenV { left: 28em; width: 42em; border: 0.6em solid var(--gray-3); }
+.paperV { left: 34em; width: 31em; border: 0.5em solid var(--gray-2); box-shadow: 0 1em 2.4em rgba(0, 0, 0, 0.1); border-radius: 0.6em; }
+.printIcon { position: absolute; left: 76em; top: 30em; width: 12em; height: 12em; color: var(--gray-4); }
+
+/* 화면 꺼짐 방지 */
+.timerRing { position: absolute; left: 50%; top: 14em; width: 34em; height: 34em; margin-left: -17em; border-radius: 50%; border: 1.6em solid var(--gray-2); border-top-color: var(--blue); animation: spin 4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.sun { position: absolute; left: 10em; top: 54em; width: 12em; height: 12em; color: var(--blue); animation: sunPulse 2s ease-in-out infinite; }
+@keyframes sunPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12) rotate(20deg); } }
+.noSleep { position: absolute; left: 36em; top: 54em; width: 12em; height: 12em; color: var(--gray-3); }
+.noSleep svg { width: 100%; height: 100%; }
+.noSleep i { position: absolute; left: -1em; top: 50%; width: 14em; height: 1em; margin-top: -0.5em; background: var(--ink); transform: rotate(-45deg); border-radius: 1em; }
