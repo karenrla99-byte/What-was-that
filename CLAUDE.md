@@ -78,16 +78,82 @@
 - **글자 바로 뒤는 거의 불투명하게** (프로젝터에서도 읽히게). `backdrop-filter` 안 되는 브라우저는 불투명 흰색으로 대체
 - 애플 SF 폰트·SF Symbols·애플 UI 키트 그림은 쓰지 않기 (라이선스)
 
-### 글꼴: LevelUp (이 블록 그대로 `src/styles/fonts.css`에 넣기)
+### 글꼴: Pretendard (이 블록 그대로 `src/styles/fonts.css`에 넣기)
 ```css
-@font-face { font-family: 'LevelUp'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2610132210@levelup-regular/levelup-regular/LevelUp-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'LevelUp'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2610132210@levelup-regular/levelup-regular/LevelUp-SemiBold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
-@font-face { font-family: 'LevelUp'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2610132210@levelup-regular/levelup-regular/LevelUp-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
-@font-face { font-family: 'LevelUp'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2610132210@levelup-italic/levelup-italic/LevelUp-Italic.woff2') format('woff2'); font-weight: 400; font-display: swap; font-style: italic; }
-@font-face { font-family: 'LevelUp'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2610132210@levelup-italic/levelup-italic/LevelUp-SemiBoldItalic.woff2') format('woff2'); font-weight: 600; font-display: swap; font-style: italic; }
-@font-face { font-family: 'LevelUp'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2610132210@levelup-italic/levelup-italic/LevelUp-BoldItalic.woff2') format('woff2'); font-weight: 700; font-display: swap; font-style: italic; }
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PretendardVariable';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2611030106@font-variable-694/variable-694/PretendardVariable.woff2') format('woff2');
+    font-weight: 45 930;
+    font-display: swap;
+}
+
+/* 가변: font-family: 'PretendardVariable'; font-variation-settings: "wght" 400; */
 ```
-- 모든 글자 `font-family: 'LevelUp', system-ui, sans-serif;`
+- 모든 글자 `font-family: 'Pretendard', 'PretendardVariable', system-ui, sans-serif;`
+- Pretendard에는 기울임 파일이 없어서 기울임(영어 이름·vs 배지)은 브라우저가 비스듬히 만들어 보여 줌
 - 제목 700 (물음표 `?`만 `--blue`) · 부제 400 + "Vibe Glossary"만 600 기울임 · 묶음 제목 700 · 상세 용어 이름 700 · 카드 용어 이름 600 · 사이드바 큰 묶음·버튼 600 · 작은 분류 400 · 본문 400 · **영어 이름 400 기울임** · 프롬프트 속 핵심 용어 600 `--blue-text` · `vs` 배지 700 기울임 · 색인 글자 600
 - 기울임은 영어와 vs 배지에만
 

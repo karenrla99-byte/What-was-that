@@ -192,5 +192,5 @@
 .pm[data-v='web-font'] .t { font-size: 15em; animation: webfont 3s steps(1) infinite; }
 @keyframes webfont {
   0% { font-family: 'Batang', 'Times New Roman', serif; font-weight: 400; color: var(--gray-4); }
-  50% { font-family: 'LevelUp', system-ui, sans-serif; font-weight: 700; color: var(--blue); }
+  50% { font-family: 'Pretendard', system-ui, sans-serif; font-weight: 700; color: var(--blue); }
 }
