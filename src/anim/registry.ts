@@ -8,7 +8,9 @@ import * as Dn from './Done';
 import * as Em from './Empty';
 import * as Fb from './Feedback';
 import * as F from './Forms';
+import * as G from './Gestures';
 import * as I from './Indicators';
+import * as Le from './Learn';
 import * as M from './Media';
 import { MENU_ICONS, menuIcon } from './MenuIcons';
 import * as Mo from './Motion';
@@ -274,4 +276,48 @@ export const ANIMS: Record<string, ComponentType<AnimProps>> = {
   'review-step': Sc.ReviewStep,
   'draft-autosave': Sc.DraftAutosave,
   'unsaved-changes-warning': Sc.UnsavedWarning,
+  // ✋ 손동작 (Finger 템플릿)
+  tap: G.Tap1,
+  'long-press': G.LongPress,
+  swipe: G.Swipe,
+  'swipe-to-delete': G.SwipeToDelete,
+  drag: G.Drag,
+  pinch: G.Pinch,
+  'double-tap': G.DoubleTap,
+  'pull-to-refresh': G.PullToRefresh,
+  'edge-swipe': G.EdgeSwipe,
+  'drag-and-drop': G.DragAndDrop,
+  'right-click': G.RightClick,
+  'keyboard-shortcut': G.KeyboardShortcut,
+  // 🎮 문제 풀기
+  'multiple-choice': Le.MultipleChoice,
+  'true-false': Le.TrueFalse,
+  matching: Le.Matching,
+  'sorting-into-groups': Le.Sorting,
+  ordering: Le.Ordering,
+  'fill-in-the-blank': Le.FillBlank,
+  flashcard: Le.Flashcard,
+  'answer-feedback': Le.AnswerFeedback,
+  hint: Le.Hint,
+  retry: Le.Retry,
+  'result-screen': Le.ResultScreen,
+  // 🎮 게임 장치
+  score: Le.Score,
+  timer: Le.Timer,
+  'lives-hearts': Le.Lives,
+  'level-map': Le.LevelMap,
+  reward: Le.Reward,
+  leaderboard: Le.Leaderboard,
+  'random-picker-spinner-wheel': Le.RandomPicker,
+  'dice-roll': Le.Dice,
+  'sound-effect': Le.SoundEffect,
+  gamification: Le.Gamification,
+  // 🎮 만들기 활동
+  'drawing-canvas': Le.DrawingCanvas,
+  coloring: Le.Coloring,
+  'sticker-placement': Le.StickerPlacement,
+  'customization-dress-up': Le.DressUp,
+  'save-as-image': Le.SaveImage,
+  print: Le.PrintAnim,
+  'shared-gallery': Le.SharedGallery,
 };

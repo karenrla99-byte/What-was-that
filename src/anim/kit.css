@@ -67,3 +67,17 @@
 
 /* 크게 보일 때만 보이는 이름 (화면 배치·그림 안 글자) */
 [data-size='card'] .k-detail { display: none; }
+
+/* 움직이는 손가락: 지름 10em, 가운데가 (left, top) */
+.k-finger {
+  position: absolute;
+  z-index: 4;
+  width: 10em;
+  height: 10em;
+  margin: -5em 0 0 -5em;
+  border-radius: 50%;
+  background: rgba(110, 110, 115, 0.35);
+  border: 0.5em solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0.6em 1.6em rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}

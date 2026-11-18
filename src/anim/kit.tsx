@@ -99,3 +99,8 @@ export function MiniCal({ x, y, cell = 5.6, gap = 0.8, rows = 5, on = [], mid = 
     </span>
   );
 }
+
+/** 움직이는 손가락 (위치·움직임은 className의 애니메이션으로) */
+export function Finger({ className = '', style }: { className?: string; style?: CSSProperties }) {
+  return <span className={`k-finger ${className}`} style={style} />;
+}

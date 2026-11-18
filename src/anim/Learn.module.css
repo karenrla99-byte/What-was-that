@@ -1,0 +1,227 @@
+.svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+/* 객관식 */
+.correct { animation: correct 4s step-end infinite; }
+@keyframes correct { 0% { background: #fff; border-color: var(--gray-2); } 32% { background: var(--blue-soft); border-color: var(--blue); } 94% { background: #fff; border-color: var(--gray-2); } }
+.okBadge { position: absolute; left: 22em; top: 31em; width: 8em; height: 8em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; opacity: 0; animation: ok 4s cubic-bezier(0.3, 1.6, 0.5, 1) infinite; }
+.okBadge svg { width: 5em; height: 5em; }
+@keyframes ok { 0%, 32% { opacity: 0; transform: scale(0.3); } 40%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* OX */
+.pickX { animation: pickX 4s step-end infinite; }
+@keyframes pickX { 0% { background: #fff; border-color: var(--gray-2); } 32% { background: var(--blue); border-color: var(--blue); } 94% { background: #fff; border-color: var(--gray-2); } }
+.pickX .k-tx { animation: pickInk 4s step-end infinite; }
+@keyframes pickInk { 0% { color: var(--ink-sub); } 32% { color: #fff; } 94% { color: var(--ink-sub); } }
+.pickO { opacity: 1; }
+
+/* 짝 맞추기 */
+.link { fill: none; stroke: var(--blue); stroke-width: 1.2; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; animation: link 3.6s ease-out infinite both; }
+@keyframes link { 0%, 5% { stroke-dashoffset: 100; } 25%, 88% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 100; } }
+
+/* 분류하기 */
+.sortCard { z-index: 3; animation: sortCard 4s var(--ease) infinite; }
+@keyframes sortCard { 0%, 12% { transform: none; } 20% { transform: scale(1.06); } 52% { transform: translate(-22em, 46em) scale(1.06); } 58%, 88% { transform: translate(-22em, 46em) scale(0.9); } 100% { transform: none; } }
+.sortFinger { left: 50em; top: 19em; opacity: 0; animation: sortF 4s var(--ease) infinite; }
+@keyframes sortF { 0%, 8% { opacity: 0; transform: none; } 14% { opacity: 1; transform: none; } 52% { opacity: 1; transform: translate(-22em, 46em); } 58%, 100% { opacity: 0; transform: translate(-22em, 46em); } }
+.basketA { animation: basket 4s step-end infinite; }
+@keyframes basket { 0% { background: var(--gray-1); box-shadow: none; } 55% { background: var(--blue-soft); box-shadow: inset 0 0 0 0.8em var(--blue); } 90% { background: var(--gray-1); box-shadow: none; } }
+
+/* 순서 맞추기: 3 · 1 · 2 → 1 · 2 · 3 */
+.num { position: absolute; left: 3em; top: 3em; width: 9em; height: 9em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; font-size: 1em; }
+.num { font-weight: 700; }
+.num { font-size: 4.6em; width: 1.9em; height: 1.9em; left: 0.6em; top: 0.6em; }
+.o0, .o1, .o2 { animation: 4.4s var(--ease) infinite; }
+.o0 { animation-name: o0; }
+.o1 { animation-name: o1; }
+.o2 { animation-name: o2; }
+@keyframes o0 { 0%, 10% { transform: translateY(20em); } 40%, 90% { transform: none; } 100% { transform: translateY(20em); } }
+@keyframes o1 { 0%, 10% { transform: translateY(20em); } 40%, 90% { transform: none; } 100% { transform: translateY(20em); } }
+@keyframes o2 { 0%, 10% { transform: translateY(-40em); } 40%, 90% { transform: none; } 100% { transform: translateY(-40em); } }
+
+/* 빈칸 채우기 */
+.blank { border-bottom: 0.8em solid var(--gray-4); border-radius: 0; animation: blank 4s step-end infinite; }
+@keyframes blank { 0% { border-color: var(--gray-4); } 52% { border-color: var(--blue); } 92% { border-color: var(--gray-4); } }
+.chipMove { z-index: 2; animation: chipMove 4s var(--ease) infinite; }
+@keyframes chipMove { 0%, 15% { transform: none; } 50%, 88% { transform: translate(16em, -35em); } 100% { transform: none; } }
+
+/* 플래시카드 */
+.card3d { position: absolute; left: 25em; top: 12em; width: 50em; height: 58em; perspective: 200em; }
+.faceF, .faceB { position: absolute; inset: 0; border-radius: 5em; overflow: hidden; backface-visibility: hidden; animation: 4s var(--ease) infinite; box-shadow: 0 2em 4em rgba(0, 0, 0, 0.12); }
+.faceF { background: var(--gray-1); animation-name: cardF; }
+.faceB { display: grid; place-items: center; background: var(--blue); color: #fff; font-size: 9em; font-weight: 700; animation-name: cardB; }
+.q { position: absolute; right: 0.4em; top: 0.2em; font-size: 12em; color: #fff; text-shadow: 0 0.04em 0.1em rgba(0, 0, 0, 0.3); }
+@keyframes cardF { 0%, 25% { transform: rotateY(0); } 45%, 80% { transform: rotateY(180deg); } 100% { transform: rotateY(360deg); } }
+@keyframes cardB { 0%, 25% { transform: rotateY(-180deg); } 45%, 80% { transform: rotateY(0); } 100% { transform: rotateY(180deg); } }
+
+/* 정답·오답 피드백: 먼저 틀리고(부드럽게) → 다시 맞힘(칭찬) */
+.fbNo { animation: fbNo 5s step-end infinite, wob 5s linear infinite; }
+@keyframes fbNo { 0% { border-color: var(--gray-2); } 16% { border-color: var(--ink); } 50% { border-color: var(--gray-2); } }
+@keyframes wob { 0%, 16%, 22%, 100% { transform: none; } 18% { transform: translateX(-1.4em); } 20% { transform: translateX(1.4em); } }
+.fbOk { animation: fbOk 5s step-end infinite; }
+@keyframes fbOk { 0% { background: #fff; border-color: var(--gray-2); } 61% { background: var(--blue); border-color: var(--blue); } 96% { background: #fff; border-color: var(--gray-2); } }
+.fbTry, .fbGood { position: absolute; left: 0; right: 0; top: calc(52em / 5); text-align: center; font-size: 5em; font-weight: 700; opacity: 0; }
+.fbTry { color: var(--ink-sub); animation: fbTry 5s step-end infinite; }
+.fbGood { display: flex; align-items: center; justify-content: center; gap: 0.2em; color: var(--blue); animation: fbGood 5s step-end infinite; }
+.fbGood svg { width: 1.1em; height: 1.1em; }
+@keyframes fbTry { 0% { opacity: 0; } 16% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes fbGood { 0% { opacity: 0; } 61% { opacity: 1; } 96% { opacity: 0; } }
+
+/* 힌트 */
+.letters { position: absolute; left: 0; right: 0; top: 34em; display: flex; justify-content: center; gap: 2em; padding-right: 12em; }
+.letter { width: 10em; height: 11em; display: grid; place-items: center; border-bottom: 0.8em solid var(--gray-3); }
+.letter b { font-size: 7em; color: var(--blue); }
+.hidden { opacity: 0; }
+.reveal { opacity: 0; animation: reveal 4s step-end infinite; }
+@keyframes reveal { 0% { opacity: 0; } 30% { opacity: 1; } 94% { opacity: 0; } }
+.bulb { display: grid; place-items: center; animation: bulb 4s step-end infinite; }
+.bulb svg { width: 6em; height: 6em; color: var(--blue); }
+@keyframes bulb { 0% { background: var(--blue-soft); } 26% { background: var(--blue); } 40% { background: var(--blue-soft); } }
+
+/* 다시 하기 */
+.wrongX { position: absolute; left: 3em; top: 2.2em; width: 4.6em; height: 4.6em; color: var(--ink-sub); }
+.retryIcon { position: absolute; left: 4em; top: 2.8em; width: 5em; height: 5em; color: #fff; animation: retrySpin 4s var(--ease) infinite; }
+@keyframes retrySpin { 0%, 35% { transform: none; } 50%, 100% { transform: rotate(-360deg); } }
+
+/* 결과 화면 */
+.trophy { position: absolute; left: 50%; top: 6em; width: 16em; height: 16em; margin-left: -8em; color: var(--blue); }
+.trophy svg { width: 100%; height: 100%; }
+.stars { position: absolute; left: 0; right: 0; top: 25em; display: flex; justify-content: center; gap: 2em; }
+.star { width: 9em; height: 9em; color: var(--blue); fill: var(--blue); animation: starPop 3.6s cubic-bezier(0.3, 1.6, 0.5, 1) infinite both; }
+@keyframes starPop { 0% { transform: scale(0); } 12%, 90% { transform: none; } 100% { transform: scale(0); } }
+
+/* 점수 */
+@property --sc { syntax: '<integer>'; inherits: false; initial-value: 0; }
+.scoreStar { position: absolute; left: 18em; top: 28em; width: 18em; height: 18em; color: var(--blue); fill: var(--blue); }
+.score { position: absolute; left: calc(42em / 16); top: calc(26em / 16); font-size: 16em; font-weight: 800; color: var(--ink); counter-reset: sc var(--sc); animation: score 3.6s step-end infinite; }
+.score::after { content: counter(sc); }
+@keyframes score { 0% { --sc: 30; } 30% { --sc: 40; } 63% { --sc: 50; } }
+.plus { position: absolute; left: calc(70em / 6); top: calc(22em / 6); font-size: 6em; font-weight: 700; color: var(--blue); opacity: 0; animation: plus 1.2s ease-out infinite; animation-delay: -0.1s; }
+@keyframes plus { 0%, 20% { opacity: 0; transform: translateY(0.5em); } 35% { opacity: 1; } 80%, 100% { opacity: 0; transform: translateY(-0.8em); } }
+
+/* 타이머 */
+@property --tm { syntax: '<integer>'; inherits: false; initial-value: 10; }
+.timeNum { position: absolute; left: 0; right: 0; top: calc(20em / 16); text-align: center; font-size: 16em; font-weight: 800; color: var(--ink); counter-reset: tm var(--tm); animation: tm 5s linear infinite; }
+.timeNum::after { content: counter(tm); }
+@keyframes tm { 0% { --tm: 10; } 90% { --tm: 0; color: var(--blue); } 100% { --tm: 0; } }
+.timeBar { position: absolute; inset: 0; border-radius: 3em; background: var(--blue); transform-origin: left; animation: timeBar 5s linear infinite; }
+@keyframes timeBar { 0% { transform: none; } 90%, 100% { transform: scaleX(0); } }
+
+/* 기회 */
+.heart { position: absolute; top: 34em; width: 16em; height: 16em; color: var(--blue); }
+.heart svg { width: 100%; height: 100%; fill: var(--blue); }
+.lose svg { animation: lose 3.6s var(--ease) infinite; }
+@keyframes lose { 0%, 30% { fill: var(--blue); color: var(--blue); transform: none; } 36% { transform: scale(1.3) rotate(-10deg); } 44%, 88% { fill: none; color: var(--gray-3); transform: scale(0.9); } 100% { fill: var(--blue); color: var(--blue); transform: none; } }
+
+/* 레벨 맵 */
+.road { fill: none; stroke: var(--gray-2); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.1 6; }
+.road { stroke-dasharray: none; }
+.node { position: absolute; width: 12em; height: 12em; margin: -6em 0 0 -6em; display: grid; place-items: center; border-radius: 50%; background: var(--gray-2); color: var(--gray-4); }
+.node svg { width: 6em; height: 6em; }
+.node b { font-size: 5em; color: #fff; }
+.nodeDone { background: var(--blue); color: #fff; }
+.nodeNext { background: var(--blue-soft); animation: nodeNext 4s step-end infinite; }
+@keyframes nodeNext { 0% { background: var(--gray-3); } 55% { background: var(--blue); } 94% { background: var(--gray-3); } }
+.me { position: absolute; left: 36em; top: 56em; width: 7em; height: 7em; margin: -12em 0 0 -3.5em; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--ink); animation: me 4s var(--ease) infinite; }
+@keyframes me { 0%, 15% { left: 36em; top: 56em; } 50%, 90% { left: 56em; top: 64em; } 100% { left: 36em; top: 56em; } }
+
+/* 보상 */
+.mini { position: absolute; left: 50%; top: 50%; width: 7em; height: 7em; margin: -3.5em 0 0 -3.5em; color: var(--blue); fill: var(--blue); }
+.sticker { position: absolute; left: 50em; top: 20em; width: 16em; height: 16em; margin-left: -8em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; animation: sticker 4s var(--ease) infinite; }
+.sticker svg { width: 9em; height: 9em; fill: #fff; }
+@keyframes sticker { 0% { opacity: 0; transform: scale(0.3); } 15% { opacity: 1; transform: scale(1.2); } 25%, 45% { opacity: 1; transform: none; } 70%, 90% { opacity: 1; transform: translate(16em, 24em) scale(0.75); } 100% { opacity: 0; transform: translate(16em, 24em) scale(0.75); } }
+
+/* 리더보드: 숲 모둠이 1등으로 */
+.l0, .l1, .l2 { animation: 4s var(--ease) infinite; }
+.l0 { animation-name: l0; }
+.l1 { animation-name: l1; }
+.l2 { animation-name: l2; }
+@keyframes l0 { 0%, 25% { transform: none; } 50%, 90% { transform: translateY(17em); } 100% { transform: none; } }
+@keyframes l1 { 0%, 25% { transform: none; } 50%, 90% { transform: translateY(17em); } 100% { transform: none; } }
+@keyframes l2 { 0%, 25% { transform: none; } 50%, 90% { transform: translateY(-34em); } 100% { transform: none; } }
+.crown { position: absolute; left: 4em; top: 3em; width: 6em; height: 6em; color: var(--blue); }
+
+/* 랜덤 뽑기 */
+.wheel { position: absolute; left: 22em; top: 14em; width: 56em; height: 56em; border-radius: 50%; border: 1.4em solid #fff; box-shadow: 0 1em 3em rgba(0, 0, 0, 0.15); background: conic-gradient(var(--blue) 0 60deg, var(--gray-2) 60deg 120deg, var(--blue-soft) 120deg 180deg, var(--gray-3) 180deg 240deg, var(--blue-deep) 240deg 300deg, var(--gray-1) 300deg 360deg); animation: wheel 4s cubic-bezier(0.2, 0.7, 0.2, 1) infinite; }
+@keyframes wheel { 0%, 5% { transform: rotate(0); } 70%, 100% { transform: rotate(1110deg); } }
+.pointer { position: absolute; left: 50em; top: 9em; margin-left: -4em; border-left: 4em solid transparent; border-right: 4em solid transparent; border-top: 9em solid var(--ink); }
+
+/* 주사위 */
+.dice { position: absolute; left: 38em; top: 16em; width: 24em; height: 24em; color: var(--ink); animation: dice 4s cubic-bezier(0.2, 0.8, 0.3, 1) infinite; }
+.dice svg { width: 100%; height: 100%; }
+@keyframes dice { 0% { transform: translate(-20em, -10em) rotate(0); } 35%, 100% { transform: none; } 0%, 35% { animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1); } 15% { transform: translate(-6em, 4em) rotate(400deg); } }
+.piece { position: absolute; left: 15.5em; top: 70em; width: 6em; height: 6em; margin-left: -3em; border-radius: 50%; background: var(--blue); animation: piece 4s var(--ease) infinite; }
+@keyframes piece { 0%, 40% { transform: none; } 80%, 92% { transform: translateX(70em); } 100% { transform: none; } }
+
+/* 효과음 */
+.spk { position: absolute; left: 36em; top: 18em; width: 24em; height: 24em; color: var(--blue); }
+.spk svg { width: 100%; height: 100%; }
+.wave1, .wave2 { position: absolute; left: 70%; top: 30%; width: 8em; height: 10em; border-radius: 50%; border: 1.2em solid transparent; border-right-color: var(--blue); opacity: 0; animation: waveOut 1s ease-out infinite; }
+.wave2 { animation-delay: 0.5s; }
+@keyframes waveOut { 0% { opacity: 1; transform: translateX(0) scale(0.6); } 100% { opacity: 0; transform: translateX(6em) scale(1.3); } }
+.toggle { position: absolute; left: 1.4em; top: 1.4em; width: 9.2em; height: 9.2em; border-radius: 50%; background: #fff; animation: toggle 4s var(--ease) infinite; }
+@keyframes toggle { 0%, 45% { transform: none; } 52%, 95% { transform: translateX(17.6em); } 100% { transform: none; } }
+
+/* 게이미피케이션 */
+.xp { position: absolute; inset: 0; border-radius: 2em; background: var(--blue); transform-origin: left; animation: xp 4s var(--ease) infinite; }
+@keyframes xp { 0%, 10% { transform: scaleX(0.3); } 40%, 92% { transform: scaleX(0.85); } 100% { transform: scaleX(0.3); } }
+.lvStar { position: absolute; right: 4em; top: 3.6em; width: 8em; height: 8em; color: var(--blue); fill: var(--blue); }
+.gPlus { position: absolute; left: calc(40em / 6); top: calc(38em / 6); font-size: 6em; font-weight: 800; color: var(--blue); animation: plus 2s ease-out infinite; }
+.gBadge { position: absolute; left: 60em; top: 38em; width: 20em; height: 20em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; animation: starPop 4s cubic-bezier(0.3, 1.6, 0.5, 1) infinite both; animation-delay: 1s; }
+.gBadge svg { width: 11em; height: 11em; }
+
+/* 캔버스 그리기 */
+.drawLine { fill: none; stroke: var(--blue); stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 100; animation: drawLine 4s ease-in-out infinite; }
+@keyframes drawLine { 0%, 5% { stroke-dashoffset: 100; } 60%, 90% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 100; } }
+.pen { left: 22em; top: 52em; animation: pen 4s ease-in-out infinite; offset-path: path('M22 52 C30 26, 44 26, 50 44 S70 62, 78 30'); }
+.pen { offset-path: none; animation: penMove 4s ease-in-out infinite; }
+@keyframes penMove { 0%, 5% { left: 22em; top: 52em; opacity: 1; } 20% { left: 36em; top: 31em; } 35% { left: 50em; top: 44em; } 48% { left: 64em; top: 52em; } 60% { left: 78em; top: 30em; opacity: 1; } 70%, 100% { left: 78em; top: 30em; opacity: 0; } }
+.swatch { position: absolute; top: 76em; width: 8em; height: 8em; border-radius: 50%; }
+
+/* 색칠하기 */
+.region { fill: #fff; stroke: var(--gray-4); stroke-width: 1.2; }
+.r1 { animation: r1 4s step-end infinite; }
+.r2 { animation: r2 4s step-end infinite; }
+@keyframes r1 { 0% { fill: #fff; } 22% { fill: var(--blue-soft); } 94% { fill: #fff; } }
+@keyframes r2 { 0% { fill: #fff; } 52% { fill: var(--blue); } 94% { fill: #fff; } }
+.mouth { fill: none; stroke: var(--gray-4); stroke-width: 1.2; stroke-linecap: round; }
+
+/* 스티커 붙이기 */
+.stk { position: absolute; left: 20em; top: 72em; width: 12em; height: 12em; color: var(--blue); z-index: 2; animation: stk 4s var(--ease) infinite; }
+.stk svg { width: 100%; height: 100%; fill: var(--blue); stroke: #fff; filter: drop-shadow(0 0.8em 1em rgba(0, 0, 0, 0.25)); }
+@keyframes stk { 0%, 12% { transform: none; } 50%, 90% { transform: translate(36em, -46em) rotate(12deg) scale(1.3); } 100% { transform: none; } }
+.stkFinger { left: 26em; top: 78em; opacity: 0; animation: stkF 4s var(--ease) infinite; }
+@keyframes stkF { 0%, 6% { opacity: 0; transform: none; } 12% { opacity: 1; transform: none; } 50% { opacity: 1; transform: translate(36em, -46em); } 56%, 100% { opacity: 0; transform: translate(36em, -46em); } }
+
+/* 꾸미기 */
+.head { position: absolute; left: 40em; top: 20em; width: 20em; height: 20em; border-radius: 50%; background: var(--gray-2); }
+.hat { position: absolute; left: 36em; top: 12em; width: 28em; height: 10em; border-radius: 14em 14em 1em 1em; background: var(--blue); }
+.hat2 { left: 38em; top: 10em; width: 24em; height: 13em; border-radius: 1.6em; background: var(--ink); }
+.hat3 { left: 40em; top: 9em; width: 20em; height: 0; border-radius: 0; background: none; border-left: 10em solid transparent; border-right: 10em solid transparent; border-bottom: 14em solid var(--blue-deep); }
+.body { position: absolute; left: 34em; top: 40em; width: 32em; height: 32em; color: var(--blue); }
+.body svg { width: 100%; height: 100%; fill: var(--blue-soft); }
+.picks { position: absolute; left: 0; right: 0; top: 76em; display: flex; justify-content: center; gap: 3em; }
+.picks span { position: relative; width: 10em; height: 6em; border-radius: 2em; background: var(--gray-2); }
+.picks i { position: absolute; inset: 0; border-radius: 2em; background: var(--blue); }
+
+/* 결과물 저장 */
+.dlArrow { position: absolute; left: 62em; top: 26em; width: 14em; height: 14em; color: var(--blue); animation: dl 3.6s var(--ease) infinite; }
+.dlArrow svg { width: 100%; height: 100%; }
+@keyframes dl { 0%, 15% { transform: translateY(-4em); opacity: 0; } 30%, 45% { transform: none; opacity: 1; } 55%, 100% { transform: translateY(4em); opacity: 0; } }
+.file { position: absolute; left: 60em; top: 46em; width: 22em; display: flex; flex-direction: column; align-items: center; gap: 1em; color: var(--blue); opacity: 0; animation: file 3.6s var(--ease) infinite; }
+.file svg { width: 16em; height: 16em; }
+.file b { font-size: 4.4em; color: var(--ink); }
+@keyframes file { 0%, 50% { opacity: 0; transform: scale(0.6); } 60%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+
+/* 인쇄하기: 위쪽 프린터에서 종이가 아래로 나옴 */
+.printer { position: absolute; left: 34em; top: 4em; z-index: 2; width: 32em; height: 32em; color: var(--ink); }
+.printer svg { width: 100%; height: 100%; fill: #fff; }
+.paper { position: absolute; left: 39em; top: 30em; width: 22em; height: 30em; padding: 4em 3em; display: grid; gap: 2em; align-content: start; border-radius: 1em; background: #fff; border: 0.5em solid var(--gray-2); box-shadow: 0 1em 2em rgba(0, 0, 0, 0.1); animation: paper 3.6s ease-out infinite; }
+.paper i { height: 2.4em; border-radius: 1em; background: var(--gray-3); }
+@keyframes paper { 0%, 10% { transform: translateY(-24em); opacity: 0; } 14% { opacity: 1; } 60%, 92% { transform: translateY(14em); opacity: 1; } 100% { transform: translateY(14em); opacity: 0; } }
+
+/* 갤러리 공유 */
+.art { position: absolute; width: 24em; height: 30em; border-radius: 3em; background: #fff; box-shadow: 0 1em 2.4em rgba(0, 0, 0, 0.1); overflow: hidden; animation: artIn 4s var(--ease) infinite both; }
+.artPic { position: absolute; left: 0; right: 0; top: 0; height: 22em; }
+.artWho { position: absolute; left: 1.4em; bottom: 1.2em; width: 6em; height: 6em; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; font-size: 1em; }
+.artWho { font-size: 3.6em; width: 1.6em; height: 1.6em; left: 0.4em; bottom: 0.3em; font-weight: 700; }
+@keyframes artIn { 0% { opacity: 0; transform: translateY(3em) scale(0.9); } 12%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
