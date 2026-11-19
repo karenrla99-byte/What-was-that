@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, KeyRound, MessageCircle, RotateCcw, Scale, X } from 'lucide-react';
+import { ArrowLeft, Check, ChevronDown, Hand, ChevronLeft, ChevronRight, Copy, KeyRound, MessageCircle, RotateCcw, Scale, X } from 'lucide-react';
 import TermAnim from '../anim/TermAnim';
+import TryIt, { hasTry } from '../try/TryIt';
 import { GROUP_MAP } from '../data/groups';
 import { sequenceFor } from '../data/lists';
 import { TERM_MAP, type Term } from '../data/terms';
@@ -45,6 +46,7 @@ export default function Detail() {
   const [toast, setToast] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [more, setMore] = useState(false);
+  const [trying, setTrying] = useState(false);
 
   const seq = useMemo(() => sequenceFor(bg.pathname, bg.search), [bg.pathname, bg.search]);
   const pos = term ? seq.indexOf(term) : -1;
@@ -83,6 +85,7 @@ export default function Detail() {
     setCompare(null);
     setCopied(false);
     setMore(false);
+    setTrying(false);
     setReplay(0);
     panelRef.current?.scrollTo(0, 0);
   }, [id]);
@@ -220,9 +223,17 @@ export default function Detail() {
                   </div>
                 </section>
               ) : (
-                <section className={`${s.stage} ${s.big}`} aria-label="움직이는 예시">
-                  <TermAnim key={replay} term={term} playing size="detail" />
-                  <div className={s.replayWrap}>{replayBtn}</div>
+                <section className={`${s.stage} ${s.big}`} aria-label={trying ? '직접 해보기' : '움직이는 예시'}>
+                  {trying ? <TryIt id={term.id} /> : <TermAnim key={replay} term={term} playing size="detail" />}
+                  <div className={s.replayWrap}>
+                    {!trying && replayBtn}
+                    {term.tryIt && hasTry(term.id) && (
+                      <button type="button" className={`${s.replay} ${trying ? '' : s.tryBtn}`} aria-pressed={trying} onClick={() => setTrying((v) => !v)}>
+                        {trying ? <RotateCcw size={16} strokeWidth={2.4} aria-hidden="true" /> : <Hand size={16} strokeWidth={2.4} aria-hidden="true" />}
+                        {trying ? '예시 보기' : '직접 해보기'}
+                      </button>
+                    )}
+                  </div>
                 </section>
               )}
             </div>

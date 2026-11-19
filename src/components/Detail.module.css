@@ -97,6 +97,20 @@
   position: absolute;
   right: 10px;
   bottom: 10px;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+}
+
+/* 직접 해보기 버튼: 파랗게 칠해서 눈에 띄게 */
+.replay.tryBtn {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+.replay.tryBtn:hover {
+  background: var(--blue-deep);
+  color: #fff;
 }
 
 .replay,
