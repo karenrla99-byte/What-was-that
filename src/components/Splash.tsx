@@ -3,8 +3,6 @@ import s from './Splash.module.css';
 
 const KEY = 'ww-splash';
 
-/** 조각 이름. 모두 원본과 같은 크기의 투명 그림이라 그대로 겹치면 원본이 됨 (자른 티가 나지 않게) */
-const PARTS = ['icon', 'spark', 'title', 'mark', 'sub'];
 
 function shown() {
   try {
@@ -49,11 +47,18 @@ export default function Splash() {
   if (stage === 'off') return null;
   return (
     <div className={`${s.splash} ${stage === 'out' ? s.out : ''}`} aria-hidden="true" onClick={() => setStage('out')}>
-      {/* 로고 그림(splash-original)을 조각내서 차례로 등장: 아이콘 → 반짝이 → 제목 → 물음표 → 부제 */}
+      {/* 아이콘(책) → 반짝이 → 제목 → 파란 물음표 → 부제 순서로 등장. 글자는 그림이 아니라 진짜 글자 */}
       <div className={s.logo}>
-        {PARTS.map((k) => (
-          <img key={k} className={`${s.part} ${s[k]}`} src={`/brand/splash-${k}.webp`} alt="" />
-        ))}
+        <div className={s.art}>
+          <img className={s.book} src="/brand/splash-book.webp" alt="" width={360} height={390} />
+          <img className={s.spark} src="/brand/splash-spark.webp" alt="" width={200} height={230} />
+        </div>
+        <p className={s.title}>
+          그거 뭐더라<span className={s.mark}>?</span>
+        </p>
+        <p className={s.sub}>
+          바이브코딩 용어사전 · <i>Vibe Glossary</i>
+        </p>
       </div>
     </div>
   );

@@ -14,54 +14,72 @@
   pointer-events: none;
 }
 
-/* 원본 그림 비율(1199×1312) 그대로인 틀. 조각은 % 자리로 놓음 */
 .logo {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+/* 아이콘 + 반짝이 */
+.art {
   position: relative;
-  width: min(380px, 72vw);
-  aspect-ratio: 1199 / 1312;
+  width: clamp(120px, 34vw, 168px);
 }
 
-.part {
-  position: absolute;
-  inset: 0;
+.book {
+  display: block;
   width: 100%;
-  height: 100%;
-}
-
-/* 1. 아이콘: 살짝 위에서 떠오르듯 커지며 부드럽게 자리 잡고, 고개를 갸우뚱 */
-.icon {
-  transform-origin: 50% 39%;
+  height: auto;
+  transform-origin: 50% 60%;
   animation:
     float 0.9s cubic-bezier(0.34, 1.25, 0.64, 1) both,
     tilt 1s 1s ease-in-out both;
 }
 
-/* 2. 반짝이: 아이콘이 자리 잡을 즈음 톡 */
 .spark {
-  transform-origin: 62% 27%;
+  position: absolute;
+  right: -28%;
+  top: -17%;
+  width: 38%;
+  height: auto;
+  transform-origin: 0% 100%;
   animation: spark 0.5s 0.75s cubic-bezier(0.3, 1.6, 0.5, 1) both;
 }
 
-/* 3. 제목 글자: 아래에서 올라옴 */
+/* 글자 */
 .title {
+  margin: 22px 0 0;
+  font-size: clamp(32px, 8vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
   animation: rise 0.6s 0.6s var(--ease) both;
 }
 
-/* 4. 파란 물음표: 따로 떨어져 통통 튀며 자리 잡기 */
 .mark {
-  transform-origin: 78% 71%;
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--blue);
+  transform-origin: 50% 100%;
   animation: hop 0.8s 1s cubic-bezier(0.3, 1.4, 0.5, 1) both;
 }
 
-/* 5. 부제: 마지막에 살며시 */
 .sub {
+  margin: 10px 0 0;
+  font-size: clamp(14px, 3.6vw, 17px);
+  color: var(--ink-sub);
   animation: fade 0.5s 1.35s var(--ease) both;
+}
+
+.sub i {
+  font-weight: 600;
 }
 
 @keyframes float {
   from {
     opacity: 0;
-    transform: translateY(-5%) scale(0.85);
+    transform: translateY(-12%) scale(0.85);
   }
   50% {
     opacity: 1;
@@ -91,21 +109,21 @@
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(3%);
+    transform: translateY(14px);
   }
 }
 
 @keyframes hop {
   0% {
     opacity: 0;
-    transform: translateY(-10%) rotate(-25deg) scale(0.6);
+    transform: translateY(-120%) rotate(-25deg) scale(0.6);
   }
   45% {
     opacity: 1;
-    transform: translateY(0) rotate(8deg) scale(1.08, 0.92);
+    transform: translateY(0) rotate(8deg) scale(1.1, 0.9);
   }
   70% {
-    transform: translateY(-1.5%) rotate(-4deg);
+    transform: translateY(-22%) rotate(-4deg);
   }
   100% {
     transform: none;
@@ -115,12 +133,16 @@
 @keyframes fade {
   from {
     opacity: 0;
-    transform: translateY(1%);
+    transform: translateY(6px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .part {
+  .book,
+  .spark,
+  .title,
+  .mark,
+  .sub {
     animation: none !important;
   }
 }
