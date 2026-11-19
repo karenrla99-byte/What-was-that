@@ -13,7 +13,7 @@ import { GROUP_MAP, isGroupKey, subId, type GroupKey } from './data/groups';
 import { ALL_SECTIONS, sectionsOf } from './data/lists';
 import { STARTERS, TERMS } from './data/terms';
 import { useScrollSpy } from './hooks/useScrollSpy';
-import Landing, { hasSeen, markSeen } from './pages/Landing';
+import Splash from './components/Splash';
 import { search, suggest } from './lib/search';
 import s from './App.module.css';
 
@@ -25,8 +25,6 @@ function Home() {
   const group: GroupKey | null = isGroupKey(param) ? param : null;
   const [drawer, setDrawer] = useState(false);
   const info = group ? GROUP_MAP[group] : null;
-  // 사전 화면을 한 번 봤으면 다음부터 소개 화면을 건너뜀
-  useEffect(markSeen, []);
 
   // 검색어: 입력은 바로 반영하고, 주소(?q=)에는 조금 뒤에 적어 둠 (상세에서 돌아와도 남게)
   const location = useLocation();
@@ -132,13 +130,6 @@ function Home() {
   );
 }
 
-/** 처음 온 사람은 소개 화면으로. 한 번 보면(사전 열기 누르면) 다음부터는 바로 목록 */
-function FirstVisit() {
-  const location = useLocation();
-  if (!location.search && !hasSeen()) return <Navigate to="/welcome" replace />;
-  return <Home />;
-}
-
 export default function App() {
   const location = useLocation();
   const isDetail = location.pathname.startsWith('/t/');
@@ -149,12 +140,12 @@ export default function App() {
     <>
       <div inert={isDetail}>
         <Routes location={isDetail ? bg : location}>
-          <Route path="/" element={<FirstVisit />} />
-          <Route path="/welcome" element={<Landing />} />
+          <Route path="/" element={<Home />} />
           <Route path="/c/:group" element={<Home />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
+      <Splash />
       {isDetail && (
         <Routes>
           <Route path="/t/:id" element={<Detail />} />

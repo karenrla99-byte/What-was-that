@@ -1,0 +1,83 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  background: var(--bg);
+  transition: opacity 0.45s var(--ease), visibility 0.45s;
+}
+
+.out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.mark {
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  background: var(--blue);
+  box-shadow: 0 12px 32px rgba(0, 149, 255, 0.3);
+  animation: pop 0.6s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+
+.q {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  animation: tilt 1.2s 0.5s ease-in-out both;
+}
+
+.name {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  animation: rise 0.5s 0.25s var(--ease) both;
+}
+
+.name b {
+  color: var(--blue);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+@keyframes tilt {
+  0%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: rotate(-14deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark,
+  .q,
+  .name {
+    animation: none;
+  }
+}

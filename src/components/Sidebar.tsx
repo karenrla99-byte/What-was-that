@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Info, LayoutGrid } from 'lucide-react';
+import { LayoutGrid } from 'lucide-react';
 import { GROUPS, subId, type GroupKey } from '../data/groups';
 import GlassCard from './GlassCard';
 import s from './Sidebar.module.css';
@@ -74,10 +74,6 @@ export default function Sidebar({ current, activeSub, open, onClose }: Props) {
             })}
           </ul>
         </nav>
-        <NavLink to="/welcome" className={s.about} onClick={onClose}>
-          <Info size={16} strokeWidth={2.2} aria-hidden="true" />
-          이 사전 소개
-        </NavLink>
       </GlassCard>
     </>
   );
