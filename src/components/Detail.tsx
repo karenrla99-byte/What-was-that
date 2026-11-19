@@ -300,6 +300,8 @@ export default function Detail() {
                       <li key={t.id}>
                         <Link to={`/t/${t.id}`} replace state={{ bg }} className={s.chip}>
                           {t.ko}
+                          {/* 이름이 같은 용어가 둘 이상이면 묶음 이름으로 구분 */}
+                          {related.some((o) => o !== t && o.ko === t.ko) && <small className={s.chipSub}>{GROUP_MAP[t.groups[0].group].name}</small>}
                         </Link>
                       </li>
                     ))}

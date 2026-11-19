@@ -12,7 +12,7 @@
 .ai { align-self: flex-start; }
 .who { flex: none; width: 9em; height: 9em; padding: 1.8em; border-radius: 50%; background: var(--blue-soft); color: var(--blue); }
 .bt { display: block; padding: 0.55em 0.85em; border-radius: 1em; font-size: 4.2em; font-weight: 600; line-height: 1.45; }
-.me .bt { background: var(--blue); color: #fff; border-bottom-right-radius: 0.25em; }
+.me .bt { background: var(--blue-text); color: #fff; border-bottom-right-radius: 0.25em; }
 .ai .bt { background: var(--gray-1); color: var(--ink); border-bottom-left-radius: 0.25em; }
 .hl { color: inherit; text-decoration: underline; text-decoration-thickness: 0.12em; text-underline-offset: 0.18em; }
 .ai .hl { color: var(--blue-deep); }

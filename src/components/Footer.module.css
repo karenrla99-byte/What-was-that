@@ -6,8 +6,10 @@
 }
 
 .link {
-  color: var(--blue-text);
+  color: var(--blue-deep);
   border-radius: 4px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .link:hover {

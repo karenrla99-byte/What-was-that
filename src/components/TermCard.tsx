@@ -14,6 +14,8 @@ type Props = { term: Term; group?: GroupKey; index: number; /** 검색 결과일
 /** 1:1 카드: 위 75% 애니메이션 칸 + 아래 25% 이름. 누르면 상세 화면으로 커짐 */
 export default function TermCard({ term, group, index, hit }: Props) {
   const { ref, inView, seen } = useInView<HTMLElement>();
+  // 그림은 화면 근처에 왔을 때 처음 그림 (카드 수백 장을 한꺼번에 그리면 느려서)
+  const near = useInView<HTMLDivElement>('600px');
   const location = useLocation();
   const navigate = useNavigate();
   const bg = { pathname: location.pathname, search: location.search };
@@ -41,10 +43,9 @@ export default function TermCard({ term, group, index, hit }: Props) {
           navigate(`/t/${term.id}`, { state: { bg, rect: rect() } });
         }}
         state={{ bg }}
-        aria-label={`${term.ko} (${term.en}) 자세히 보기`}
       >
-        <div className={s.stage}>
-          <TermAnim term={term} group={group} playing={inView} size="card" />
+        <div className={s.stage} ref={near.ref}>
+          {near.seen && <TermAnim term={term} group={group} playing={inView} size="card" />}
           {term.vs?.length || term.anim.type === 'Compare' ? <span className={s.vs}>vs</span> : null}
         </div>
         <div className={s.name}>
@@ -60,6 +61,7 @@ export default function TermCard({ term, group, index, hit }: Props) {
               <Mark text={term.en} ranges={[hit?.en]} />
             </p>
           )}
+          <span className="sr-only"> 자세히 보기</span>
         </div>
       </Link>
     </GlassCard>

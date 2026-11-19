@@ -60,7 +60,7 @@
   right: 8px;
   padding: 1px 9px 2px;
   border-radius: var(--r-pill);
-  background: var(--blue);
+  background: var(--blue-text); /* 흰 글자가 잘 읽히게 한 단계 진한 파랑 */
   color: #fff;
   font-size: 13px;
   font-weight: 700;

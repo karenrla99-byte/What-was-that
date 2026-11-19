@@ -77,25 +77,7 @@
   .withIndex {
     padding-right: 38px;
   }
-  .withIndex {
-  padding-right: 68px;
-}
-
-.count {
-  margin-left: 4px;
-  font-size: 0.62em;
-  font-weight: 600;
-  color: var(--ink-sub);
-}
-
-.letter {
-  margin-bottom: 12px;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--blue);
-}
-
-.heading {
+  .heading {
     font-size: 22px;
   }
 }

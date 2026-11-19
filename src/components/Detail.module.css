@@ -530,3 +530,10 @@
     animation: none;
   }
 }
+
+.chipSub {
+  margin-left: 4px;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: var(--ink-sub);
+}
