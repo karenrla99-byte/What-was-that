@@ -24,11 +24,8 @@ export default function Sidebar({ current, activeSub, open, onClose }: Props) {
       <GlassCard as="aside" className={`${s.side} ${open ? s.open : ''}`} aria-label="카테고리">
         <NavLink to="/" className={s.brand} onClick={onClose}>
           <h1 className={s.title}>
-            그거 뭐더라<span className={s.q}>?</span>
+            <img src="/brand/title.webp" alt="그거 뭐더라? 바이브코딩 용어사전 · Vibe Glossary" width={640} height={219} />
           </h1>
-          <p className={s.subtitle}>
-            바이브코딩 용어사전 · <em lang="en">Vibe Glossary</em>
-          </p>
         </NavLink>
 
         <nav className={s.nav}>

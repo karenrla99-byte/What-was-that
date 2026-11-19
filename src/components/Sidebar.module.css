@@ -15,31 +15,20 @@
 
 .brand {
   display: block;
-  padding: 24px 20px 16px;
+  padding: 12px 8px 4px;
   border-radius: var(--r-side) var(--r-side) 0 0;
 }
 
+/* 제목: 로고 그림 (public/brand/title.webp) */
 .title {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 0;
 }
 
-.q {
-  color: var(--blue);
-}
-
-.subtitle {
-  margin-top: 6px;
-  font-size: 13px;
-  color: var(--ink-sub);
-}
-
-.subtitle em {
-  font-weight: 600;
-  font-style: italic;
-  white-space: nowrap;
+.title img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .nav {

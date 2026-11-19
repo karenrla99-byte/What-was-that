@@ -46,12 +46,7 @@ export default function Splash() {
   if (stage === 'off') return null;
   return (
     <div className={`${s.splash} ${stage === 'out' ? s.out : ''}`} aria-hidden="true" onClick={() => setStage('out')}>
-      <div className={s.mark}>
-        <span className={s.q}>?</span>
-      </div>
-      <p className={s.name}>
-        그거 뭐더라<b>?</b>
-      </p>
+      <img className={s.logo} src="/brand/splash.webp" alt="" width={720} height={788} />
     </div>
   );
 }
