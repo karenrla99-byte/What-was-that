@@ -3,8 +3,7 @@
   inset: 0;
   z-index: 100;
   display: grid;
-  place-content: center;
-  justify-items: center;
+  place-items: center;
   background: var(--bg);
   transition: opacity 0.45s var(--ease), visibility 0.45s;
 }
@@ -15,21 +14,111 @@
   pointer-events: none;
 }
 
+/* 원본 그림 비율(1199×1312) 그대로인 틀. 조각은 % 자리로 놓음 */
 .logo {
+  position: relative;
   width: min(380px, 72vw);
-  height: auto;
-  animation: pop 0.6s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+  aspect-ratio: 1199 / 1312;
 }
 
-@keyframes pop {
+.part {
+  position: absolute;
+  height: auto;
+  animation-fill-mode: both;
+}
+
+/* 1. 아이콘: 위에서 통 떨어져 말랑하게 멈춘 뒤, 고개를 갸우뚱 */
+.icon {
+  animation:
+    drop 0.8s cubic-bezier(0.34, 1.4, 0.55, 1) both,
+    tilt 0.9s 0.95s ease-in-out both;
+}
+
+/* 2. 반짝이: 아이콘이 멈추는 순간 톡 */
+.spark {
+  transform-origin: 0% 100%;
+  animation: spark 0.45s 0.7s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+/* 3. 제목 글자: 아래에서 올라옴 */
+.title {
+  animation: rise 0.55s 0.55s var(--ease) both;
+}
+
+/* 4. 파란 물음표: 따로 떨어져 통통 튀며 자리 잡기 */
+.mark {
+  transform-origin: 50% 100%;
+  animation: hop 0.75s 0.95s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+
+/* 5. 부제: 마지막에 살며시 */
+.sub {
+  animation: fade 0.5s 1.3s var(--ease) both;
+}
+
+@keyframes drop {
   from {
     opacity: 0;
-    transform: scale(0.6);
+    transform: translateY(-45%) scale(0.6);
+  }
+  60% {
+    opacity: 1;
+  }
+}
+
+@keyframes tilt {
+  0%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: rotate(-7deg);
+  }
+  65% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes spark {
+  from {
+    opacity: 0;
+    transform: scale(0.2) rotate(-20deg);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(30%);
+  }
+}
+
+@keyframes hop {
+  0% {
+    opacity: 0;
+    transform: translateY(-120%) rotate(-25deg) scale(0.6);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(0) rotate(8deg) scale(1.08, 0.92);
+  }
+  70% {
+    transform: translateY(-18%) rotate(-4deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .logo {
-    animation: none;
+  .part {
+    animation: none !important;
   }
 }
