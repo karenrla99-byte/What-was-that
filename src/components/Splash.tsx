@@ -3,14 +3,8 @@ import s from './Splash.module.css';
 
 const KEY = 'ww-splash';
 
-/** 조각 이름, 원본 그림 안의 위치(왼쪽 %, 위 %, 너비 %) */
-const PARTS: [string, number, number, number][] = [
-  ['icon', 27.523, 19.055, 44.204],
-  ['spark', 60.467, 15.625, 13.344],
-  ['title', 18.766, 60.213, 55.796],
-  ['mark', 74.479, 60.595, 8.09],
-  ['sub', 14.595, 73.552, 70.892],
-];
+/** 조각 이름. 모두 원본과 같은 크기의 투명 그림이라 그대로 겹치면 원본이 됨 (자른 티가 나지 않게) */
+const PARTS = ['icon', 'spark', 'title', 'mark', 'sub'];
 
 function shown() {
   try {
@@ -57,8 +51,8 @@ export default function Splash() {
     <div className={`${s.splash} ${stage === 'out' ? s.out : ''}`} aria-hidden="true" onClick={() => setStage('out')}>
       {/* 로고 그림(splash-original)을 조각내서 차례로 등장: 아이콘 → 반짝이 → 제목 → 물음표 → 부제 */}
       <div className={s.logo}>
-        {PARTS.map(([k, l, t, w]) => (
-          <img key={k} className={`${s.part} ${s[k]}`} src={`/brand/splash-${k}.webp`} alt="" style={{ left: `${l}%`, top: `${t}%`, width: `${w}%` }} />
+        {PARTS.map((k) => (
+          <img key={k} className={`${s.part} ${s[k]}`} src={`/brand/splash-${k}.webp`} alt="" />
         ))}
       </div>
     </div>
