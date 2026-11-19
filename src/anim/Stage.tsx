@@ -1,4 +1,4 @@
-import { Children, isValidElement, type CSSProperties, type ReactNode } from 'react';
+import { Children, isValidElement, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import s from './Stage.module.css';
 
 type StageProps = { playing: boolean; children: ReactNode; className?: string; style?: CSSProperties; variant?: string };
@@ -9,8 +9,10 @@ type StageProps = { playing: boolean; children: ReactNode; className?: string; s
  * playing이 false면 (화면 밖) 멈춤.
  */
 export function Stage({ playing, children, className = '', style, variant }: StageProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  useStill(ref);
   return (
-    <div className={`${s.root} ${playing ? '' : s.paused} ${className}`} style={style} data-v={variant} aria-hidden="true">
+    <div ref={ref} className={`${s.root} ${playing ? '' : s.paused} ${className}`} style={style} data-v={variant} aria-hidden="true">
       <div className={s.unit}>
         <div className={s.canvas}>{children}</div>
       </div>
@@ -51,4 +53,26 @@ export function Phone({ playing, children, bare = false }: { playing: boolean; c
       <div className={s.phoneOver}>{callouts}</div>
     </Stage>
   );
+}
+
+/**
+ * 동작 줄이기(prefers-reduced-motion)가 켜져 있으면 움직임을 멈춤.
+ * 0초에 멈추면 빈 그림인 경우가 많아서, 한 바퀴의 60% 지점(결과가 보이는 장면)에서 멈춰 둠.
+ */
+export function useStill(ref: { current: HTMLElement | null }) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el || typeof window === 'undefined' || !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const freeze = () => {
+      const anims = el.getAnimations?.({ subtree: true }) ?? [];
+      const durs = anims.map((a) => Number(a.effect?.getTiming().duration) || 0);
+      const t = Math.max(0, ...durs) * 0.6;
+      anims.forEach((a) => {
+        a.pause();
+        a.currentTime = t;
+      });
+    };
+    const id = requestAnimationFrame(freeze);
+    return () => cancelAnimationFrame(id);
+  });
 }

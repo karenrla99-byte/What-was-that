@@ -78,8 +78,8 @@ button {
   *,
   *::before,
   *::after {
+    /* 그림 칸(Stage)은 Stage.tsx의 useStill이 결과가 보이는 장면에 멈춰 둠 */
     animation-play-state: paused !important;
-    animation-delay: 0s !important;
     transition-duration: 0.01ms !important;
   }
 }
