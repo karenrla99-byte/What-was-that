@@ -24,7 +24,7 @@ export default function Sidebar({ current, activeSub, open, onClose }: Props) {
       <GlassCard as="aside" className={`${s.side} ${open ? s.open : ''}`} aria-label="카테고리">
         <NavLink to="/" className={s.brand} onClick={onClose}>
           <h1 className={s.title}>
-            <img src="/brand/title.webp" alt="그거 뭐더라? 바이브코딩 용어사전 · Vibe Glossary" width={640} height={219} />
+            <img src="/brand/title.webp" alt="그거 뭐더라? 바이브코딩 용어사전 · Vibe Glossary" width={640} height={218} />
           </h1>
         </NavLink>
 
